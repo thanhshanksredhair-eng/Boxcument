@@ -160,32 +160,32 @@ const appData = {
                                 title: 'Điểm Ngữ Pháp Bài Khóa 2',
                                 points: [
                                     { 
-                                        rule: '1. Phó từ phủ định "不" (không)[cite: 5]', 
-                                        desc: 'Phó từ "不" dùng để biểu thị sự phủ định, đứng trước động từ hoặc tính từ[cite: 5].',
-                                        example: '我不是老师。 / 我不姓李。[cite: 5]',
-                                        pinyin: 'Wǒ bú shì lǎoshī. / Wǒ bù xìng Lǐ.[cite: 5]',
-                                        meaning: 'Tôi không phải là giáo viên. / Tôi không phải họ Lý.[cite: 5]',
+                                        rule: '1. Phó từ phủ định "不" (không)', 
+                                        desc: 'Phó từ "不" dùng để biểu thị sự phủ định, đứng trước động từ hoặc tính từ.',
+                                        example: '我不是老师。 / 我不姓李。',
+                                        pinyin: 'Wǒ bú shì lǎoshī. / Wǒ bù xìng Lǐ.',
+                                        meaning: 'Tôi không phải là giáo viên. / Tôi không phải họ Lý.',
                                         breakdown: [
                                             { word: '不 (bù)', role: 'Phó từ phủ định' },
                                             { word: '是 / 姓', role: 'Động từ' }
                                         ]
                                     },
                                     { 
-                                        rule: '2. Trợ từ "吗" và câu hỏi đúng sai[cite: 5]', 
-                                        desc: 'Đặt trợ từ "吗" ở cuối câu trần thuật để tạo thành câu hỏi nghi vấn (đúng/sai). Trả lời khẳng định thì bỏ "吗", phủ định thì thêm "不" trước động từ[cite: 5].',
-                                        example: '你是法国人吗？ ➔ 我是法国人。 / 我不是法国人。[cite: 5]',
-                                        pinyin: 'Nǐ shì Fǎguó rén ma? ➔ Wǒ shì Fǎguó rén. / Wǒ bú shì Fǎguó rén.[cite: 5]',
-                                        meaning: 'Bạn là người Pháp phải không? ➔ Tôi là người Pháp. / Tôi không phải người Pháp.[cite: 5]',
+                                        rule: '2. Trợ từ "吗" và câu hỏi đúng sai', 
+                                        desc: 'Đặt trợ từ "吗" ở cuối câu trần thuật để tạo thành câu hỏi nghi vấn (đúng/sai). Trả lời khẳng định thì bỏ "吗", phủ định thì thêm "不" trước động từ.',
+                                        example: '你是法国人吗？ ➔ 我是法国人。 / 我不是法国人。',
+                                        pinyin: 'Nǐ shì Fǎguó rén ma? ➔ Wǒ shì Fǎguó rén. / Wǒ bú shì Fǎguó rén.',
+                                        meaning: 'Bạn là người Pháp phải không? ➔ Tôi là người Pháp. / Tôi không phải người Pháp.',
                                         breakdown: [
                                             { word: '... 吗？', role: 'Trợ từ hỏi đúng/sai' }
                                         ]
                                     },
                                     { 
-                                        rule: '3. Trợ từ "呢" (1)[cite: 6]', 
-                                        desc: 'Dùng sau danh từ hoặc đại từ trong ngữ cảnh đã rõ ràng để nối tiếp câu hỏi ở phía trên[cite: 6].',
-                                        example: '我姓李。你呢？ ➔ 我姓王。[cite: 6]',
-                                        pinyin: 'Wǒ xìng Lǐ. Nǐ ne? ➔ Wǒ xìng Wáng.[cite: 6]',
-                                        meaning: 'Tôi họ Lý. Còn bạn? ➔ Tôi họ Vương.[cite: 6]',
+                                        rule: '3. Trợ từ "呢" (1)', 
+                                        desc: 'Dùng sau danh từ hoặc đại từ trong ngữ cảnh đã rõ ràng để nối tiếp câu hỏi ở phía trên.',
+                                        example: '我姓李。你呢？ ➔ 我姓王。',
+                                        pinyin: 'Wǒ xìng Lǐ. Nǐ ne? ➔ Wǒ xìng Wáng.',
+                                        meaning: 'Tôi họ Lý. Còn bạn? ➔ Tôi họ Vương.',
                                         breakdown: [
                                             { word: '... 呢？', role: 'Còn ... thì sao?' }
                                         ]
@@ -193,15 +193,15 @@ const appData = {
                                 ],
                                 exercises: [
                                     { 
-                                        q: 'Sửa câu trần thuật thành câu hỏi với "吗": 我是学生。[cite: 5]', 
-                                        pinyin: 'Wǒ shì xuésheng.[cite: 5]',
+                                        q: 'Sửa câu trần thuật thành câu hỏi với "吗": 我是学生。', 
+                                        pinyin: 'Wǒ shì xuésheng.',
                                         options: [
                                             { hanzi: '你是学生吗？', pinyin: 'Nǐ shì xuésheng ma?' },
                                             { hanzi: '我是学生呢？', pinyin: 'Wǒ shì xuésheng ne?' },
                                             { hanzi: '我不学生。', pinyin: 'Wǒ bù xuésheng.' }
                                         ], 
                                         answer: '你是学生吗？', 
-                                        exp: 'Thêm trợ từ nghi vấn "吗" vào cuối câu trần thuật và đổi "我" thành "你" để tạo câu hỏi[cite: 5].' 
+                                        exp: 'Thêm trợ từ nghi vấn "吗" vào cuối câu trần thuật và đổi "我" thành "你" để tạo câu hỏi.' 
                                     },
                                     { 
                                         q: 'Trả lời phủ định cho câu hỏi: 你是美国人吗？', 
@@ -215,15 +215,15 @@ const appData = {
                                         exp: 'Trả lời phủ định dùng "不是" (Không phải).' 
                                     },
                                     { 
-                                        q: 'Điền từ thích hợp: 请问，您 ______ ？[cite: 6]', 
-                                        pinyin: 'Qǐngwèn, nín ______ ?[cite: 6]',
+                                        q: 'Điền từ thích hợp: 请问，您 ______ ？', 
+                                        pinyin: 'Qǐngwèn, nín ______ ?',
                                         options: [
                                             { hanzi: '贵姓', pinyin: 'guǐxìng' },
                                             { hanzi: '什么', pinyin: 'shénme' },
                                             { hanzi: '叫', pinyin: 'jiào' }
                                         ], 
                                         answer: '贵姓', 
-                                        exp: 'Mẫu câu hỏi họ lịch sự: "请问，您贵姓？"[cite: 6]' 
+                                        exp: 'Mẫu câu hỏi họ lịch sự: "请问，您贵姓？"' 
                                     }
                                 ]
                             },
@@ -254,7 +254,7 @@ const appData = {
                                     blocks: [
                                         { hanzi: '请问', pinyin: 'qǐngwèn' },
                                         { hanzi: '您', pinyin: 'nín' },
-                                        { hanzi: '贵姓', pinyin: 'guìxìng' }
+                                        { hanzi: '贵姓', pinyin: 'guǐxìng' }
                                     ], 
                                     hint: 'Sắp xếp câu hỏi lịch sự: Xin hỏi, ngài họ gì?' 
                                 }
