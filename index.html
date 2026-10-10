@@ -358,15 +358,16 @@
             </div>
         </div>
 
-        <!-- ================= CUSTOM TIMER / POMODORO ALERT CARD MODAL ================= -->
+        <!-- ================= SLEEK CENTERED TIMER ALERT MODAL ================= -->
         <div id="timer-alert-modal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-            <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 max-w-sm w-full text-center shadow-2xl border border-slate-200 dark:border-slate-700">
-                <div id="timer-alert-icon-container" class="w-16 h-16 bg-rose-100 dark:bg-rose-900/40 text-rose-600 rounded-2xl flex items-center justify-center mx-auto text-2xl mb-4">
+            <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 max-w-sm w-full text-center shadow-2xl border border-slate-200 dark:border-slate-700 transform transition-all">
+                <!-- Large Icon Matching Mockup Style -->
+                <div id="timer-alert-icon-container" class="w-20 h-20 bg-rose-100 dark:bg-rose-900/40 text-rose-600 rounded-full flex items-center justify-center mx-auto text-3xl mb-4 shadow-inner">
                     <i id="timer-alert-icon" class="fa-solid fa-stopwatch"></i>
                 </div>
-                <h3 id="timer-alert-title" class="text-xl font-bold mb-2 text-slate-800 dark:text-slate-100">HẾT GIỜ ĐẾM NGƯỢC</h3>
-                <p id="timer-alert-desc" class="text-xs text-slate-500 dark:text-slate-400 mb-6">Thời gian bứt phá của bạn đã kết thúc.</p>
-                <button onclick="app.closeTimerAlertModal()" class="w-full py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs transition shadow-md">Đã hiểu</button>
+                <h3 id="timer-alert-title" class="text-xl font-extrabold mb-2 text-slate-800 dark:text-slate-100">HẾT GIỜ ĐẾM NGƯỢC</h3>
+                <p id="timer-alert-desc" class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mb-6">Yo, đã hết giờ đếm ngược rồi :333</p>
+                <button onclick="app.closeTimerAlertModal()" class="w-full py-3 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-sm transition shadow-md">Okay</button>
             </div>
         </div>
 
@@ -1099,7 +1100,7 @@
                 document.getElementById('timer-alert-desc').innerText = desc;
                 
                 const iconContainer = document.getElementById('timer-alert-icon-container');
-                iconContainer.className = `w-16 h-16 rounded-2xl flex items-center justify-center mx-auto text-2xl mb-4 ${iconBgClass}`;
+                iconContainer.className = `w-20 h-20 rounded-full flex items-center justify-center mx-auto text-3xl mb-4 shadow-inner ${iconBgClass}`;
                 
                 const icon = document.getElementById('timer-alert-icon');
                 icon.className = `fa-solid ${iconClass}`;
@@ -1133,8 +1134,8 @@
                         this.countdownInterval = null;
                         document.getElementById('countdown-btn-label').innerText = "Timer";
                         
-                        // Hiển thị Card thông báo HẾT GIỜ ĐẾM NGƯỢC
-                        this.showTimerAlert("HẾT GIỜ ĐẾM NGƯỢC", "Phiên bứt phá tốc độ học tập của bạn đã kết thúc!", "fa-stopwatch", "bg-rose-100 dark:bg-rose-900/40 text-rose-600");
+                        // Hiển thị Card thông báo giữa màn hình cho Timer
+                        this.showTimerAlert("HẾT GIỜ ĐẾM NGƯỢC", "Yo, đã hết giờ đếm ngược rồi :333", "fa-stopwatch", "bg-rose-100 dark:bg-rose-900/40 text-rose-600");
                     }
                 }, 1000);
             }
@@ -1183,18 +1184,17 @@
                         this.pomoIsRunning = false;
                         
                         if (!this.pomoIsBreak) {
-                            // Hết giờ học tập -> Chuyển sang 5 phút nghỉ
+                            // Hết 25 phút học tập -> Báo hết giờ tập trung & bắt đầu 5 phút nghỉ
                             this.pomoIsBreak = true;
                             this.pomoSeconds = 5 * 60;
                             document.getElementById('pomo-status-text').innerText = "Thời gian nghỉ ngơi (Break)";
                             
-                            // Thông báo hết giờ học, bắt đầu 5 phút nghỉ
                             this.showTimerAlert("HẾT GIỜ TẬP TRUNG", "Đã hoàn thành phiên học! Hệ thống bắt đầu đếm ngược 5 phút nghỉ ngơi.", "fa-mug-hot", "bg-amber-100 dark:bg-amber-900/40 text-amber-500");
                             
                             // Tự động chạy tiếp đếm ngược 5 phút nghỉ
                             this.startPomodoro();
                         } else {
-                            // Hết 5 phút nghỉ -> Thông báo HẾT GIỜ NGHỈ
+                            // Hết 5 phút nghỉ -> Báo HẾT GIỜ NGHỈ
                             this.pomoIsBreak = false;
                             this.pomoSeconds = 25 * 60;
                             document.getElementById('pomo-status-text').innerText = "Sẵn sàng tập trung học tập";
