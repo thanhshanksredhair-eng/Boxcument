@@ -4,7 +4,6 @@ const appData = {
             id: 'chinese',
             name: 'Tiếng Trung Quốc',
             icon: 'fa-language',
-            color: 'indigo',
             description: 'Chinh phục tiếng Trung giao tiếp từ cơ bản đến nâng cao.',
             lessons: [
                 {
@@ -32,29 +31,18 @@ const appData = {
                                 { hanzi: '法国', pinyin: 'Fǎguó', meaning: 'Nước Pháp', example: { hanzi: '我是法国人。', pinyin: 'Wǒ shì Fǎguó rén.', meaning: 'Tôi là người Pháp.' } }
                             ],
                             grammar: {
-                                title: 'Ngữ Pháp Bài Khóa 1',
+                                title: 'Điểm Ngữ Pháp Bài Khóa 1',
                                 points: [
                                     { 
-                                        rule: '1. Trật tự từ ngữ trong câu tiếng Hán (Chủ ngữ + Vị ngữ + Tân ngữ)', 
-                                        desc: 'Các thành phần trong câu tiếng Hán thường được sắp xếp theo thứ tự Chủ ngữ ➔ Vị ngữ ➔ Tân ngữ.',
+                                        rule: '1. Trật tự từ ngữ trong câu tiếng Hán', 
+                                        desc: 'Các thành phần trong câu tiếng Hán thường sắp xếp theo thứ tự Chủ ngữ ➔ Vị ngữ ➔ Tân ngữ.',
                                         example: '我叫李白。 / 我是法国人。',
                                         pinyin: 'Wǒ jiào Lǐ Bái. / Wǒ shì Fǎguó rén.',
                                         meaning: 'Tôi tên là Lý Bạch. / Tôi là người Pháp.',
                                         breakdown: [
-                                            { word: '我 (Wǒ)', role: 'Chủ ngữ (Tôi)' },
-                                            { word: '叫 / 是', role: 'Vị ngữ / Động từ' },
-                                            { word: '李白 / 法国人', role: 'Tân ngữ' }
-                                        ]
-                                    },
-                                    { 
-                                        rule: '2. Đại từ nghi vấn "什么" (gì) và "哪" (nào)', 
-                                        desc: 'Giữ nguyên trật tự câu trần thuật, chỉ cần thay vị trí từ cần hỏi bằng đại từ nghi vấn tương ứng.',
-                                        example: '你叫什么名字？ / 你是哪国人？',
-                                        pinyin: 'Nǐ jiào shénme míngzi? / Nǐ shì nǎ guó rén?',
-                                        meaning: 'Bạn tên là gì? / Bạn là người nước nào?',
-                                        breakdown: [
-                                            { word: '什么', role: 'Hỏi tên / sự vật' },
-                                            { word: '哪', role: 'Hỏi lựa chọn / quốc gia' }
+                                            { word: '我 (Wǒ)', role: 'Chủ ngữ' },
+                                            { word: '叫 / 是', role: 'Vị ngữ' },
+                                            { word: '李白', role: 'Tân ngữ' }
                                         ]
                                     }
                                 ],
@@ -91,27 +79,26 @@ const appData = {
                                 { hanzi: '请', pinyin: 'qǐng', meaning: 'mời', example: { hanzi: '请坐！', pinyin: 'Qǐng zuò!', meaning: 'Mời ngồi!' } },
                                 { hanzi: '坐', pinyin: 'zuò', meaning: 'ngồi', example: { hanzi: '请坐！', pinyin: 'Qǐng zuò!', meaning: 'Mời ngồi!' } },
                                 { hanzi: '谢谢', pinyin: 'xièxie', meaning: 'cảm ơn', example: { hanzi: '谢谢你！', pinyin: 'Xièxie nǐ!', meaning: 'Cảm ơn bạn!' } },
-                                { hanzi: '不用谢', pinyin: 'búyòng xiè', meaning: 'không có chi, không cần cảm ơn', example: { hanzi: '不用谢！', pinyin: 'Búyòng xiè!', meaning: 'Không có chi!' } },
-                                { hanzi: '不用', pinyin: 'búyòng', meaning: 'không cần', example: { hanzi: '不用客气。', pinyin: 'Búyòng kèqi.', meaning: 'Không cần khách khí.' } }
+                                { hanzi: '不用谢', pinyin: 'búyòng xiè', meaning: 'không có chi', example: { hanzi: '不用谢！', pinyin: 'Búyòng xiè!', meaning: 'Không có chi!' } }
                             ],
                             grammar: {
-                                title: 'Ngữ Pháp Bài Khóa 2',
+                                title: 'Điểm Ngữ Pháp Bài Khóa 2',
                                 points: [
                                     { 
-                                        rule: 'Cấu trúc mời lịch sự với "请" (Qǐng)', 
-                                        desc: 'Đặt "请" ở đầu câu/động từ để thể hiện sự lịch sự, tôn trọng.',
-                                        example: '请坐！ / 请进！',
-                                        pinyin: 'Qǐng zuò! / Qǐng jìn!',
-                                        meaning: 'Mời ngồi! / Mời vào!',
+                                        rule: 'Cấu trúc mời lịch sự với "请"', 
+                                        desc: 'Đặt "请" ở đầu câu để thể hiện sự lịch sự.',
+                                        example: '请坐！',
+                                        pinyin: 'Qǐng zuò!',
+                                        meaning: 'Mời ngồi!',
                                         breakdown: [
-                                            { word: '请', role: 'Mời (Lịch sự)' },
-                                            { word: '坐 / 进', role: 'Động từ hành động' }
+                                            { word: '请', role: 'Mời' },
+                                            { word: '坐', role: 'Ngồi' }
                                         ]
                                     }
                                 ],
                                 exercises: [
                                     { 
-                                        q: 'Đáp lại câu "谢谢" (Cảm ơn) bằng:', 
+                                        q: 'Đáp lại câu "谢谢" (Cảm ơn) là:', 
                                         pinyin: 'Xièxie',
                                         options: [
                                             { hanzi: '不用谢。', pinyin: 'Búyòng xiè.' },
@@ -119,7 +106,7 @@ const appData = {
                                             { hanzi: '你好。', pinyin: 'Nǐ hǎo.' }
                                         ], 
                                         answer: '不用谢。', 
-                                        exp: 'Khi ai đó cảm ơn, đáp lại lịch sự bằng "不用谢" (Không có chi).' 
+                                        exp: 'Dùng "不用谢" để đáp lại lời cảm ơn.' 
                                     }
                                 ]
                             },
