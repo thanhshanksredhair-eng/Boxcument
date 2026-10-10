@@ -28,7 +28,14 @@
         .transform-style-3d { transform-style: preserve-3d; }
         .backface-hidden { backface-visibility: hidden; }
         .rotate-y-180 { transform: rotateY(180deg); }
-        canvas { touch-action: none; }
+        canvas { 
+            touch-action: none; 
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        #step-content-3 {
+            overflow: hidden;
+        }
     </style>
 </head>
 <body class="h-full bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 font-sans transition-colors duration-300 flex flex-col relative">
@@ -361,7 +368,6 @@
         <!-- ================= SLEEK CENTERED TIMER ALERT MODAL ================= -->
         <div id="timer-alert-modal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
             <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 max-w-sm w-full text-center shadow-2xl border border-slate-200 dark:border-slate-700 transform transition-all">
-                <!-- Large Icon Matching Mockup Style -->
                 <div id="timer-alert-icon-container" class="w-20 h-20 bg-rose-100 dark:bg-rose-900/40 text-rose-600 rounded-full flex items-center justify-center mx-auto text-3xl mb-4 shadow-inner">
                     <i id="timer-alert-icon" class="fa-solid fa-stopwatch"></i>
                 </div>
@@ -787,9 +793,9 @@
                 this.canvas.onmousemove = (e) => this.draw(e);
                 this.canvas.onmouseup = () => this.stopDrawing();
 
-                this.canvas.ontouchstart = (e) => this.startDrawing(e.touches[0]);
-                this.canvas.ontouchmove = (e) => this.draw(e.touches[0]);
-                this.canvas.ontouchend = () => this.stopDrawing();
+                this.canvas.ontouchstart = (e) => { e.preventDefault(); this.startDrawing(e.touches[0]); };
+                this.canvas.ontouchmove = (e) => { e.preventDefault(); this.draw(e.touches[0]); };
+                this.canvas.ontouchend = (e) => { e.preventDefault(); this.stopDrawing(); };
 
                 this.renderHandwritingVocab();
             }
@@ -823,9 +829,12 @@
 
             getCanvasPos(e) {
                 const rect = this.canvas.getBoundingClientRect();
+                const clientX = e.clientX !== undefined ? e.clientX : (e.touches && e.touches[0] ? e.touches[0].clientX : 0);
+                const clientY = e.clientY !== undefined ? e.clientY : (e.touches && e.touches[0] ? e.touches[0].clientY : 0);
+                
                 return {
-                    x: (e.clientX - rect.left) * (this.canvas.width / rect.width),
-                    y: (e.clientY - rect.top) * (this.canvas.height / rect.height)
+                    x: (clientX - rect.left) * (this.canvas.width / rect.width),
+                    y: (clientY - rect.top) * (this.canvas.height / rect.height)
                 };
             }
 
@@ -839,8 +848,9 @@
             draw(e) {
                 if (!this.isDrawing) return;
                 const pos = this.getCanvasPos(e);
-                this.ctx.lineWidth = 6;
+                this.ctx.lineWidth = 8;
                 this.ctx.lineCap = 'round';
+                this.ctx.lineJoin = 'round';
                 this.ctx.strokeStyle = '#4f46e5';
                 this.ctx.lineTo(pos.x, pos.y);
                 this.ctx.stroke();
@@ -871,8 +881,8 @@
 
                 let targetPixels = 0, userCoveredTarget = 0, userOutPixels = 0;
                 for (let i = 0; i < maskData.length; i += 4) {
-                    const isMaskPixel = maskData[i + 3] > 80;
-                    const isUserPixel = userImgData[i + 3] > 80;
+                    const isMaskPixel = maskData[i + 3] > 60;
+                    const isUserPixel = userImgData[i + 3] > 60;
                     if (isMaskPixel) {
                         targetPixels++;
                         if (isUserPixel) userCoveredTarget++;
@@ -888,7 +898,7 @@
                 const coverageScore = (userCoveredTarget / targetPixels) * 100;
                 const penaltyRatio = userOutPixels / (targetPixels || 1);
 
-                if (coverageScore >= 40 && penaltyRatio <= 1.2) {
+                if (coverageScore >= 35 && penaltyRatio <= 1.8) {
                     fb.className = "mt-2 p-2.5 rounded-xl text-xs font-medium bg-emerald-50 text-emerald-600 border border-emerald-200";
                     fb.innerHTML = `<i class="fa-solid fa-circle-check mr-1"></i> Đạt yêu cầu! Viết nét rất chuẩn.`;
                     this.markStepComplete(3);
@@ -1134,7 +1144,6 @@
                         this.countdownInterval = null;
                         document.getElementById('countdown-btn-label').innerText = "Timer";
                         
-                        // Hiển thị Card thông báo giữa màn hình cho Timer
                         this.showTimerAlert("HẾT GIỜ ĐẾM NGƯỢC", "Yo, đã hết giờ đếm ngược rồi :333", "fa-stopwatch", "bg-rose-100 dark:bg-rose-900/40 text-rose-600");
                     }
                 }, 1000);
@@ -1184,17 +1193,14 @@
                         this.pomoIsRunning = false;
                         
                         if (!this.pomoIsBreak) {
-                            // Hết 25 phút học tập -> Báo hết giờ tập trung & bắt đầu 5 phút nghỉ
                             this.pomoIsBreak = true;
                             this.pomoSeconds = 5 * 60;
                             document.getElementById('pomo-status-text').innerText = "Thời gian nghỉ ngơi (Break)";
                             
                             this.showTimerAlert("HẾT GIỜ TẬP TRUNG", "Đã hoàn thành phiên học! Hệ thống bắt đầu đếm ngược 5 phút nghỉ ngơi.", "fa-mug-hot", "bg-amber-100 dark:bg-amber-900/40 text-amber-500");
                             
-                            // Tự động chạy tiếp đếm ngược 5 phút nghỉ
                             this.startPomodoro();
                         } else {
-                            // Hết 5 phút nghỉ -> Báo HẾT GIỜ NGHỈ
                             this.pomoIsBreak = false;
                             this.pomoSeconds = 25 * 60;
                             document.getElementById('pomo-status-text').innerText = "Sẵn sàng tập trung học tập";
