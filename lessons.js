@@ -71,55 +71,6 @@ const appData = {
                                     hint: 'Sắp xếp câu: Tôi tên là Tạ Danh.' 
                                 }
                             ]
-                        },
-                        {
-                            id: 'd2',
-                            title: 'Bài khóa 2: 礼貌用语 (Từ ngữ lịch sự & Cảm ơn)',
-                            vocabularies: [
-                                { hanzi: '请', pinyin: 'qǐng', meaning: 'mời', example: { hanzi: '请坐！', pinyin: 'Qǐng zuò!', meaning: 'Mời ngồi!' } },
-                                { hanzi: '坐', pinyin: 'zuò', meaning: 'ngồi', example: { hanzi: '请坐！', pinyin: 'Qǐng zuò!', meaning: 'Mời ngồi!' } },
-                                { hanzi: '谢谢', pinyin: 'xièxie', meaning: 'cảm ơn', example: { hanzi: '谢谢你！', pinyin: 'Xièxie nǐ!', meaning: 'Cảm ơn bạn!' } },
-                                { hanzi: '不用谢', pinyin: 'búyòng xiè', meaning: 'không có chi', example: { hanzi: '不用谢！', pinyin: 'Búyòng xiè!', meaning: 'Không có chi!' } }
-                            ],
-                            grammar: {
-                                title: 'Điểm Ngữ Pháp Bài Khóa 2',
-                                points: [
-                                    { 
-                                        rule: 'Cấu trúc mời lịch sự với "请"', 
-                                        desc: 'Đặt "请" ở đầu câu để thể hiện sự lịch sự.',
-                                        example: '请坐！',
-                                        pinyin: 'Qǐng zuò!',
-                                        meaning: 'Mời ngồi!',
-                                        breakdown: [
-                                            { word: '请', role: 'Mời' },
-                                            { word: '坐', role: 'Ngồi' }
-                                        ]
-                                    }
-                                ],
-                                exercises: [
-                                    { 
-                                        q: 'Đáp lại câu "谢谢" (Cảm ơn) là:', 
-                                        pinyin: 'Xièxie',
-                                        options: [
-                                            { hanzi: '不用谢。', pinyin: 'Búyòng xiè.' },
-                                            { hanzi: '我是老师。', pinyin: 'Wǒ shì lǎoshī.' },
-                                            { hanzi: '你好。', pinyin: 'Nǐ hǎo.' }
-                                        ], 
-                                        answer: '不用谢。', 
-                                        exp: 'Dùng "不用谢" để đáp lại lời cảm ơn.' 
-                                    }
-                                ]
-                            },
-                            sentences: [
-                                { 
-                                    target: '坐 请', 
-                                    blocks: [
-                                        { hanzi: '请', pinyin: 'qǐng' },
-                                        { hanzi: '坐', pinyin: 'zuò' }
-                                    ], 
-                                    hint: 'Sắp xếp câu: Mời ngồi!' 
-                                }
-                            ]
                         }
                     ]
                 }
