@@ -832,9 +832,13 @@
                 const clientX = e.clientX !== undefined ? e.clientX : (e.touches && e.touches[0] ? e.touches[0].clientX : 0);
                 const clientY = e.clientY !== undefined ? e.clientY : (e.touches && e.touches[0] ? e.touches[0].clientY : 0);
                 
+                // Khử triệt để độ lệch tỷ lệ màn hình (Retina / Zoom / Mobile UI Bar)
+                const scaleX = this.canvas.width / rect.width;
+                const scaleY = this.canvas.height / rect.height;
+
                 return {
-                    x: (clientX - rect.left) * (this.canvas.width / rect.width),
-                    y: (clientY - rect.top) * (this.canvas.height / rect.height)
+                    x: (clientX - rect.left) * scaleX,
+                    y: (clientY - rect.top) * scaleY
                 };
             }
 
@@ -848,7 +852,7 @@
             draw(e) {
                 if (!this.isDrawing) return;
                 const pos = this.getCanvasPos(e);
-                this.ctx.lineWidth = 8;
+                this.ctx.lineWidth = 14; // Tăng độ rộng nét bút trên mobile để dễ lấp đầy pixel mẫu
                 this.ctx.lineCap = 'round';
                 this.ctx.lineJoin = 'round';
                 this.ctx.strokeStyle = '#4f46e5';
@@ -881,8 +885,8 @@
 
                 let targetPixels = 0, userCoveredTarget = 0, userOutPixels = 0;
                 for (let i = 0; i < maskData.length; i += 4) {
-                    const isMaskPixel = maskData[i + 3] > 60;
-                    const isUserPixel = userImgData[i + 3] > 60;
+                    const isMaskPixel = maskData[i + 3] > 40;
+                    const isUserPixel = userImgData[i + 3] > 40;
                     if (isMaskPixel) {
                         targetPixels++;
                         if (isUserPixel) userCoveredTarget++;
@@ -898,13 +902,17 @@
                 const coverageScore = (userCoveredTarget / targetPixels) * 100;
                 const penaltyRatio = userOutPixels / (targetPixels || 1);
 
-                if (coverageScore >= 35 && penaltyRatio <= 1.8) {
+                // Nới lỏng dung sai trên mobile để chấm dễ thở ngang ngửa PC
+                const minCoverage = 20; 
+                const maxPenalty = 3.5;
+
+                if (coverageScore >= minCoverage && penaltyRatio <= maxPenalty) {
                     fb.className = "mt-2 p-2.5 rounded-xl text-xs font-medium bg-emerald-50 text-emerald-600 border border-emerald-200";
                     fb.innerHTML = `<i class="fa-solid fa-circle-check mr-1"></i> Đạt yêu cầu! Viết nét rất chuẩn.`;
                     this.markStepComplete(3);
                 } else {
                     fb.className = "mt-2 p-2.5 rounded-xl text-xs font-medium bg-rose-50 text-rose-600 border border-rose-200";
-                    fb.innerHTML = `<i class="fa-solid fa-circle-xmark mr-1"></i> Chưa đạt. Bấm "Xóa" và đồ lại theo nét mờ nhé!`;
+                    fb.innerHTML = `<i class="fa-solid fa-circle-xmark mr-1"></i> Chưa đạt. Hãy viết đầy đủ các nét hơn nhé!`;
                 }
             }
 
