@@ -368,7 +368,7 @@
                 <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">Hãy chọn phương pháp phù hợp với mục tiêu của bạn.</p>
                 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-                    <button onclick="app.confirmModeAndStart('practice')" class="flex flex-col items-center p-5 rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-indigo-50 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-all group text-left">
+                    <button onclick="app.confirmModeAndStart('practice')" class="flex flex-col items-center p-5 rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-indigo-500 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-all group text-left">
                         <div class="w-14 h-14 bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 rounded-full flex items-center justify-center text-2xl mb-3 group-hover:scale-110 transition-transform">
                             <i class="fa-solid fa-book-open-reader"></i>
                         </div>
@@ -680,7 +680,7 @@
                     document.getElementById('completion-msg').innerText = "Bạn đã hoàn thành nội dung này.";
                     document.getElementById('completion-modal').classList.remove('hidden');
                 } else { 
-                    this.updateStepUI(); // Chỉ cập nhật thanh Progress Bar, KHÔNG switchStep() gây re-render
+                    this.updateStepUI();
                 }
             }
 
@@ -793,14 +793,17 @@
                 if (targetPixels === 0) return;
                 const coverageScore = (userCoveredTarget / targetPixels) * 100; const penaltyRatio = userOutPixels / (targetPixels || 1);
 
-                if (coverageScore >= 12 && penaltyRatio <= 10.0) {
+                // TĂNG ĐỘ KHÓ: Nâng minCoverage từ 12 lên 35 để bắt buộc vẽ đủ chữ/nét
+                const minCoverage = 35; 
+                const maxPenalty = 5.0; 
+
+                if (coverageScore >= minCoverage && penaltyRatio <= maxPenalty) {
                     this.playTone('correct'); 
                     fb.className = "mt-2 p-2.5 rounded-xl text-xs font-medium bg-emerald-50 text-emerald-600 border border-emerald-200"; 
                     fb.innerHTML = `<i class="fa-solid fa-circle-check mr-1"></i> Đạt yêu cầu! Tự động qua từ tiếp theo...`; 
                     
                     this.markStepComplete(3);
 
-                    // Auto Next Vocab cho phần Tập Viết (Chờ 1 giây để xem chữ đẹp)
                     setTimeout(() => {
                         const vocabs = this.currentDialogue.vocabularies;
                         if (this.currentHWIndex < vocabs.length - 1) {
