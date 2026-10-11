@@ -368,7 +368,7 @@
                 <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">Hãy chọn phương pháp phù hợp với mục tiêu của bạn.</p>
                 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-                    <button onclick="app.confirmModeAndStart('practice')" class="flex flex-col items-center p-5 rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-indigo-500 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-all group text-left">
+                    <button onclick="app.confirmModeAndStart('practice')" class="flex flex-col items-center p-5 rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-indigo-50 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-all group text-left">
                         <div class="w-14 h-14 bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 rounded-full flex items-center justify-center text-2xl mb-3 group-hover:scale-110 transition-transform">
                             <i class="fa-solid fa-book-open-reader"></i>
                         </div>
@@ -656,6 +656,10 @@
 
             switchStep(step) {
                 this.currentStep = step; if (step === 3) this.renderHandwritingVocab();
+                this.updateStepUI();
+            }
+
+            updateStepUI() {
                 for (let i = 1; i <= 6; i++) {
                     const dot = document.getElementById(`step-dot-${i}`); const content = document.getElementById(`step-content-${i}`);
                     if (dot && content) {
@@ -668,15 +672,15 @@
             markStepComplete(stepNumber) {
                 const dp = this.getDialogueProgress(this.currentDialogue.id);
                 if (!dp.completedSteps.includes(stepNumber)) { dp.completedSteps.push(stepNumber); this.saveProgress(); }
-                const hasVocab = this.currentDialogue.vocabularies && this.currentDialogue.vocabularies.length > 0;
                 
+                const hasVocab = this.currentDialogue.vocabularies && this.currentDialogue.vocabularies.length > 0;
                 if (hasVocab && stepNumber === 6) {
                     this.playTone('correct');
                     document.getElementById('completion-score').classList.add('hidden');
                     document.getElementById('completion-msg').innerText = "Bạn đã hoàn thành nội dung này.";
                     document.getElementById('completion-modal').classList.remove('hidden');
                 } else { 
-                    this.switchStep(this.currentStep); 
+                    this.updateStepUI(); // Chỉ cập nhật thanh Progress Bar, KHÔNG switchStep() gây re-render
                 }
             }
 
@@ -711,7 +715,12 @@
                 const originalIndex = this.currentDialogue.vocabularies.findIndex(v => v.hanzi === this.getCurrentCard().hanzi); const dp = this.getDialogueProgress(this.currentDialogue.id);
                 if (status) { if (!dp.learnedCards.includes(originalIndex)) dp.learnedCards.push(originalIndex); } else { dp.learnedCards = dp.learnedCards.filter(idx => idx !== originalIndex); }
                 this.saveProgress();
-                if (dp.learnedCards.length === this.currentDialogue.vocabularies.length) { this.markStepComplete(1); this.showToast('Bạn đã thuộc toàn bộ từ vựng! Tự động sang Quiz!', 'success'); setTimeout(() => this.switchStep(2), 1000); return; }
+                if (dp.learnedCards.length === this.currentDialogue.vocabularies.length) { 
+                    this.markStepComplete(1); 
+                    this.showToast('Bạn đã thuộc toàn bộ từ vựng! Tự động sang Quiz!', 'success'); 
+                    setTimeout(() => this.switchStep(2), 1000); 
+                    return; 
+                }
                 this.nextCard();
             }
             nextCard() { const c = this.getFilteredCards(); if (c.length === 0) return; this.cardIndex = (this.cardIndex < c.length - 1) ? this.cardIndex + 1 : 0; this.renderFlashcard(); }
@@ -785,9 +794,28 @@
                 const coverageScore = (userCoveredTarget / targetPixels) * 100; const penaltyRatio = userOutPixels / (targetPixels || 1);
 
                 if (coverageScore >= 12 && penaltyRatio <= 10.0) {
-                    this.playTone('correct'); fb.className = "mt-2 p-2.5 rounded-xl text-xs font-medium bg-emerald-50 text-emerald-600 border border-emerald-200"; fb.innerHTML = `<i class="fa-solid fa-circle-check mr-1"></i> Đạt yêu cầu! Viết nét rất chuẩn.`; this.markStepComplete(3);
+                    this.playTone('correct'); 
+                    fb.className = "mt-2 p-2.5 rounded-xl text-xs font-medium bg-emerald-50 text-emerald-600 border border-emerald-200"; 
+                    fb.innerHTML = `<i class="fa-solid fa-circle-check mr-1"></i> Đạt yêu cầu! Tự động qua từ tiếp theo...`; 
+                    
+                    this.markStepComplete(3);
+
+                    // Auto Next Vocab cho phần Tập Viết (Chờ 1 giây để xem chữ đẹp)
+                    setTimeout(() => {
+                        const vocabs = this.currentDialogue.vocabularies;
+                        if (this.currentHWIndex < vocabs.length - 1) {
+                            this.currentHWIndex++;
+                            this.renderHandwritingVocab();
+                        } else {
+                            this.showToast('Luyện viết xong! Sang Ngữ pháp thôi.', 'success');
+                            this.switchStep(4);
+                        }
+                    }, 1000);
+
                 } else {
-                    this.playTone('wrong'); fb.className = "mt-2 p-2.5 rounded-xl text-xs font-medium bg-rose-50 text-rose-600 border border-rose-200"; fb.innerHTML = `<i class="fa-solid fa-circle-xmark mr-1"></i> Chưa đạt. Nét vẽ cần khớp với chữ mờ hơn nhé!`;
+                    this.playTone('wrong'); 
+                    fb.className = "mt-2 p-2.5 rounded-xl text-xs font-medium bg-rose-50 text-rose-600 border border-rose-200"; 
+                    fb.innerHTML = `<i class="fa-solid fa-circle-xmark mr-1"></i> Chưa đạt. Nét vẽ cần khớp với chữ mờ hơn nhé!`;
                 }
             }
 
@@ -992,7 +1020,7 @@
                 icon.className = `fa-solid ${iconClass}`;
                 
                 document.getElementById('timer-alert-modal').classList.remove('hidden');
-                this.playTone('wrong'); // Chơi âm thanh báo hết giờ
+                this.playTone('wrong'); 
             }
 
             closeTimerAlertModal() { document.getElementById('timer-alert-modal').classList.add('hidden'); }
