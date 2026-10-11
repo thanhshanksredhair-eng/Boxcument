@@ -147,7 +147,7 @@
                 </div>
             </div>
 
-            <!-- STEP 1 TO 4 OMITTED FOR BREVITY BUT FULLY FUNCTIONAL -->
+            <!-- STEP 1: FLASHCARD -->
             <div id="step-content-1" class="lesson-step flex-1 flex flex-col justify-between">
                 <div class="flex items-center justify-between gap-2 mb-3">
                     <div class="flex items-center space-x-1.5">
@@ -155,7 +155,7 @@
                         <button onclick="app.filterCards('unlearned')" id="filter-unlearned" class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300">Chưa thuộc</button>
                         <button onclick="app.filterCards('learned')" id="filter-learned" class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300">Đã thuộc</button>
                     </div>
-                    <div class="text-xs font-medium text-slate-500">Thẻ <span id="fc-current">1</span> / <span id="fc-total">19</span></div>
+                    <div class="text-xs font-medium text-slate-500">Thẻ <span id="fc-current">1</span> / <span id="fc-total">1</span></div>
                 </div>
 
                 <div class="flex-1 flex items-center justify-center py-2">
@@ -202,12 +202,13 @@
                 </div>
             </div>
 
+            <!-- STEP 2: QUIZ -->
             <div id="step-content-2" class="lesson-step hidden flex-1 flex flex-col justify-between">
                 <div class="flex-1 max-w-2xl mx-auto w-full flex flex-col justify-center">
                     <div class="bg-white dark:bg-slate-800 rounded-3xl p-5 sm:p-8 border border-slate-200 dark:border-slate-700 shadow-sm">
                         <div class="flex justify-between items-center mb-4">
                             <span class="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400">Kiểm tra từ vựng</span>
-                            <span id="quiz-counter" class="text-xs font-medium text-slate-500">Câu 1/19</span>
+                            <span id="quiz-counter" class="text-xs font-medium text-slate-500">Câu 1/1</span>
                         </div>
                         <h4 id="quiz-question" class="text-lg sm:text-xl font-bold mb-5 text-center">Đâu là từ mang nghĩa "..."?</h4>
                         <div id="quiz-options" class="grid grid-cols-1 sm:grid-cols-3 gap-3"></div>
@@ -220,12 +221,13 @@
                 </div>
             </div>
 
+            <!-- STEP 3: HANDWRITING -->
             <div id="step-content-3" class="lesson-step hidden flex-1 flex flex-col justify-between">
                 <div class="flex-1 max-w-xl mx-auto w-full flex flex-col items-center justify-center">
                     <div class="bg-white dark:bg-slate-800 rounded-3xl p-5 sm:p-7 border border-slate-200 dark:border-slate-700 shadow-sm w-full text-center">
                         <div class="flex justify-between items-center mb-3">
                             <span class="text-[10px] font-semibold px-2.5 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400">Tập Viết Hán Tự</span>
-                            <span id="hw-vocab-counter" class="text-xs font-medium text-slate-500">Từ 1/19</span>
+                            <span id="hw-vocab-counter" class="text-xs font-medium text-slate-500">Từ 1/1</span>
                         </div>
                         <h4 class="text-lg font-bold mb-0.5">Tập viết chữ: <span id="hw-target-hanzi" class="font-chinese text-2xl text-indigo-600 dark:text-indigo-400">老师</span></h4>
                         <p id="hw-target-pinyin" class="text-xs text-slate-400 mb-5">Pinyin: lǎoshī</p>
@@ -250,6 +252,7 @@
                 </div>
             </div>
 
+            <!-- STEP 4: GRAMMAR -->
             <div id="step-content-4" class="lesson-step hidden flex-1 flex flex-col justify-between">
                 <div class="flex-1 overflow-y-auto space-y-4 pr-1">
                     <div class="bg-white dark:bg-slate-800 rounded-3xl p-4 sm:p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
@@ -315,7 +318,6 @@
 
             <!-- STEP 6: SENTENCE BUILDING -->
             <div id="step-content-6" class="lesson-step hidden flex-1 flex flex-col justify-between">
-                <!-- Code step 6 omitted to keep snippet clean, works unchanged -->
                 <div class="flex-1 max-w-2xl mx-auto w-full flex flex-col justify-center">
                     <div class="bg-white dark:bg-slate-800 rounded-3xl p-4 sm:p-6 border border-slate-200 dark:border-slate-700 shadow-sm text-center">
                         <span class="text-[10px] font-semibold px-2.5 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 inline-block mb-2">Ghép câu Tổng thể</span>
@@ -385,7 +387,6 @@
 
         <!-- ================= OTHER MODALS ================= -->
         <div id="countdown-modal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-            <!-- (Countdown timer modal content omitted for brevity, logic remains identical) -->
             <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 max-w-sm w-full text-center shadow-2xl border border-slate-200 dark:border-slate-700">
                 <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 rounded-2xl flex items-center justify-center mx-auto text-xl mb-3"><i class="fa-solid fa-stopwatch"></i></div>
                 <h3 class="text-lg font-bold mb-1">Bấm Giờ Tốc Độ (Timer)</h3>
@@ -404,7 +405,6 @@
         </div>
 
         <div id="pomodoro-modal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-            <!-- (Pomodoro modal content omitted for brevity, logic remains identical) -->
             <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 max-w-sm w-full text-center shadow-2xl border border-slate-200 dark:border-slate-700">
                 <div class="w-12 h-12 bg-amber-100 dark:bg-amber-900/40 text-amber-500 rounded-2xl flex items-center justify-center mx-auto text-xl mb-3"><i class="fa-solid fa-clock"></i></div>
                 <h3 class="text-lg font-bold mb-1">Chế độ Pomodoro</h3>
@@ -451,7 +451,7 @@
                 this.currentSubject = null;
                 this.currentLesson = null;
                 this.currentDialogue = null;
-                this.pendingDialogueId = null; // Dùng để lưu tạm ID khi chờ chọn Mode
+                this.pendingDialogueId = null;
                 
                 this.currentStep = 1;
                 this.cardIndex = 0;
@@ -468,8 +468,8 @@
                 this.sourceBlocks = [];
                 
                 this.userAnswers = {};
-                this.testMode = 'practice'; // 'practice' hoặc 'exam'
-                this.isReviewMode = false;  // Trạng thái khi đang xem lại bài làm
+                this.testMode = 'practice';
+                this.isReviewMode = false;
 
                 this.isDrawing = false;
                 this.canvas = null;
@@ -625,16 +625,17 @@
                                     <p class="text-xs text-slate-400">${infoText}Tiến độ: ${percent}%</p>
                                 </div>
                             </div>
-                            <button onclick="app.startDialogue('${d.id}')" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold transition shadow-md">Làm ngay <i class="fa-solid fa-play ml-1"></i></button>
+                            <button onclick="app.startDialogue('${d.id}')" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold transition shadow-md">Học ngay <i class="fa-solid fa-play ml-1"></i></button>
                         </div>
                     `;
                 }).join('');
             }
 
-            // GIAI ĐOẠN 1: KHI BẤM "LÀM NGAY"
             startDialogue(dialogueId) {
                 this.currentDialogue = this.currentLesson.dialogues.find(d => d.id === dialogueId);
                 if (!this.currentDialogue) return;
+
+                this.userAnswers = {};
 
                 const hasVocab = this.currentDialogue.vocabularies && this.currentDialogue.vocabularies.length > 0;
                 const hasGrammarEx = this.currentDialogue.grammar && this.currentDialogue.grammar.exercises && this.currentDialogue.grammar.exercises.length > 0;
@@ -644,19 +645,16 @@
                     return;
                 }
 
-                // Nếu bài học chỉ có trắc nghiệm -> Hiện bảng chọn Mode (Thi thử / Ôn tập)
                 if (!hasVocab && hasGrammarEx) {
                     this.pendingDialogueId = dialogueId;
                     document.getElementById('mode-selection-modal').classList.remove('hidden');
                 } else {
-                    // Nếu là bài học tiếng Trung bình thường -> Mặc định là Ôn tập và chạy luôn
                     this.testMode = 'practice';
                     this.isReviewMode = false;
                     this.initLessonFlow();
                 }
             }
 
-            // GIAI ĐOẠN 2: XÁC NHẬN MODE VÀ CHẠY
             confirmModeAndStart(mode) {
                 this.testMode = mode;
                 this.isReviewMode = false;
@@ -664,9 +662,8 @@
                 this.initLessonFlow();
             }
 
-            // GIAI ĐOẠN 3: INIT GIAO DIỆN HỌC/THI
             initLessonFlow() {
-                this.userAnswers = {}; // Xóa lịch sử làm bài cũ
+                this.userAnswers = {}; 
                 this.cardIndex = 0;
                 this.isFlipped = false;
                 this.cardFilter = 'all';
@@ -685,16 +682,13 @@
                 const pb = document.getElementById('step-progress-bar');
                 const hasVocab = this.currentDialogue.vocabularies && this.currentDialogue.vocabularies.length > 0;
 
-                // TRƯỜNG HỢP: CHỈ CÓ TRẮC NGHIỆM (VĂN HÓA MỸ)
                 if (!hasVocab) {
                     pb.classList.add('hidden');
                     document.getElementById('flow-dialogue-title').innerText = this.testMode === 'exam' ? "Chế độ Thi Thử" : "Chế độ Ôn Tập";
                     document.getElementById('flow-lesson-title').innerText = this.currentDialogue.title;
                     this.switchStep(5);
                     this.renderGrammarPractice();
-                } 
-                // TRƯỜNG HỢP: BÀI HỌC BÌNH THƯỜNG (TIẾNG TRUNG)
-                else {
+                } else {
                     pb.classList.remove('hidden');
                     document.getElementById('flow-dialogue-title').innerText = "Bài khóa";
                     document.getElementById('flow-lesson-title').innerText = this.currentDialogue.title;
@@ -722,8 +716,6 @@
                 }
                 
                 const hasVocab = this.currentDialogue.vocabularies && this.currentDialogue.vocabularies.length > 0;
-                // Chỉ tự mở popup completion nếu môn học KHÔNG CÓ NÚT NỘP BÀI (môn Tiếng Trung).
-                // Môn có nút nộp bài thì hàm submitTest sẽ tự lo hiển thị popup.
                 if (hasVocab && stepNumber === 6) {
                     document.getElementById('completion-modal').classList.remove('hidden');
                 } else {
@@ -747,18 +739,326 @@
                 }
             }
 
-            // --- FLASHCARD, QUIZ, HANDWRITING, GRAMMAR (Omitted full code for brevity, logic identical to previous version) ---
-            // DO CẤU TRÚC APP, CÁC HÀM NÀY VẪN PHẢI TỒN TẠI ĐỂ MÔN TIẾNG TRUNG HOẠT ĐỘNG
-            getFilteredCards() { return this.currentDialogue.vocabularies || []; }
-            getCurrentCard() { return this.getFilteredCards()[this.cardIndex] || this.currentDialogue.vocabularies[0]; }
-            filterCards(filter) { this.cardFilter = filter; this.cardIndex = 0; this.renderFlashcard(); }
-            renderFlashcard() {} flipCard(forceFront = false) {} markCard(status) {} nextCard() {} prevCard() {}
-            speakText(text) { if ('speechSynthesis' in window) { window.speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text); u.lang='zh-CN'; u.rate=0.8; window.speechSynthesis.speak(u); } }
-            initQuiz() {} renderQuizQuestion() {} checkQuizAnswer(selected, correct) {} nextQuizQuestion() {}
-            initCanvas() {} renderHandwritingVocab() {} nextHandwritingVocab() {} prevHandwritingVocab() {} getCanvasPos(e) { return {x:0, y:0}; } startDrawing(e) {} draw(e) {} stopDrawing() {} clearCanvas() {} checkHandwritingStrict() {}
-            renderGrammar() {}
-            
-            // --- CẤP NHẬT: GRAMMAR PRACTICE / MCQ TEST MODE ---
+            // ================== CÁC HÀM TIẾNG TRUNG (KHÔI PHỤC HOÀN TOÀN) ================== //
+            getFilteredCards() {
+                const dp = this.getDialogueProgress(this.currentDialogue.id);
+                if (this.cardFilter === 'learned') {
+                    return this.currentDialogue.vocabularies.filter((_, idx) => dp.learnedCards.includes(idx));
+                } else if (this.cardFilter === 'unlearned') {
+                    return this.currentDialogue.vocabularies.filter((_, idx) => !dp.learnedCards.includes(idx));
+                }
+                return this.currentDialogue.vocabularies;
+            }
+
+            getCurrentCard() {
+                const cards = this.getFilteredCards();
+                return cards[this.cardIndex] || this.currentDialogue.vocabularies[0];
+            }
+
+            filterCards(filter) {
+                this.cardFilter = filter;
+                this.cardIndex = 0;
+                ['all', 'learned', 'unlearned'].forEach(f => {
+                    const btn = document.getElementById(`filter-${f}`);
+                    btn.className = f === filter ? "px-2.5 py-1 rounded-lg text-xs font-semibold bg-indigo-600 text-white" : "px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300";
+                });
+                this.renderFlashcard();
+            }
+
+            renderFlashcard() {
+                const cards = this.getFilteredCards();
+                if (!cards || cards.length === 0) return;
+
+                const card = cards[this.cardIndex];
+                const originalIndex = this.currentDialogue.vocabularies.findIndex(v => v.hanzi === card.hanzi);
+                const dp = this.getDialogueProgress(this.currentDialogue.id);
+                const isLearned = dp.learnedCards.includes(originalIndex);
+
+                document.getElementById('card-hanzi').innerText = card.hanzi;
+                document.getElementById('card-pinyin').innerText = card.pinyin;
+                document.getElementById('card-meaning').innerText = card.meaning;
+                document.getElementById('card-ex-hanzi').innerText = card.example.hanzi;
+                document.getElementById('card-ex-pinyin').innerText = card.example.pinyin;
+                document.getElementById('card-ex-meaning').innerText = card.example.meaning;
+
+                document.getElementById('fc-current').innerText = this.cardIndex + 1;
+                document.getElementById('fc-total').innerText = cards.length;
+
+                const badge = document.getElementById('card-status-badge');
+                if (isLearned) {
+                    badge.className = "absolute top-4 left-4 text-[11px] font-semibold px-2 py-0.5 rounded-lg bg-emerald-100 text-emerald-600 flex items-center gap-1";
+                    badge.innerHTML = `<i class="fa-solid fa-check"></i> Đã thuộc`;
+                } else {
+                    badge.className = "absolute top-4 left-4 text-[11px] font-semibold px-2 py-0.5 rounded-lg bg-rose-100 text-rose-600 flex items-center gap-1";
+                    badge.innerHTML = `<i class="fa-solid fa-xmark"></i> Chưa thuộc`;
+                }
+
+                if (this.isFlipped) this.flipCard(true);
+            }
+
+            flipCard(forceFront = false) {
+                const inner = document.getElementById('flashcard-inner');
+                this.isFlipped = forceFront ? false : !this.isFlipped;
+                inner.style.transform = this.isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)';
+            }
+
+            markCard(status) {
+                const card = this.getCurrentCard();
+                const originalIndex = this.currentDialogue.vocabularies.findIndex(v => v.hanzi === card.hanzi);
+                const dp = this.getDialogueProgress(this.currentDialogue.id);
+
+                if (status) {
+                    if (!dp.learnedCards.includes(originalIndex)) dp.learnedCards.push(originalIndex);
+                } else {
+                    dp.learnedCards = dp.learnedCards.filter(idx => idx !== originalIndex);
+                }
+
+                this.saveProgress();
+                if (dp.learnedCards.length === this.currentDialogue.vocabularies.length) {
+                    this.markStepComplete(1);
+                    this.showToast('Bạn đã thuộc toàn bộ từ vựng! Tự động sang Quiz!', 'success');
+                    setTimeout(() => this.switchStep(2), 1000);
+                    return;
+                }
+                this.nextCard();
+            }
+
+            nextCard() {
+                const cards = this.getFilteredCards();
+                if (cards.length === 0) return;
+                this.cardIndex = (this.cardIndex < cards.length - 1) ? this.cardIndex + 1 : 0;
+                this.renderFlashcard();
+            }
+
+            prevCard() {
+                const cards = this.getFilteredCards();
+                if (cards.length === 0) return;
+                this.cardIndex = (this.cardIndex > 0) ? this.cardIndex - 1 : cards.length - 1;
+                this.renderFlashcard();
+            }
+
+            speakText(text) {
+                if ('speechSynthesis' in window) {
+                    window.speechSynthesis.cancel();
+                    const utterance = new SpeechSynthesisUtterance(text);
+                    utterance.lang = 'zh-CN';
+                    utterance.rate = 0.8;
+                    window.speechSynthesis.speak(utterance);
+                }
+            }
+
+            // --- QUIZ ---
+            initQuiz() {
+                this.currentQuizIndex = 0;
+                this.renderQuizQuestion();
+            }
+
+            renderQuizQuestion() {
+                const vocabs = this.currentDialogue.vocabularies;
+                if(!vocabs || vocabs.length === 0) return;
+                const currentVocab = vocabs[this.currentQuizIndex];
+                
+                document.getElementById('quiz-counter').innerText = `Câu ${this.currentQuizIndex + 1}/${vocabs.length}`;
+                document.getElementById('quiz-question').innerText = `Đâu là từ mang nghĩa "${currentVocab.meaning}"?`;
+
+                let options = [currentVocab];
+                while (options.length < Math.min(3, vocabs.length)) {
+                    const randomV = vocabs[Math.floor(Math.random() * vocabs.length)];
+                    if (!options.find(o => o.hanzi === randomV.hanzi)) options.push(randomV);
+                }
+                options.sort(() => Math.random() - 0.5);
+
+                const optContainer = document.getElementById('quiz-options');
+                optContainer.innerHTML = options.map(opt => `
+                    <button onclick="app.checkQuizAnswer('${opt.hanzi}', '${currentVocab.hanzi}')" class="py-3 px-3 rounded-2xl bg-slate-100 dark:bg-slate-700 hover:bg-indigo-50 font-semibold transition border border-slate-200 flex flex-col items-center">
+                        <span class="font-chinese text-2xl font-bold mb-0.5">${opt.hanzi}</span>
+                        <span class="text-xs text-indigo-600 dark:text-indigo-400 font-medium">${opt.pinyin}</span>
+                    </button>
+                `).join('');
+
+                document.getElementById('quiz-feedback').classList.add('hidden');
+                document.getElementById('quiz-next-btn').classList.add('hidden');
+            }
+
+            checkQuizAnswer(selected, correct) {
+                const fb = document.getElementById('quiz-feedback');
+                fb.classList.remove('hidden');
+                if (selected === correct) {
+                    fb.className = "mt-4 p-3 rounded-2xl text-xs font-medium bg-emerald-50 text-emerald-600 border border-emerald-200 flex items-center gap-2";
+                    fb.innerHTML = `<i class="fa-solid fa-circle-check text-base"></i> <span>Chính xác! Bạn chọn đúng rồi.</span>`;
+                    document.getElementById('quiz-next-btn').classList.remove('hidden');
+                } else {
+                    fb.className = "mt-4 p-3 rounded-2xl text-xs font-medium bg-rose-50 text-rose-600 border border-rose-200 flex items-center gap-2";
+                    fb.innerHTML = `<i class="fa-solid fa-circle-xmark text-base"></i> <span>Chưa đúng! Hãy chọn lại nhé.</span>`;
+                }
+            }
+
+            nextQuizQuestion() {
+                const vocabs = this.currentDialogue.vocabularies;
+                if (this.currentQuizIndex < vocabs.length - 1) {
+                    this.currentQuizIndex++;
+                    this.renderQuizQuestion();
+                } else {
+                    this.markStepComplete(2);
+                    this.showToast('Chúc mừng! Tự động chuyển sang Tập viết!', 'success');
+                    setTimeout(() => this.switchStep(3), 800);
+                }
+            }
+
+            // --- HANDWRITING ---
+            initCanvas() {
+                this.canvas = document.getElementById('hw-canvas');
+                if (!this.canvas) return;
+                this.ctx = this.canvas.getContext('2d');
+
+                this.canvas.onmousedown = (e) => this.startDrawing(e);
+                this.canvas.onmousemove = (e) => this.draw(e);
+                this.canvas.onmouseup = () => this.stopDrawing();
+
+                this.canvas.ontouchstart = (e) => { e.preventDefault(); this.startDrawing(e.touches[0]); };
+                this.canvas.ontouchmove = (e) => { e.preventDefault(); this.draw(e.touches[0]); };
+                this.canvas.ontouchend = (e) => { e.preventDefault(); this.stopDrawing(); };
+
+                this.renderHandwritingVocab();
+            }
+
+            renderHandwritingVocab() {
+                if (!this.currentDialogue || !this.currentDialogue.vocabularies || this.currentDialogue.vocabularies.length === 0) return;
+                const vocabs = this.currentDialogue.vocabularies;
+                const v = vocabs[this.currentHWIndex] || vocabs[0];
+
+                document.getElementById('hw-vocab-counter').innerText = `Từ ${this.currentHWIndex + 1}/${vocabs.length}`;
+                document.getElementById('hw-target-hanzi').innerText = v.hanzi;
+                document.getElementById('hw-target-pinyin').innerText = `Pinyin: ${v.pinyin}`;
+
+                const wm = document.getElementById('hw-watermark');
+                wm.innerText = v.hanzi;
+                wm.style.fontSize = v.hanzi.length === 1 ? '120px' : (v.hanzi.length === 2 ? '80px' : (v.hanzi.length === 3 ? '58px' : '42px'));
+                this.clearCanvas();
+            }
+
+            nextHandwritingVocab() {
+                const vocabs = this.currentDialogue.vocabularies;
+                this.currentHWIndex = (this.currentHWIndex < vocabs.length - 1) ? this.currentHWIndex + 1 : 0;
+                this.renderHandwritingVocab();
+            }
+
+            prevHandwritingVocab() {
+                const vocabs = this.currentDialogue.vocabularies;
+                this.currentHWIndex = (this.currentHWIndex > 0) ? this.currentHWIndex - 1 : vocabs.length - 1;
+                this.renderHandwritingVocab();
+            }
+
+            getCanvasPos(e) {
+                const rect = this.canvas.getBoundingClientRect();
+                const clientX = e.clientX !== undefined ? e.clientX : (e.touches && e.touches[0] ? e.touches[0].clientX : 0);
+                const clientY = e.clientY !== undefined ? e.clientY : (e.touches && e.touches[0] ? e.touches[0].clientY : 0);
+                
+                const scaleX = this.canvas.width / rect.width;
+                const scaleY = this.canvas.height / rect.height;
+
+                return {
+                    x: (clientX - rect.left) * scaleX,
+                    y: (clientY - rect.top) * scaleY
+                };
+            }
+
+            startDrawing(e) {
+                this.isDrawing = true;
+                const pos = this.getCanvasPos(e);
+                this.ctx.beginPath();
+                this.ctx.moveTo(pos.x, pos.y);
+            }
+
+            draw(e) {
+                if (!this.isDrawing) return;
+                const pos = this.getCanvasPos(e);
+                this.ctx.lineWidth = 14; 
+                this.ctx.lineCap = 'round';
+                this.ctx.lineJoin = 'round';
+                this.ctx.strokeStyle = '#4f46e5';
+                this.ctx.lineTo(pos.x, pos.y);
+                this.ctx.stroke();
+            }
+
+            stopDrawing() { this.isDrawing = false; }
+
+            clearCanvas() {
+                if (!this.ctx) return;
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                document.getElementById('hw-feedback').classList.add('hidden');
+            }
+
+            checkHandwritingStrict() {
+                const v = this.currentDialogue.vocabularies[this.currentHWIndex];
+                const tempCanvas = document.createElement('canvas');
+                tempCanvas.width = 288; tempCanvas.height = 288;
+                const tctx = tempCanvas.getContext('2d');
+
+                let fontSize = v.hanzi.length === 1 ? 120 : (v.hanzi.length === 2 ? 80 : (v.hanzi.length === 3 ? 58 : 42));
+                tctx.font = `700 ${fontSize}px "Noto Sans SC"`;
+                tctx.textAlign = 'center'; tctx.textBaseline = 'middle';
+                tctx.fillStyle = '#000000';
+                tctx.fillText(v.hanzi, 144, 144);
+
+                const maskData = tctx.getImageData(0, 0, 288, 288).data;
+                const userImgData = this.ctx.getImageData(0, 0, 288, 288).data;
+
+                let targetPixels = 0, userCoveredTarget = 0, userOutPixels = 0;
+                for (let i = 0; i < maskData.length; i += 4) {
+                    const isMaskPixel = maskData[i + 3] > 40;
+                    const isUserPixel = userImgData[i + 3] > 40;
+                    if (isMaskPixel) {
+                        targetPixels++;
+                        if (isUserPixel) userCoveredTarget++;
+                    } else if (isUserPixel) {
+                        userOutPixels++;
+                    }
+                }
+
+                const fb = document.getElementById('hw-feedback');
+                fb.classList.remove('hidden');
+                if (targetPixels === 0) return;
+
+                const coverageScore = (userCoveredTarget / targetPixels) * 100;
+                const penaltyRatio = userOutPixels / (targetPixels || 1);
+
+                const minCoverage = 20; 
+                const maxPenalty = 3.5;
+
+                if (coverageScore >= minCoverage && penaltyRatio <= maxPenalty) {
+                    fb.className = "mt-2 p-2.5 rounded-xl text-xs font-medium bg-emerald-50 text-emerald-600 border border-emerald-200";
+                    fb.innerHTML = `<i class="fa-solid fa-circle-check mr-1"></i> Đạt yêu cầu! Viết nét rất chuẩn.`;
+                    this.markStepComplete(3);
+                } else {
+                    fb.className = "mt-2 p-2.5 rounded-xl text-xs font-medium bg-rose-50 text-rose-600 border border-rose-200";
+                    fb.innerHTML = `<i class="fa-solid fa-circle-xmark mr-1"></i> Chưa đạt. Hãy viết đầy đủ các nét hơn nhé!`;
+                }
+            }
+
+            // --- GRAMMAR ---
+            renderGrammar() {
+                const g = this.currentDialogue.grammar;
+                if (!g || !g.points || g.points.length === 0) return;
+                
+                document.getElementById('grammar-title').innerHTML = `<i class="fa-solid fa-graduation-cap mr-2"></i> <span>${g.title}</span>`;
+                
+                const container = document.getElementById('grammar-points');
+                container.innerHTML = g.points.map((p, idx) => `
+                    <div class="p-4 sm:p-5 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700">
+                        <h4 class="font-bold text-sm text-indigo-600 dark:text-indigo-400 mb-1">Lý thuyết ${idx + 1}: ${p.rule}</h4>
+                        <p class="text-xs text-slate-500 mb-3">${p.desc}</p>
+                        <div class="bg-white dark:bg-slate-800 rounded-xl p-3 border border-slate-200 dark:border-slate-700 mb-3">
+                            <p class="font-chinese text-lg font-bold">${p.example}</p>
+                            <p class="text-xs text-indigo-600 font-medium">${p.pinyin}</p>
+                            <p class="text-xs italic text-slate-500">"${p.meaning}"</p>
+                        </div>
+                    </div>
+                `).join('');
+                this.markStepComplete(4);
+            }
+
+            // ================== CÁC HÀM TRẮC NGHIỆM TỔNG HỢP VÀ GHÉP CÂU ================== //
             jumpToGrammarPractice(idx) {
                 this.currentGPIndex = idx;
                 this.renderGrammarPractice();
@@ -786,7 +1086,7 @@
 
                 optContainer.innerHTML = ex.options.map((opt, i) => {
                     const optText = opt.hanzi;
-                    let letter = String.fromCharCode(65 + i); // A, B, C, D
+                    let letter = String.fromCharCode(65 + i); 
                     let textContent = optText;
                     
                     const match = optText.match(/^([A-D])\.\s*(.*)/);
@@ -795,22 +1095,18 @@
                         textContent = match[2];
                     }
 
-                    // Tùy chỉnh màu sắc dựa trên kết quả và Mode
                     let letterBg = "bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400 border border-slate-300 dark:border-slate-600";
                     let boxStyle = "border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300";
                     let disableClick = false;
 
                     if (userAns) {
-                        // CHẾ ĐỘ THI THỬ (CHƯA NỘP BÀI) -> Chỉ hiện màu Xanh Nhạt báo là ĐÃ CHỌN
                         if (this.testMode === 'exam' && !this.isReviewMode) {
                             if (opt.hanzi === userAns.selected) {
                                 letterBg = "bg-indigo-500 text-white font-bold border-indigo-500 shadow-md";
                                 boxStyle = "border-indigo-500 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300 font-bold ring-1 ring-indigo-500";
                             }
-                        } 
-                        // CHẾ ĐỘ ÔN TẬP hoặc ĐÃ NỘP BÀI VÀ ĐANG XEM LẠI -> Hiện Xanh Lá / Đỏ
-                        else {
-                            disableClick = true; // Khóa không cho sửa khi đã hiện kết quả đỏ xanh
+                        } else {
+                            disableClick = true;
                             if (opt.hanzi === ex.answer) {
                                 letterBg = "bg-emerald-500 text-white font-bold border-emerald-500 shadow-md";
                                 boxStyle = "border-emerald-500 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-300 font-bold ring-1 ring-emerald-500";
@@ -821,7 +1117,6 @@
                         }
                     }
 
-                    // Nếu đang trong chế độ Xem lại (Review), khóa toàn bộ các nút đáp án
                     if (this.isReviewMode) disableClick = true;
 
                     return `
@@ -838,16 +1133,13 @@
                     `;
                 }).join('');
                 
-                // KIỂM SOÁT HIỂN THỊ FEEDBACK VÀ GIẢI THÍCH (EXPLANATION)
                 const fb = document.getElementById('gp-feedback');
                 const expBtn = document.getElementById('btn-show-explanation');
                 
                 if (this.testMode === 'exam' && !this.isReviewMode) {
-                    // Thi thử chưa nộp bài -> Ẩn toàn bộ giải thích và feedback
                     fb.classList.add('hidden');
                     expBtn.classList.add('hidden');
                 } else {
-                    // Ôn tập HOẶC Đang xem lại -> Hiện nút giải thích
                     expBtn.classList.remove('hidden');
                     if (userAns) {
                         fb.classList.remove('hidden');
@@ -876,15 +1168,11 @@
                     const userAns = this.userAnswers[idx];
                     
                     if (this.currentGPIndex === idx) {
-                        // Câu đang làm hiện tại
                         bgClass = "bg-indigo-100 dark:bg-indigo-900/60 text-indigo-700 dark:text-indigo-300 border-indigo-400 font-extrabold shadow-sm scale-105"; 
                     } else if (userAns) {
-                        // Nếu là thi thử mà chưa nộp bài -> Màu xanh trung tính báo đã chọn
                         if (this.testMode === 'exam' && !this.isReviewMode) {
                             bgClass = "bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-bold border-indigo-300";
-                        } 
-                        // Nếu là Ôn tập / Đang xem lại -> Lộ màu đúng sai
-                        else {
+                        } else {
                             if (userAns.isCorrect) {
                                  bgClass = "bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 font-bold border-emerald-300";
                             } else {
@@ -904,17 +1192,12 @@
             }
 
             checkGrammarAnswer(selected) {
-                // Khóa không cho đổi đáp án nếu đang ở chế độ xem lại (Review)
                 if (this.isReviewMode) return;
-                // Khóa không cho đổi đáp án nếu đang ở chế độ Ôn tập (Practice) và đã chọn rồi
                 if (this.testMode === 'practice' && this.userAnswers[this.currentGPIndex]) return;
 
                 const ex = this.currentDialogue.grammar.exercises[this.currentGPIndex];
                 const isCorrect = selected === ex.answer;
-                
-                // Lưu đáp án (Ở mode Exam, việc này sẽ đè lên đáp án cũ nếu user chọn lại)
                 this.userAnswers[this.currentGPIndex] = { selected, isCorrect };
-                
                 this.renderGrammarPractice();
             }
 
@@ -930,6 +1213,13 @@
                 if (this.currentGPIndex < exercises.length - 1) {
                     this.currentGPIndex++;
                     this.renderGrammarPractice();
+                } else {
+                    const hasVocab = this.currentDialogue.vocabularies && this.currentDialogue.vocabularies.length > 0;
+                    if (hasVocab) {
+                        this.markStepComplete(5);
+                        this.showToast('Hoàn thành bài tập!', 'success');
+                        setTimeout(() => this.switchStep(6), 800);
+                    }
                 }
             }
 
@@ -938,36 +1228,142 @@
                 const total = exercises.length;
                 const answered = Object.keys(this.userAnswers).length;
 
-                // Cảnh báo nếu chưa làm hết
                 if (answered < total) {
                     if(!confirm(`Bạn mới làm được ${answered}/${total} câu. Bạn có chắc chắn muốn nộp bài ngay không?`)) return;
                 }
 
-                // Tính điểm
                 let score = 0;
                 for (let i = 0; i < total; i++) {
                     if (this.userAnswers[i] && this.userAnswers[i].isCorrect) score++;
                 }
 
-                // Hiện Popup kết quả
                 document.getElementById('completion-score').innerText = `Điểm số: ${score} / ${total}`;
                 document.getElementById('completion-score').classList.remove('hidden');
-                document.getElementById('btn-review-test').classList.remove('hidden'); // Hiện nút Xem Lại
+                document.getElementById('btn-review-test').classList.remove('hidden'); 
                 document.getElementById('completion-modal').classList.remove('hidden');
                 this.markStepComplete(5);
             }
 
-            // KÍCH HOẠT CHẾ ĐỘ XEM LẠI SAU KHI NỘP BÀI THI THỬ
             startReviewMode() {
                 this.isReviewMode = true;
                 document.getElementById('completion-modal').classList.add('hidden');
-                document.getElementById('btn-submit-test').classList.add('hidden'); // Ẩn nút nộp bài vì đã nộp rồi
-                
+                document.getElementById('btn-submit-test').classList.add('hidden'); 
                 this.showToast('Chế độ xem lại. Bạn có thể xem giải thích chi tiết!', 'info');
-                
-                // Bắt đầu review từ câu 1
                 this.currentGPIndex = 0;
                 this.renderGrammarPractice();
+            }
+
+            initSentenceBuild() {
+                const sList = this.currentDialogue.sentences;
+                if (!sList || sList.length === 0) return;
+                
+                const s = sList[this.currentSBIndex];
+                document.getElementById('sb-hint').innerText = `${s.hint}`;
+                
+                this.selectedBlocks = [];
+                this.sourceBlocks = s.blocks.map(b => ({ ...b })).sort(() => Math.random() - 0.5);
+                this.renderSentenceBuildZones();
+            }
+
+            renderSentenceBuildZones() {
+                const targetZone = document.getElementById('sb-target-zone');
+                const sourceZone = document.getElementById('sb-source-zone');
+                
+                targetZone.innerHTML = this.selectedBlocks.length === 0 
+                    ? `<span class="text-xs text-slate-400 font-medium">Bấm vào các thẻ chữ bên dưới để xếp câu...</span>`
+                    : this.selectedBlocks.map((b, idx) => `
+                        <button onclick="app.removeBlock(${idx})" class="px-3 py-1 rounded-xl bg-indigo-600 text-white flex flex-col items-center justify-center shadow-sm hover:bg-rose-600 transition">
+                            <span class="font-chinese font-bold text-base leading-tight">${b.hanzi}</span>
+                            <span class="text-[10px] text-indigo-100 font-normal leading-none mt-0.5">${b.pinyin}</span>
+                        </button>
+                    `).join('');
+
+                sourceZone.innerHTML = this.sourceBlocks.map((b, idx) => `
+                    <button onclick="app.pickBlock(${idx})" class="px-3 py-1 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex flex-col items-center justify-center hover:bg-indigo-50 transition shadow-sm">
+                        <span class="font-chinese font-bold text-base leading-tight text-slate-800 dark:text-slate-100">${b.hanzi}</span>
+                        <span class="text-[10px] text-indigo-600 dark:text-indigo-400 font-medium leading-none mt-0.5">${b.pinyin}</span>
+                    </button>
+                `).join('');
+
+                document.getElementById('sb-feedback').classList.add('hidden');
+            }
+
+            pickBlock(idx) {
+                this.selectedBlocks.push(this.sourceBlocks.splice(idx, 1)[0]);
+                this.renderSentenceBuildZones();
+            }
+
+            removeBlock(idx) {
+                this.sourceBlocks.push(this.selectedBlocks.splice(idx, 1)[0]);
+                this.renderSentenceBuildZones();
+            }
+
+            resetSentenceBuild() { this.initSentenceBuild(); }
+
+            showSentenceAnswer() {
+                const s = this.currentDialogue.sentences[this.currentSBIndex];
+                this.selectedBlocks = s.blocks.map(b => ({ ...b }));
+                this.sourceBlocks = [];
+                this.renderSentenceBuildZones();
+                
+                const targetStr = s.blocks.map(b => b.hanzi).join(' ');
+                const fb = document.getElementById('sb-feedback');
+                fb.classList.remove('hidden');
+                fb.className = "mt-3 p-3 rounded-2xl text-xs font-medium bg-amber-50 text-amber-700 border border-amber-200 flex flex-col items-center gap-2";
+                fb.innerHTML = `
+                    <div><strong>Đáp án mẫu:</strong> ${targetStr}</div>
+                    <button onclick="app.speakText('${targetStr}')" class="px-3.5 py-1.5 rounded-xl bg-amber-600 text-white text-xs font-semibold hover:bg-amber-700 transition">
+                        <i class="fa-solid fa-volume-high"></i> Đọc mẫu Shadowing
+                    </button>
+                `;
+            }
+
+            checkSentenceBuild() {
+                const sList = this.currentDialogue.sentences;
+                const s = sList[this.currentSBIndex];
+                
+                const cleanUserStr = this.selectedBlocks.map(b => b.hanzi).join('').replace(/[\s。？，！]/g, '');
+                const cleanTargetStr = s.blocks.map(b => b.hanzi).join('').replace(/[\s。？，！]/g, '');
+
+                const fb = document.getElementById('sb-feedback');
+                fb.classList.remove('hidden');
+
+                if (cleanUserStr === cleanTargetStr) {
+                    fb.className = "mt-3 p-3 rounded-2xl text-xs font-medium bg-emerald-50 text-emerald-600 border border-emerald-200 flex flex-col items-center gap-2";
+                    const isLastSentence = this.currentSBIndex >= sList.length - 1;
+                    const fullText = s.blocks.map(b => b.hanzi).join('');
+
+                    fb.innerHTML = `
+                        <div class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-base"></i> <span>Ghép câu chính xác! Luyện Shadowing:</span></div>
+                        <div class="flex flex-wrap items-center justify-center gap-2">
+                            <button onclick="app.speakText('${fullText}')" class="px-3 py-1.5 rounded-xl bg-emerald-600 text-white text-xs font-semibold flex items-center gap-1">
+                                <i class="fa-solid fa-volume-high"></i> Nghe & Đọc theo
+                            </button>
+                            ${isLastSentence ? `
+                                <button onclick="app.finishSentenceBuild()" class="px-3.5 py-1.5 rounded-xl bg-indigo-600 text-white text-xs font-semibold flex items-center gap-1">
+                                    Hoàn thành <i class="fa-solid fa-trophy"></i>
+                                </button>
+                            ` : `
+                                <button onclick="app.nextSentenceBuild()" class="px-3.5 py-1.5 rounded-xl bg-indigo-600 text-white text-xs font-semibold flex items-center gap-1">
+                                    Câu tiếp theo <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                            `}
+                        </div>
+                    `;
+                } else {
+                    fb.className = "mt-3 p-3 rounded-2xl text-xs font-medium bg-rose-50 text-rose-600 border border-rose-200 flex items-center gap-1.5";
+                    fb.innerHTML = `<i class="fa-solid fa-circle-xmark text-base"></i> <span>Chưa đúng thứ tự câu. Thử lại hoặc bấm "Đáp án"!</span>`;
+                }
+            }
+
+            nextSentenceBuild() {
+                this.currentSBIndex++;
+                this.initSentenceBuild();
+            }
+
+            finishSentenceBuild() {
+                this.markStepComplete(6);
+                document.getElementById('completion-modal').classList.remove('hidden');
             }
 
             restartDialogue() {
@@ -975,10 +1371,7 @@
                 this.startDialogue(this.currentDialogue.id);
             }
 
-            // --- SENTENCE BUILDING (Omitted for brevity, logic identical) ---
-            initSentenceBuild() {} renderSentenceBuildZones() {} pickBlock(idx) {} removeBlock(idx) {} resetSentenceBuild() {} showSentenceAnswer() {} checkSentenceBuild() {} nextSentenceBuild() {} finishSentenceBuild() {}
-
-            // --- ALERT MODAL HELPER ---
+            // ================== CÁC HÀM TIỆN ÍCH CHUNG (TIMER) ================== //
             showTimerAlert(title, desc, iconClass = "fa-stopwatch", iconBgClass = "bg-rose-100 text-rose-600") {
                 document.getElementById('timer-alert-title').innerText = title;
                 document.getElementById('timer-alert-desc').innerText = desc;
@@ -988,10 +1381,15 @@
                 icon.className = `fa-solid ${iconClass}`;
                 document.getElementById('timer-alert-modal').classList.remove('hidden');
             }
-            closeTimerAlertModal() { document.getElementById('timer-alert-modal').classList.add('hidden'); }
 
-            // --- TIME COUNTER (TIMER) LOGIC ---
-            openCountdownModal() { document.getElementById('countdown-modal').classList.remove('hidden'); }
+            closeTimerAlertModal() { 
+                document.getElementById('timer-alert-modal').classList.add('hidden'); 
+            }
+
+            openCountdownModal() { 
+                document.getElementById('countdown-modal').classList.remove('hidden'); 
+            }
+
             startCountdown(minutes) {
                 document.getElementById('countdown-modal').classList.add('hidden');
                 if (this.countdownInterval) clearInterval(this.countdownInterval);
@@ -1009,20 +1407,28 @@
                     }
                 }, 1000);
             }
+
             startCustomCountdown() {
                 const val = parseInt(document.getElementById('custom-minutes').value);
                 if (!val || val <= 0) { this.showToast('Vui lòng nhập số phút hợp lệ!', 'error'); return; }
                 this.startCountdown(val);
             }
+
             updateCountdownDisplay() {
                 const m = Math.floor(this.countdownRemaining / 60);
                 const s = this.countdownRemaining % 60;
                 document.getElementById('countdown-btn-label').innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
             }
 
-            // --- POMODORO MODE LOGIC ---
-            openPomodoroModal() { document.getElementById('pomodoro-modal').classList.remove('hidden'); this.updatePomodoroDisplay(); }
-            togglePomodoro() { if (this.pomoIsRunning) this.pausePomodoro(); else this.startPomodoro(); }
+            openPomodoroModal() { 
+                document.getElementById('pomodoro-modal').classList.remove('hidden'); 
+                this.updatePomodoroDisplay(); 
+            }
+
+            togglePomodoro() { 
+                if (this.pomoIsRunning) this.pausePomodoro(); else this.startPomodoro(); 
+            }
+
             startPomodoro() {
                 this.pomoIsRunning = true;
                 document.getElementById('pomo-toggle-btn').innerText = "Tạm dừng";
@@ -1050,12 +1456,14 @@
                     }
                 }, 1000);
             }
+
             pausePomodoro() {
                 this.pomoIsRunning = false;
                 clearInterval(this.pomoInterval);
                 document.getElementById('pomo-toggle-btn').innerText = "Tiếp tục";
                 document.getElementById('pomo-toggle-btn').className = "flex-1 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs transition shadow-md";
             }
+
             resetPomodoro() {
                 this.pausePomodoro();
                 this.pomoIsBreak = false;
@@ -1064,6 +1472,7 @@
                 document.getElementById('pomo-toggle-btn').innerText = "Bắt đầu";
                 this.updatePomodoroDisplay();
             }
+
             updatePomodoroDisplay() {
                 const m = Math.floor(this.pomoSeconds / 60);
                 const s = this.pomoSeconds % 60;
