@@ -259,6 +259,141 @@ window.chineseSubject = {
                     ]
                 }
             ]
+        },
+        {
+            id: 'cn-lesson-2',
+            title: 'Bài 2: 这是你的手机吗 (Đây là điện thoại của bạn à?)',
+            description: 'Học cách diễn đạt sự sở hữu (的), hỏi thông tin về ai đó (谁) và cách dùng phó từ "cũng" (也).',
+            dialogues: [
+                {
+                    id: 'l2-d1',
+                    title: 'Bài khóa 1: 在教室 (Trong lớp học)',
+                    vocabularies: [
+                        { hanzi: '同学', pinyin: 'tóngxué', meaning: 'bạn cùng lớp, bạn học', example: { hanzi: '他是我的同学。', pinyin: 'Tā shì wǒ de tóngxué.', meaning: 'Cậu ấy là bạn học của tôi.' } },
+                        { hanzi: '早上', pinyin: 'zǎoshang', meaning: 'buổi sáng', example: { hanzi: '早上好！', pinyin: 'Zǎoshang hǎo!', meaning: 'Chào buổi sáng!' } },
+                        { hanzi: '这', pinyin: 'zhè', meaning: 'đây, này', example: { hanzi: '这是什么？', pinyin: 'Zhè shì shénme?', meaning: 'Đây là cái gì?' } },
+                        { hanzi: '的', pinyin: 'de', meaning: 'trợ từ kết cấu (của)', example: { hanzi: '我的手机', pinyin: 'wǒ de shǒujī', meaning: 'điện thoại của tôi' } },
+                        { hanzi: '手机', pinyin: 'shǒujī', meaning: 'điện thoại di động', example: { hanzi: '这是你的手机吗？', pinyin: 'Zhè shì nǐ de shǒujī ma?', meaning: 'Đây là điện thoại của bạn à?' } },
+                        { hanzi: '对', pinyin: 'duì', meaning: 'đúng, phải', example: { hanzi: '对，是我的。', pinyin: 'Duì, shì wǒ de.', meaning: 'Đúng, là của tôi.' } },
+                        { hanzi: '新', pinyin: 'xīn', meaning: 'mới', example: { hanzi: '新手机', pinyin: 'xīn shǒujī', meaning: 'điện thoại mới' } },
+                        { hanzi: '很', pinyin: 'hěn', meaning: 'rất', example: { hanzi: '很好看', pinyin: 'hěn hǎokàn', meaning: 'rất đẹp' } },
+                        { hanzi: '好看', pinyin: 'hǎokàn', meaning: 'đẹp, ưa nhìn', example: { hanzi: '你的手机很好看。', pinyin: 'Nǐ de shǒujī hěn hǎokàn.', meaning: 'Điện thoại của bạn rất đẹp.' } },
+                        { hanzi: '也', pinyin: 'yě', meaning: 'cũng', example: { hanzi: '我也喜欢。', pinyin: 'Wǒ yě xǐhuan.', meaning: 'Tôi cũng thích.' } },
+                        { hanzi: '喜欢', pinyin: 'xǐhuan', meaning: 'thích', example: { hanzi: '你喜欢黑色的手机吗？', pinyin: 'Nǐ xǐhuan hēisè de shǒujī ma?', meaning: 'Bạn có thích điện thoại màu đen không?' } },
+                        { hanzi: '黑色', pinyin: 'hēisè', meaning: 'màu đen', example: { hanzi: '黑色的手机', pinyin: 'hēisè de shǒujī', meaning: 'điện thoại màu đen' } },
+                        { hanzi: '那', pinyin: 'nà', meaning: 'đó, kia', example: { hanzi: '那是谁的手机？', pinyin: 'Nà shì shuí de shǒujī?', meaning: 'Kia là điện thoại của ai?' } },
+                        { hanzi: '谁', pinyin: 'shuí / shéi', meaning: 'ai', example: { hanzi: '他是谁？', pinyin: 'Tā shì shuí?', meaning: 'Anh ấy là ai?' } },
+                        { hanzi: '知道', pinyin: 'zhīdào', meaning: 'biết', example: { hanzi: '我不知道。', pinyin: 'Wǒ bù zhīdào.', meaning: 'Tôi không biết.' } }
+                    ],
+                    grammar: {
+                        title: 'Điểm Ngữ Pháp Bài 2 - Bài Khóa 1',
+                        points: [
+                            {
+                                rule: '1. Trợ từ kết cấu "的" (Của)[cite: 16]',
+                                desc: 'Dùng giữa định ngữ và trung tâm ngữ để biểu thị quan hệ sở hữu hoặc bổ nghĩa (Định ngữ + 的 + Trung tâm ngữ)[cite: 16]. Nếu định ngữ là đại từ nhân xưng và trung tâm ngữ chỉ người thân/quan hệ xã giao, có thể lược bỏ "的"[cite: 16].',
+                                example: '我的手机 / 我同学[cite: 16]',
+                                pinyin: 'wǒ de shǒujī / wǒ tóngxué',
+                                meaning: 'Điện thoại của tôi / Bạn học của tôi',
+                                breakdown: [
+                                    { word: '我 / 老师', role: 'Định ngữ' },
+                                    { word: '的', role: 'Trợ từ (của)' },
+                                    { word: '手机', role: 'Trung tâm ngữ' }
+                                ]
+                            },
+                            {
+                                rule: '2. Đại từ nghi vấn "谁" (Ai)[cite: 17]',
+                                desc: 'Dùng để hỏi thông tin về người, có thể làm chủ ngữ, tân ngữ và định ngữ[cite: 17]. Khi làm định ngữ, phía sau phải thêm "的" biểu thị sở hữu[cite: 17].',
+                                example: '谁是你老师？ / 那是谁的手机？[cite: 17]',
+                                pinyin: 'Shuí shì nǐ lǎoshī? / Nà shì shuí de shǒujī?',
+                                meaning: 'Ai là giáo viên của bạn? / Đó là điện thoại của ai?',
+                                breakdown: [
+                                    { word: '谁 (shuí)', role: 'Hỏi người (Ai)' }
+                                ]
+                            },
+                            {
+                                rule: '3. Phó từ "也" (Cũng)[cite: 18]',
+                                desc: 'Biểu thị sự tương đồng, đứng sau chủ ngữ, trước động từ/tính từ để làm trạng ngữ[cite: 18]. Trong câu phủ định, "也" phải đặt trước "不"[cite: 18].',
+                                example: '我也喜欢。 / 我也不知道。[cite: 18]',
+                                pinyin: 'Wǒ yě xǐhuan. / Wǒ yě bù zhīdào.',
+                                meaning: 'Tôi cũng thích. / Tôi cũng không biết.',
+                                breakdown: [
+                                    { word: '也 (yě)', role: 'Phó từ (cũng)' },
+                                    { word: '不 (bù)', role: 'Phủ định (nếu có)' },
+                                    { word: '知道', role: 'Động từ/Tính từ' }
+                                ]
+                            }
+                        ],
+                        exercises: [
+                            {
+                                q: 'Điền từ thích hợp: 这 是 我 _____ 手机。[cite: 16]',
+                                pinyin: 'Zhè shì wǒ _____ shǒujī.',
+                                options: [
+                                    { hanzi: '的', pinyin: 'de' },
+                                    { hanzi: '也', pinyin: 'yě' },
+                                    { hanzi: '吗', pinyin: 'ma' }
+                                ],
+                                answer: '的',
+                                exp: 'Dùng trợ từ kết cấu "的" để nối đại từ "我" và danh từ "手机", biểu thị quan hệ sở hữu "điện thoại của tôi"[cite: 16].'
+                            },
+                            {
+                                q: 'Dịch câu "Đó là điện thoại của ai?": 那 是 _____ 的 手机？[cite: 17]',
+                                pinyin: 'Nà shì _____ de shǒujī?',
+                                options: [
+                                    { hanzi: '谁', pinyin: 'shuí' },
+                                    { hanzi: '什么', pinyin: 'shénme' },
+                                    { hanzi: '哪', pinyin: 'nǎ' }
+                                ],
+                                answer: '谁',
+                                exp: 'Dùng đại từ nghi vấn "谁" (Ai) đứng trước "的" để hỏi người sở hữu[cite: 17].'
+                            },
+                            {
+                                q: 'Hoàn thành câu phủ định: 他不是老师，我 _____ 不是老师。[cite: 18]',
+                                pinyin: 'Tā bú shì lǎoshī, wǒ _____ bú shì lǎoshī.',
+                                options: [
+                                    { hanzi: '也', pinyin: 'yě' },
+                                    { hanzi: '很', pinyin: 'hěn' },
+                                    { hanzi: '不', pinyin: 'bù' }
+                                ],
+                                answer: '也',
+                                exp: 'Dùng phó từ "也" (cũng) đặt trước "不" để biểu thị sự tương đồng "tôi cũng không phải là giáo viên"[cite: 18].'
+                            }
+                        ]
+                    },
+                    sentences: [
+                        {
+                            target: '这 是 你 的 手机 吗',
+                            blocks: [
+                                { hanzi: '这', pinyin: 'zhè' },
+                                { hanzi: '是', pinyin: 'shì' },
+                                { hanzi: '你 的', pinyin: 'nǐ de' },
+                                { hanzi: '手机', pinyin: 'shǒujī' },
+                                { hanzi: '吗', pinyin: 'ma' }
+                            ],
+                            hint: 'Đây là điện thoại của bạn à?'
+                        },
+                        {
+                            target: '那 是 谁 的 手机',
+                            blocks: [
+                                { hanzi: '那', pinyin: 'nà' },
+                                { hanzi: '是', pinyin: 'shì' },
+                                { hanzi: '谁 的', pinyin: 'shuí de' },
+                                { hanzi: '手机', pinyin: 'shǒujī' }
+                            ],
+                            hint: 'Kia là điện thoại của ai?'
+                        },
+                        {
+                            target: '我 也 不 知道',
+                            blocks: [
+                                { hanzi: '我', pinyin: 'wǒ' },
+                                { hanzi: '也', pinyin: 'yě' },
+                                { hanzi: '不', pinyin: 'bù' },
+                                { hanzi: '知道', pinyin: 'zhīdào' }
+                            ],
+                            hint: 'Tôi cũng không biết.'
+                        }
+                    ]
+                }
+            ]
         }
     ]
 };
