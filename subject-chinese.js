@@ -398,19 +398,35 @@ window.chineseSubject = {
                 },
                 {
                     id: 'l2-d2',
-                    title: 'Bài khóa 2: 课文二 (Đang chờ cập nhật dữ liệu)',
+                    title: 'Bài khóa 2: 在图书馆遇到了 (Gặp nhau ở thư viện)',
                     vocabularies: [
-                        { hanzi: '都', pinyin: 'dōu', meaning: 'đều, tất cả', example: { hanzi: '我们都是学生。', pinyin: 'Wǒmen dōu shì xuésheng.', meaning: 'Chúng tôi đều là học sinh.' } }
+                        { hanzi: '晚上', pinyin: 'wǎnshang', meaning: 'tối, buổi tối', example: { hanzi: '晚上好！', pinyin: 'Wǎnshang hǎo!', meaning: 'Chào buổi tối!' } },
+                        { hanzi: '这些', pinyin: 'zhèxiē', meaning: 'những cái này', example: { hanzi: '这些是你的书吗？', pinyin: 'Zhèxiē shì nǐ de shū ma?', meaning: 'Những cuốn sách này là của bạn phải không?' } },
+                        { hanzi: '都', pinyin: 'dōu', meaning: 'đều', example: { hanzi: '都是我的书。', pinyin: 'Dōu shì wǒ de shū.', meaning: 'Đều là sách của tôi.' } },
+                        { hanzi: '书', pinyin: 'shū', meaning: 'sách', example: { hanzi: '这是一本书。', pinyin: 'Zhè shì yī běn shū.', meaning: 'Đây là một cuốn sách.' } },
+                        { hanzi: '英语', pinyin: 'Yīngyǔ', meaning: 'tiếng Anh', example: { hanzi: '是英语书吗？', pinyin: 'Shì Yīngyǔ shū ma?', meaning: 'Là sách tiếng Anh phải không?' } },
+                        { hanzi: '汉语', pinyin: 'Hànyǔ', meaning: 'tiếng Hán', example: { hanzi: '是汉语课本。', pinyin: 'Shì Hànyǔ kèběn.', meaning: 'Là giáo trình tiếng Hán.' } },
+                        { hanzi: '课本', pinyin: 'kèběn', meaning: 'sách giáo khoa, giáo trình', example: { hanzi: '汉语课本', pinyin: 'Hànyǔ kèběn', meaning: 'giáo trình tiếng Hán' } },
+                        { hanzi: '们', pinyin: 'men', meaning: 'dấu hiệu số nhiều (cho đại từ/người)', example: { hanzi: '你们', pinyin: 'nǐmen', meaning: 'các bạn' } },
+                        { hanzi: '难', pinyin: 'nán', meaning: 'khó, khó khăn', example: { hanzi: '你们的汉语课本难吗？', pinyin: 'Nǐmen de Hànyǔ kèběn nán ma?', meaning: 'Giáo trình tiếng Hán của các bạn có khó không?' } },
+                        { hanzi: '那些', pinyin: 'nàxiē', meaning: 'những cái đó', example: { hanzi: '那些也是你的书吗？', pinyin: 'Nàxiē yě shì nǐ de shū ma?', meaning: 'Những cuốn đó cũng là sách của bạn à?' } },
+                        { hanzi: '不错', pinyin: 'búcuò', meaning: 'hay, tốt, không tệ', example: { hanzi: '你的汉语很不错。', pinyin: 'Nǐ de Hànyǔ hěn búcuò.', meaning: 'Tiếng Hán của bạn rất tốt.' } },
+                        { hanzi: '米雪', pinyin: 'Mǐ Xuě', meaning: 'Michelle (tên người)', example: { hanzi: '晚上好！米雪', pinyin: 'Wǎnshang hǎo! Mǐ Xuě', meaning: 'Chào buổi tối! Michelle' } },
+                        { hanzi: '日语', pinyin: 'Rìyǔ', meaning: 'tiếng Nhật', example: { hanzi: '日语', pinyin: 'Rìyǔ', meaning: 'tiếng Nhật' } },
+                        { hanzi: '韩语', pinyin: 'Hányǔ', meaning: 'tiếng Hàn', example: { hanzi: '韩语', pinyin: 'Hányǔ', meaning: 'tiếng Hàn' } },
+                        { hanzi: '俄语', pinyin: 'Éyǔ', meaning: 'tiếng Nga', example: { hanzi: '俄语', pinyin: 'Éyǔ', meaning: 'tiếng Nga' } },
+                        { hanzi: '西班牙语', pinyin: 'Xībānyáyǔ', meaning: 'tiếng Tây Ban Nha', example: { hanzi: '西班牙语', pinyin: 'Xībānyáyǔ', meaning: 'tiếng Tây Ban Nha' } },
+                        { hanzi: '阿拉伯语', pinyin: 'Ālābóyǔ', meaning: 'tiếng Ả Rập', example: { hanzi: '阿拉伯语', pinyin: 'Ālābóyǔ', meaning: 'tiếng Ả Rập' } }
                     ],
                     grammar: {
                         title: 'Điểm Ngữ Pháp Bài Khóa 2',
                         points: [
                             {
-                                rule: '1. Phó từ "都" (Đều, tất cả)',
-                                desc: 'Phó từ "都" đứng trước động từ hoặc tính từ để biểu thị sự bao quát toàn bộ các đối tượng đã được nhắc đến ở phía trước.',
-                                example: '他们都是老师。',
-                                pinyin: 'Tāmen dōu shì lǎoshī.',
-                                meaning: 'Họ đều là giáo viên.',
+                                rule: '1. Phó từ "都" (đều, tất cả)[cite: 15]',
+                                desc: 'Phó từ "都" đứng trước động từ hoặc tính từ để biểu thị sự bao quát toàn bộ các đối tượng đã được nhắc đến ở phía trước. Trong câu phủ định, "都" có thể đặt trước "不" (tất cả đều không) hoặc sau "不" (không phải tất cả đều)[cite: 15].',
+                                example: '我们都是学生。 / 都不难。[cite: 15]',
+                                pinyin: 'Wǒmen dōu shì xuésheng. / Dōu bù nán.[cite: 15]',
+                                meaning: 'Chúng tôi đều là học sinh. / Đều không khó.[cite: 15]',
                                 breakdown: [
                                     { word: '他们', role: 'Chủ ngữ (số nhiều)' },
                                     { word: '都 (dōu)', role: 'Phó từ (đều)' },
@@ -418,42 +434,87 @@ window.chineseSubject = {
                                 ]
                             },
                             {
-                                rule: '2. Câu vị ngữ tính từ',
-                                desc: 'Sử dụng tính từ làm vị ngữ để miêu tả tính chất, trạng thái của người hoặc sự vật. Thường có phó từ chỉ mức độ (như 很) đứng ngay trước tính từ.',
-                                example: '手机很好看。',
-                                pinyin: 'Shǒujī hěn hǎokàn.',
-                                meaning: 'Điện thoại rất đẹp.',
+                                rule: '2. Câu vị ngữ tính từ[cite: 16]',
+                                desc: 'Sử dụng tính từ làm vị ngữ để miêu tả tính chất, trạng thái của người/sự vật. Cấu trúc cơ bản: Chủ ngữ + (Phó từ chỉ mức độ) + Tính từ. CHÚ Ý: Tuyệt đối không dùng động từ "是" (shì) trước tính từ[cite: 16].',
+                                example: '我很好。 / 汉语不难。[cite: 16]',
+                                pinyin: 'Wǒ hěn hǎo. / Hànyǔ bù nán.[cite: 16]',
+                                meaning: 'Tôi rất khỏe. / Tiếng Hán không khó.[cite: 16]',
                                 breakdown: [
-                                    { word: '手机', role: 'Chủ ngữ' },
-                                    { word: '很 (hěn)', role: 'Phó từ mức độ' },
-                                    { word: '好看', role: 'Tính từ (Vị ngữ)' }
+                                    { word: '汉语 / 手机', role: 'Chủ ngữ' },
+                                    { word: '很 / 不', role: 'Phó từ mức độ/phủ định' },
+                                    { word: '难 / 好看', role: 'Tính từ (Vị ngữ)' }
                                 ]
                             }
                         ],
                         exercises: [
                             {
-                                q: 'Sắp xếp câu: 我们 / 学生 / 都 / 是',
-                                pinyin: 'Wǒmen / xuésheng / dōu / shì',
+                                q: 'Sắp xếp câu: 我们 / 学生 / 都 / 是[cite: 15]',
+                                pinyin: 'Wǒmen / xuésheng / dōu / shì[cite: 15]',
                                 options: [
-                                    { hanzi: '我们都是学生。', pinyin: 'Wǒmen dōu shì xuésheng.' },
-                                    { hanzi: '都是我们学生。', pinyin: 'Dōu shì wǒmen xuésheng.' },
-                                    { hanzi: '我们是都学生。', pinyin: 'Wǒmen shì dōu xuésheng.' }
+                                    { hanzi: '我们都是学生。[cite: 15]', pinyin: 'Wǒmen dōu shì xuésheng.' },
+                                    { hanzi: '都是我们学生。[cite: 15]', pinyin: 'Dōu shì wǒmen xuésheng.' },
+                                    { hanzi: '我们是都学生。[cite: 15]', pinyin: 'Wǒmen shì dōu xuésheng.' }
                                 ],
                                 answer: '我们都是学生。',
-                                exp: 'Phó từ "都" (đều) phải đứng trước động từ "是" (là).'
+                                exp: 'Phó từ "都" (đều) phải đứng trước động từ "是" (là)[cite: 15].'
+                            },
+                            {
+                                q: 'Chọn câu ĐÚNG khi nói "Tiếng Hán rất khó":[cite: 16]',
+                                pinyin: 'Chọ câu ĐÚNG khi nói "Tiếng Hán rất khó":[cite: 16]',
+                                options: [
+                                    { hanzi: '汉语是很难。[cite: 16]', pinyin: 'Hànyǔ shì hěn nán.' },
+                                    { hanzi: '汉语很难。[cite: 16]', pinyin: 'Hànyǔ hěn nán.' },
+                                    { hanzi: '很汉语难。[cite: 16]', pinyin: 'Hěn Hànyǔ nán.' }
+                                ],
+                                answer: '汉语很难。',
+                                exp: 'Trong câu vị ngữ tính từ, trước tính từ không được dùng "是" (là)[cite: 16].'
+                            },
+                            {
+                                q: 'Điền từ: ______ 都是我的书。 (Những cái đó đều là sách của tôi)[cite: 14]',
+                                pinyin: '______ dōu shì wǒ de shū.[cite: 14]',
+                                options: [
+                                    { hanzi: '那', pinyin: 'nà' },
+                                    { hanzi: '这些', pinyin: 'zhèxiē' },
+                                    { hanzi: '那些', pinyin: 'nàxiē' }
+                                ],
+                                answer: '那些',
+                                exp: 'Đại từ chỉ định số nhiều: "这些" (những cái này), "那些" (những cái đó/kia)[cite: 14].'
                             }
                         ]
                     },
                     sentences: [
                         {
-                            target: '我们 都 是 学生',
+                            target: '这些 都 是 你 的 书 吗',
                             blocks: [
-                                { hanzi: '我们', pinyin: 'wǒmen' },
+                                { hanzi: '这些', pinyin: 'zhèxiē' },
                                 { hanzi: '都', pinyin: 'dōu' },
                                 { hanzi: '是', pinyin: 'shì' },
-                                { hanzi: '学生', pinyin: 'xuésheng' }
+                                { hanzi: '你 的', pinyin: 'nǐ de' },
+                                { hanzi: '书', pinyin: 'shū' },
+                                { hanzi: '吗', pinyin: 'ma' }
                             ],
-                            hint: 'Chúng tôi đều là học sinh.'
+                            hint: 'Những cái này đều là sách của bạn à?'
+                        },
+                        {
+                            target: '你们 的 汉语 课本 难 吗',
+                            blocks: [
+                                { hanzi: '你们 的', pinyin: 'nǐmen de' },
+                                { hanzi: '汉语', pinyin: 'Hànyǔ' },
+                                { hanzi: '课本', pinyin: 'kèběn' },
+                                { hanzi: '难', pinyin: 'nán' },
+                                { hanzi: '吗', pinyin: 'ma' }
+                            ],
+                            hint: 'Giáo trình tiếng Hán của các bạn có khó không?'
+                        },
+                        {
+                            target: '你 的 汉语 很 不错',
+                            blocks: [
+                                { hanzi: '你 的', pinyin: 'nǐ de' },
+                                { hanzi: '汉语', pinyin: 'Hànyǔ' },
+                                { hanzi: '很', pinyin: 'hěn' },
+                                { hanzi: '不错', pinyin: 'búcuò' }
+                            ],
+                            hint: 'Tiếng Hán của bạn rất tốt (không tệ).'
                         }
                     ]
                 }
