@@ -4,11 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boxcument - Nền tảng Học ngoại ngữ thông minh</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
@@ -28,22 +25,14 @@
         .transform-style-3d { transform-style: preserve-3d; }
         .backface-hidden { backface-visibility: hidden; }
         .rotate-y-180 { transform: rotateY(180deg); }
-        canvas { 
-            touch-action: none; 
-            -webkit-user-select: none;
-            user-select: none;
-        }
-        #step-content-3 {
-            overflow: hidden;
-        }
+        canvas { touch-action: none; -webkit-user-select: none; user-select: none; }
+        #step-content-3 { overflow: hidden; }
     </style>
 </head>
 <body class="h-full bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 font-sans transition-colors duration-300 flex flex-col relative">
 
-    <!-- Toast Notification Container -->
     <div id="toast-container" class="fixed top-5 right-5 z-50 flex flex-col space-y-3 max-w-sm w-full pointer-events-none"></div>
 
-    <!-- Header -->
     <header class="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 px-4 sm:px-6 py-3 flex items-center justify-between shadow-sm">
         <div class="flex items-center space-x-2.5 cursor-pointer" onclick="app.goLobby()">
             <div class="w-9 h-9 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-bold text-lg shadow-md">
@@ -55,25 +44,18 @@
             </div>
         </div>
 
-        <!-- Header Tools & Controls -->
         <div class="flex items-center space-x-2 sm:space-x-3">
             <button id="lobby-btn" onclick="app.goLobby()" class="hidden px-2.5 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-700 text-xs font-medium hover:bg-slate-200 transition items-center gap-1">
                 <i class="fa-solid fa-house"></i> <span class="hidden sm:inline">Trang chủ</span>
             </button>
-
-            <!-- 1. TIME COUNTER BUTTON -->
             <button onclick="app.openCountdownModal()" class="px-2.5 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-700 text-xs font-medium hover:bg-slate-200 transition flex items-center gap-1.5" title="Bấm giờ bứt phá giới hạn">
                 <i class="fa-solid fa-stopwatch text-indigo-600 dark:text-indigo-400"></i>
                 <span id="countdown-btn-label" class="font-semibold">Timer</span>
             </button>
-
-            <!-- 2. POMODORO BUTTON -->
             <button onclick="app.openPomodoroModal()" class="px-2.5 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-700 text-xs font-medium hover:bg-slate-200 transition flex items-center gap-1.5" title="Chế độ Pomodoro">
                 <i class="fa-solid fa-clock text-amber-500"></i>
                 <span id="pomodoro-btn-label" class="font-semibold">Pomodoro</span>
             </button>
-
-            <!-- Dark Mode Toggle -->
             <button onclick="app.toggleDarkMode()" class="w-9 h-9 rounded-xl bg-slate-100 dark:bg-slate-700 flex items-center justify-center hover:bg-slate-200 transition">
                 <i class="fa-solid fa-moon dark:hidden text-slate-600"></i>
                 <i class="fa-solid fa-sun hidden dark:block text-amber-400"></i>
@@ -81,10 +63,8 @@
         </div>
     </header>
 
-    <!-- Main Container -->
     <main class="flex-1 max-w-5xl w-full mx-auto p-3 sm:p-6 flex flex-col overflow-y-auto">
         
-        <!-- ================= 1. LOBBY VIEW ================= -->
         <div id="view-lobby" class="flex-1 flex flex-col">
             <div class="mb-6">
                 <h2 class="text-xl sm:text-2xl font-bold mb-1">Danh Mục Môn Học</h2>
@@ -93,7 +73,6 @@
             <div id="subjects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6"></div>
         </div>
 
-        <!-- ================= 2. LESSONS LIST VIEW ================= -->
         <div id="view-lessons-list" class="hidden flex-1 flex flex-col">
             <div class="flex items-center space-x-2 mb-4 cursor-pointer text-indigo-600 dark:text-indigo-400 font-semibold text-xs" onclick="app.goLobby()">
                 <i class="fa-solid fa-arrow-left"></i> <span>Quay lại danh mục môn học</span>
@@ -105,20 +84,18 @@
             <div id="lessons-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6"></div>
         </div>
 
-        <!-- ================= 3. DIALOGUES LIST VIEW ================= -->
         <div id="view-dialogues-list" class="hidden flex-1 flex flex-col">
             <div class="flex items-center space-x-2 mb-4 cursor-pointer text-indigo-600 dark:text-indigo-400 font-semibold text-xs" onclick="app.goLessonsList()">
                 <i class="fa-solid fa-arrow-left"></i> <span>Quay lại danh sách bài học</span>
             </div>
             <div class="mb-5">
-                <span id="dialogue-lesson-badge" class="px-2.5 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 text-xs font-semibold">Bài 1</span>
-                <h2 id="dialogue-lesson-title" class="text-xl sm:text-2xl font-bold mt-1 mb-1">Bài 1</h2>
-                <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">Hãy chọn Bài khóa bạn muốn thực hành hôm nay:</p>
+                <span id="dialogue-lesson-badge" class="px-2.5 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 text-xs font-semibold">Bài</span>
+                <h2 id="dialogue-lesson-title" class="text-xl sm:text-2xl font-bold mt-1 mb-1">Bài Học</h2>
+                <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">Hãy chọn nội dung bạn muốn thực hành hôm nay:</p>
             </div>
             <div id="dialogues-grid" class="grid grid-cols-1 gap-3.5"></div>
         </div>
 
-        <!-- ================= 4. LESSON FLOW VIEW (6 Bước Học) ================= -->
         <div id="view-lesson-flow" class="hidden flex-1 flex flex-col">
             <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between bg-white dark:bg-slate-800 rounded-2xl p-3 sm:p-4 shadow-sm border border-slate-200 dark:border-slate-700 mb-4 gap-3">
                 <div class="flex items-center justify-between w-full sm:w-auto">
@@ -126,13 +103,12 @@
                         <div class="flex items-center space-x-2">
                             <button onclick="app.goDialoguesList()" class="text-xs text-indigo-600 dark:text-indigo-400 font-semibold hover:underline"><i class="fa-solid fa-arrow-left"></i> Bài khóa</button>
                             <span class="text-slate-300 dark:text-slate-600">|</span>
-                            <span id="flow-dialogue-title" class="text-xs font-bold text-slate-500">Bài khóa</span>
+                            <span id="flow-dialogue-title" class="text-xs font-bold text-slate-500">Nội dung</span>
                         </div>
                         <h3 id="flow-lesson-title" class="text-base sm:text-lg font-bold mt-0.5">Đang tải...</h3>
                     </div>
                 </div>
 
-                <!-- Steps Progress Bar -->
                 <div class="flex items-center space-x-1.5 w-full sm:w-auto overflow-x-auto pb-1 sm:pb-0">
                     <div id="step-dot-1" class="flex items-center space-x-1 px-2.5 py-1 rounded-xl bg-indigo-600 text-white text-[11px] font-semibold cursor-pointer whitespace-nowrap" onclick="app.switchStep(1)"><i class="fa-solid fa-clone text-[10px]"></i> <span>1. Flashcard</span></div>
                     <i class="fa-solid fa-chevron-right text-[9px] text-slate-400"></i>
@@ -142,13 +118,12 @@
                     <i class="fa-solid fa-chevron-right text-[9px] text-slate-400"></i>
                     <div id="step-dot-4" class="flex items-center space-x-1 px-2.5 py-1 rounded-xl bg-slate-200 dark:bg-slate-700 text-slate-500 text-[11px] font-semibold cursor-pointer whitespace-nowrap" onclick="app.switchStep(4)"><i class="fa-solid fa-book-open text-[10px]"></i> <span>4. Ngữ pháp</span></div>
                     <i class="fa-solid fa-chevron-right text-[9px] text-slate-400"></i>
-                    <div id="step-dot-5" class="flex items-center space-x-1 px-2.5 py-1 rounded-xl bg-slate-200 dark:bg-slate-700 text-slate-500 text-[11px] font-semibold cursor-pointer whitespace-nowrap" onclick="app.switchStep(5)"><i class="fa-solid fa-pen-nib text-[10px]"></i> <span>5. Bài tập NP</span></div>
+                    <div id="step-dot-5" class="flex items-center space-x-1 px-2.5 py-1 rounded-xl bg-slate-200 dark:bg-slate-700 text-slate-500 text-[11px] font-semibold cursor-pointer whitespace-nowrap" onclick="app.switchStep(5)"><i class="fa-solid fa-pen-nib text-[10px]"></i> <span>5. Bài tập / Trắc nghiệm</span></div>
                     <i class="fa-solid fa-chevron-right text-[9px] text-slate-400"></i>
                     <div id="step-dot-6" class="flex items-center space-x-1 px-2.5 py-1 rounded-xl bg-slate-200 dark:bg-slate-700 text-slate-500 text-[11px] font-semibold cursor-pointer whitespace-nowrap" onclick="app.switchStep(6)"><i class="fa-solid fa-puzzle-piece text-[10px]"></i> <span>6. Ghép câu</span></div>
                 </div>
             </div>
 
-            <!-- STEP 1: FLASHCARD -->
             <div id="step-content-1" class="lesson-step flex-1 flex flex-col justify-between">
                 <div class="flex items-center justify-between gap-2 mb-3">
                     <div class="flex items-center space-x-1.5">
@@ -203,7 +178,6 @@
                 </div>
             </div>
 
-            <!-- STEP 2: QUIZ -->
             <div id="step-content-2" class="lesson-step hidden flex-1 flex flex-col justify-between">
                 <div class="flex-1 max-w-2xl mx-auto w-full flex flex-col justify-center">
                     <div class="bg-white dark:bg-slate-800 rounded-3xl p-5 sm:p-8 border border-slate-200 dark:border-slate-700 shadow-sm">
@@ -222,7 +196,6 @@
                 </div>
             </div>
 
-            <!-- STEP 3: HANDWRITING -->
             <div id="step-content-3" class="lesson-step hidden flex-1 flex flex-col justify-between">
                 <div class="flex-1 max-w-xl mx-auto w-full flex flex-col items-center justify-center">
                     <div class="bg-white dark:bg-slate-800 rounded-3xl p-5 sm:p-7 border border-slate-200 dark:border-slate-700 shadow-sm w-full text-center">
@@ -253,7 +226,6 @@
                 </div>
             </div>
 
-            <!-- STEP 4: GRAMMAR -->
             <div id="step-content-4" class="lesson-step hidden flex-1 flex flex-col justify-between">
                 <div class="flex-1 overflow-y-auto space-y-4 pr-1">
                     <div class="bg-white dark:bg-slate-800 rounded-3xl p-4 sm:p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
@@ -266,12 +238,12 @@
                 </div>
             </div>
 
-            <!-- STEP 5: GRAMMAR PRACTICE -->
+            <!-- STEP 5: GRAMMAR PRACTICE / MCQ -->
             <div id="step-content-5" class="lesson-step hidden flex-1 flex flex-col justify-between">
                 <div class="flex-1 max-w-2xl mx-auto w-full flex flex-col justify-center">
                     <div class="bg-white dark:bg-slate-800 rounded-3xl p-4 sm:p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
                         <div class="flex justify-between items-center mb-3">
-                            <span class="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400">Thực hành Ngữ pháp</span>
+                            <span class="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400">Thực hành & Trắc nghiệm</span>
                             <span id="gp-counter" class="text-xs font-medium text-slate-500">Câu 1/3</span>
                         </div>
                         <div class="mb-4 text-center">
@@ -287,12 +259,11 @@
                     </div>
                 </div>
                 <div class="pt-4 flex justify-between items-center">
-                    <button onclick="app.switchStep(4)" class="px-4 py-2.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 text-xs font-medium transition"><i class="fa-solid fa-arrow-left mr-1"></i> Lý thuyết</button>
+                    <button onclick="app.switchStep(4)" class="px-4 py-2.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 text-xs font-medium transition"><i class="fa-solid fa-arrow-left mr-1"></i> Quay lại</button>
                     <button id="gp-next-btn" onclick="app.nextGrammarPractice()" class="hidden px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs transition shadow-md">Tiếp tục <i class="fa-solid fa-arrow-right ml-1"></i></button>
                 </div>
             </div>
 
-            <!-- STEP 6: SENTENCE BUILDING -->
             <div id="step-content-6" class="lesson-step hidden flex-1 flex flex-col justify-between">
                 <div class="flex-1 max-w-2xl mx-auto w-full flex flex-col justify-center">
                     <div class="bg-white dark:bg-slate-800 rounded-3xl p-4 sm:p-6 border border-slate-200 dark:border-slate-700 shadow-sm text-center">
@@ -318,9 +289,9 @@
             <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 max-w-md w-full text-center shadow-2xl border border-slate-200 dark:border-slate-700">
                 <div class="w-14 h-14 bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 rounded-full flex items-center justify-center mx-auto text-2xl mb-3"><i class="fa-solid fa-trophy"></i></div>
                 <h3 class="text-xl font-bold mb-1">Chúc mừng bạn!</h3>
-                <p class="text-slate-500 dark:text-slate-400 text-xs mb-5">Bạn đã hoàn thành 100% bài khóa này!</p>
+                <p class="text-slate-500 dark:text-slate-400 text-xs mb-5">Bạn đã hoàn thành 100% nội dung học tập!</p>
                 <div class="flex space-x-2">
-                    <button onclick="app.goDialoguesList()" class="flex-1 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-700 font-semibold text-xs hover:bg-slate-200 transition">Chọn Bài Khóa khác</button>
+                    <button onclick="app.goDialoguesList()" class="flex-1 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-700 font-semibold text-xs hover:bg-slate-200 transition">Quay lại danh sách</button>
                     <button onclick="app.restartDialogue()" class="flex-1 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs transition shadow-md">Học lại</button>
                 </div>
             </div>
@@ -379,8 +350,19 @@
 
     </main>
 
-    <!-- Nạp file dữ liệu bài học bên ngoài -->
-    <script src="lessons.js"></script>
+    <!-- KẾT NỐI NHIỀU FILE DỮ LIỆU JS Ở ĐÂY -->
+    <script src="subject-chinese.js"></script>
+    <script src="subject-american-culture.js"></script>
+    
+    <!-- KHỞI TẠO BIẾN appData TỔNG HỢP TỪ CÁC FILE TRÊN -->
+    <script>
+        const appData = {
+            subjects: [
+                window.chineseSubject, 
+                window.americanCultureSubject
+            ].filter(Boolean) // Lọc bỏ nếu file nào đó chưa được nạp
+        };
+    </script>
 
     <!-- Application JavaScript Logic -->
     <script>
@@ -480,7 +462,6 @@
                 document.getElementById('pomodoro-modal').classList.add('hidden');
             }
 
-            // --- NAVIGATION ---
             goLobby() {
                 this.hideAllViews();
                 document.getElementById('view-lobby').classList.remove('hidden');
@@ -516,13 +497,13 @@
                     <div class="bg-white dark:bg-slate-800 rounded-3xl p-5 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition flex flex-col justify-between">
                         <div>
                             <div class="flex items-center justify-between mb-2">
-                                <span class="px-2.5 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 text-xs font-semibold">Bài ${idx + 1}</span>
-                                <span class="text-xs text-slate-400"><i class="fa-solid fa-layer-group mr-1"></i> ${lesson.dialogues.length} bài khóa</span>
+                                <span class="px-2.5 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 text-xs font-semibold">Phần ${idx + 1}</span>
+                                <span class="text-xs text-slate-400"><i class="fa-solid fa-layer-group mr-1"></i> ${lesson.dialogues.length} nội dung</span>
                             </div>
                             <h3 class="text-lg font-bold mb-1">${lesson.title}</h3>
                             <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">${lesson.description}</p>
                         </div>
-                        <button onclick="app.selectLesson('${lesson.id}')" class="w-full py-2.5 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs transition shadow-md flex items-center justify-center"><span>Xem danh sách bài khóa</span> <i class="fa-solid fa-arrow-right ml-1.5"></i></button>
+                        <button onclick="app.selectLesson('${lesson.id}')" class="w-full py-2.5 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs transition shadow-md flex items-center justify-center"><span>Xem danh sách</span> <i class="fa-solid fa-arrow-right ml-1.5"></i></button>
                     </div>
                 `).join('');
             }
@@ -542,15 +523,23 @@
                 grid.innerHTML = this.currentLesson.dialogues.map((d, idx) => {
                     const dp = this.getDialogueProgress(d.id);
                     const percent = Math.round((dp.completedSteps.length / 6) * 100);
+                    
+                    const vocabCount = d.vocabularies ? d.vocabularies.length : 0;
                     const grammarCount = d.grammar && d.grammar.points ? d.grammar.points.length : 0;
+                    const exerciseCount = d.grammar && d.grammar.exercises ? d.grammar.exercises.length : 0;
+
+                    let infoText = '';
+                    if (vocabCount > 0) infoText += `<i class="fa-solid fa-book mr-1"></i> ${vocabCount} từ vựng &bull; `;
+                    if (grammarCount > 0) infoText += `<i class="fa-solid fa-graduation-cap mx-1"></i> ${grammarCount} lý thuyết &bull; `;
+                    if (exerciseCount > 0) infoText += `<i class="fa-solid fa-pen-nib mx-1"></i> ${exerciseCount} câu hỏi &bull; `;
 
                     return `
                         <div class="bg-white dark:bg-slate-800 rounded-2xl p-4 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition flex items-center justify-between">
                             <div class="flex items-center space-x-3.5">
-                                <div class="w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 font-bold flex items-center justify-center text-sm">BK ${idx + 1}</div>
+                                <div class="w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 font-bold flex items-center justify-center text-sm">${idx + 1}</div>
                                 <div>
                                     <h4 class="font-bold text-sm sm:text-base">${d.title}</h4>
-                                    <p class="text-xs text-slate-400"><i class="fa-solid fa-book mr-1"></i> ${d.vocabularies.length} từ vựng &bull; <i class="fa-solid fa-graduation-cap ml-1 mr-1"></i> ${grammarCount} ngữ pháp &bull; Tiến độ: ${percent}%</p>
+                                    <p class="text-xs text-slate-400">${infoText}Tiến độ: ${percent}%</p>
                                 </div>
                             </div>
                             <button onclick="app.startDialogue('${d.id}')" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold transition shadow-md">Học ngay <i class="fa-solid fa-play ml-1"></i></button>
@@ -561,12 +550,16 @@
 
             startDialogue(dialogueId) {
                 this.currentDialogue = this.currentLesson.dialogues.find(d => d.id === dialogueId);
-                if (!this.currentDialogue || this.currentDialogue.vocabularies.length === 0) {
-                    this.showToast('Bài khóa này đang được cập nhật!', 'warning');
+                if (!this.currentDialogue) return;
+
+                const hasVocab = this.currentDialogue.vocabularies && this.currentDialogue.vocabularies.length > 0;
+                const hasGrammarEx = this.currentDialogue.grammar && this.currentDialogue.grammar.exercises && this.currentDialogue.grammar.exercises.length > 0;
+
+                if (!hasVocab && !hasGrammarEx) {
+                    this.showToast('Nội dung này đang được cập nhật!', 'warning');
                     return;
                 }
 
-                this.currentStep = 1;
                 this.cardIndex = 0;
                 this.isFlipped = false;
                 this.cardFilter = 'all';
@@ -580,13 +573,19 @@
                 document.getElementById('lobby-btn').classList.remove('hidden');
                 document.getElementById('flow-lesson-title').innerText = this.currentDialogue.title;
 
-                this.updateStepUI();
-                this.renderFlashcard();
-                this.initQuiz();
-                this.initCanvas();
-                this.renderGrammar();
-                this.renderGrammarPractice();
-                this.initSentenceBuild();
+                // LOGIC NHẢY BƯỚC: Nếu không có từ vựng mà chỉ có trắc nghiệm (như môn Văn Hóa Mỹ)
+                if (!hasVocab && hasGrammarEx) {
+                    this.switchStep(5);
+                    this.renderGrammarPractice();
+                } else {
+                    this.switchStep(1);
+                    this.renderFlashcard();
+                    this.initQuiz();
+                    this.initCanvas();
+                    this.renderGrammar();
+                    this.renderGrammarPractice();
+                    this.initSentenceBuild();
+                }
             }
 
             switchStep(step) {
@@ -601,7 +600,14 @@
                     dp.completedSteps.push(stepNumber);
                     this.saveProgress();
                 }
-                this.updateStepUI();
+                
+                // Nếu là bài chỉ có trắc nghiệm (nhảy thẳng bước 5) thì hoàn thành bước 5 là full tiến độ
+                const hasVocab = this.currentDialogue.vocabularies && this.currentDialogue.vocabularies.length > 0;
+                if (!hasVocab && stepNumber === 5) {
+                    document.getElementById('completion-modal').classList.remove('hidden');
+                } else {
+                    this.updateStepUI();
+                }
             }
 
             updateStepUI() {
@@ -646,7 +652,7 @@
 
             renderFlashcard() {
                 const cards = this.getFilteredCards();
-                if (cards.length === 0) return;
+                if (!cards || cards.length === 0) return;
 
                 const card = cards[this.cardIndex];
                 const originalIndex = this.currentDialogue.vocabularies.findIndex(v => v.hanzi === card.hanzi);
@@ -734,6 +740,7 @@
 
             renderQuizQuestion() {
                 const vocabs = this.currentDialogue.vocabularies;
+                if(!vocabs || vocabs.length === 0) return;
                 const currentVocab = vocabs[this.currentQuizIndex];
                 
                 document.getElementById('quiz-counter').innerText = `Câu ${this.currentQuizIndex + 1}/${vocabs.length}`;
@@ -801,7 +808,7 @@
             }
 
             renderHandwritingVocab() {
-                if (!this.currentDialogue) return;
+                if (!this.currentDialogue || !this.currentDialogue.vocabularies || this.currentDialogue.vocabularies.length === 0) return;
                 const vocabs = this.currentDialogue.vocabularies;
                 const v = vocabs[this.currentHWIndex] || vocabs[0];
 
@@ -832,7 +839,6 @@
                 const clientX = e.clientX !== undefined ? e.clientX : (e.touches && e.touches[0] ? e.touches[0].clientX : 0);
                 const clientY = e.clientY !== undefined ? e.clientY : (e.touches && e.touches[0] ? e.touches[0].clientY : 0);
                 
-                // Khử triệt để độ lệch tỷ lệ màn hình (Retina / Zoom / Mobile UI Bar)
                 const scaleX = this.canvas.width / rect.width;
                 const scaleY = this.canvas.height / rect.height;
 
@@ -852,7 +858,7 @@
             draw(e) {
                 if (!this.isDrawing) return;
                 const pos = this.getCanvasPos(e);
-                this.ctx.lineWidth = 14; // Tăng độ rộng nét bút trên mobile để dễ lấp đầy pixel mẫu
+                this.ctx.lineWidth = 14; 
                 this.ctx.lineCap = 'round';
                 this.ctx.lineJoin = 'round';
                 this.ctx.strokeStyle = '#4f46e5';
@@ -902,7 +908,6 @@
                 const coverageScore = (userCoveredTarget / targetPixels) * 100;
                 const penaltyRatio = userOutPixels / (targetPixels || 1);
 
-                // Nới lỏng dung sai trên mobile để chấm dễ thở ngang ngửa PC
                 const minCoverage = 20; 
                 const maxPenalty = 3.5;
 
@@ -919,12 +924,14 @@
             // --- GRAMMAR ---
             renderGrammar() {
                 const g = this.currentDialogue.grammar;
+                if (!g || !g.points || g.points.length === 0) return;
+                
                 document.getElementById('grammar-title').innerHTML = `<i class="fa-solid fa-graduation-cap mr-2"></i> <span>${g.title}</span>`;
                 
                 const container = document.getElementById('grammar-points');
                 container.innerHTML = g.points.map((p, idx) => `
                     <div class="p-4 sm:p-5 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700">
-                        <h4 class="font-bold text-sm text-indigo-600 dark:text-indigo-400 mb-1">Quy tắc ${idx + 1}: ${p.rule}</h4>
+                        <h4 class="font-bold text-sm text-indigo-600 dark:text-indigo-400 mb-1">Lý thuyết ${idx + 1}: ${p.rule}</h4>
                         <p class="text-xs text-slate-500 mb-3">${p.desc}</p>
                         <div class="bg-white dark:bg-slate-800 rounded-xl p-3 border border-slate-200 dark:border-slate-700 mb-3">
                             <p class="font-chinese text-lg font-bold">${p.example}</p>
@@ -936,7 +943,7 @@
                 this.markStepComplete(4);
             }
 
-            // --- GRAMMAR PRACTICE ---
+            // --- GRAMMAR PRACTICE / MCQ ---
             renderGrammarPractice() {
                 const exercises = this.currentDialogue.grammar.exercises;
                 if (!exercises || exercises.length === 0) return;
@@ -944,13 +951,20 @@
                 const ex = exercises[this.currentGPIndex];
                 document.getElementById('gp-counter').innerText = `Câu ${this.currentGPIndex + 1}/${exercises.length}`;
                 document.getElementById('gp-question').innerText = ex.q;
-                document.getElementById('gp-question-pinyin').innerText = ex.pinyin;
+                
+                const pinyinEl = document.getElementById('gp-question-pinyin');
+                if (ex.pinyin) {
+                    pinyinEl.innerText = ex.pinyin;
+                    pinyinEl.classList.remove('hidden');
+                } else {
+                    pinyinEl.classList.add('hidden');
+                }
                 
                 const optContainer = document.getElementById('gp-options');
                 optContainer.innerHTML = ex.options.map(opt => `
-                    <button onclick="app.checkGrammarAnswer('${opt.hanzi}')" class="py-2.5 px-3 rounded-2xl bg-slate-100 dark:bg-slate-700 hover:bg-indigo-50 font-semibold transition border border-slate-200 flex flex-col items-center">
-                        <span class="font-chinese font-bold text-base">${opt.hanzi}</span>
-                        <span class="text-[11px] text-indigo-600 dark:text-indigo-400 font-normal">${opt.pinyin}</span>
+                    <button onclick="app.checkGrammarAnswer('${opt.hanzi.replace(/'/g, "\\'")}')" class="py-3.5 px-3 rounded-2xl bg-slate-100 dark:bg-slate-700 hover:bg-indigo-50 font-semibold transition border border-slate-200 flex flex-col items-center">
+                        <span class="font-bold text-sm sm:text-base">${opt.hanzi}</span>
+                        ${opt.pinyin ? `<span class="text-[11px] text-indigo-600 dark:text-indigo-400 font-normal mt-0.5">${opt.pinyin}</span>` : ''}
                     </button>
                 `).join('');
                 
@@ -988,8 +1002,11 @@
                     this.renderGrammarPractice();
                 } else {
                     this.markStepComplete(5);
-                    this.showToast('Hoàn thành bài tập ngữ pháp!', 'success');
-                    setTimeout(() => this.switchStep(6), 800);
+                    const hasVocab = this.currentDialogue.vocabularies && this.currentDialogue.vocabularies.length > 0;
+                    if (hasVocab) {
+                        this.showToast('Hoàn thành bài tập!', 'success');
+                        setTimeout(() => this.switchStep(6), 800);
+                    }
                 }
             }
 
