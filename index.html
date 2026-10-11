@@ -73,7 +73,14 @@
                 <i class="fa-solid fa-clock text-amber-500"></i>
                 <span id="pomodoro-btn-label" class="font-semibold">Pomodoro</span>
             </button>
-            <button onclick="app.toggleDarkMode()" class="w-9 h-9 rounded-xl bg-slate-100 dark:bg-slate-700 flex items-center justify-center hover:bg-slate-200 transition">
+            
+            <!-- Sound Toggle Button -->
+            <button onclick="app.toggleSound()" class="w-9 h-9 rounded-xl bg-slate-100 dark:bg-slate-700 flex items-center justify-center hover:bg-slate-200 transition" title="Bật/Tắt âm thanh báo đúng sai">
+                <i id="sound-icon" class="fa-solid fa-volume-high text-indigo-600 dark:text-indigo-400"></i>
+            </button>
+
+            <!-- Dark Mode Toggle -->
+            <button onclick="app.toggleDarkMode()" class="w-9 h-9 rounded-xl bg-slate-100 dark:bg-slate-700 flex items-center justify-center hover:bg-slate-200 transition" title="Giao diện Sáng/Tối">
                 <i class="fa-solid fa-moon dark:hidden text-slate-600"></i>
                 <i class="fa-solid fa-sun hidden dark:block text-amber-400"></i>
             </button>
@@ -367,7 +374,7 @@
             </div>
         </div>
 
-        <!-- ================= SUCCESS MODAL (UPDATED WITH REVIEW BTN) ================= -->
+        <!-- ================= SUCCESS MODAL ================= -->
         <div id="completion-modal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
             <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 max-w-md w-full text-center shadow-2xl border border-slate-200 dark:border-slate-700 transform transition-all">
                 <div class="w-16 h-16 bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 rounded-full flex items-center justify-center mx-auto text-3xl mb-4 shadow-inner"><i class="fa-solid fa-trophy"></i></div>
@@ -471,6 +478,10 @@
                 this.testMode = 'practice';
                 this.isReviewMode = false;
 
+                // Khởi tạo trạng thái âm thanh
+                this.soundEnabled = localStorage.getItem('boxcument_sound') !== 'false';
+                this.audioCtx = null;
+
                 this.isDrawing = false;
                 this.canvas = null;
                 this.ctx = null;
@@ -483,8 +494,63 @@
                 this.pomoIsRunning = false;
                 this.pomoIsBreak = false;
 
+                this.initSoundIcon();
                 this.initDarkMode();
                 this.goLobby();
+            }
+
+            // ================== HỆ THỐNG ÂM THANH ================== //
+            initSoundIcon() {
+                const icon = document.getElementById('sound-icon');
+                if (this.soundEnabled) {
+                    icon.className = 'fa-solid fa-volume-high text-indigo-600 dark:text-indigo-400';
+                } else {
+                    icon.className = 'fa-solid fa-volume-xmark text-slate-400';
+                }
+            }
+
+            toggleSound() {
+                this.soundEnabled = !this.soundEnabled;
+                localStorage.setItem('boxcument_sound', this.soundEnabled);
+                this.initSoundIcon();
+                if (this.soundEnabled) {
+                    this.showToast('Đã bật âm thanh hiệu ứng', 'info');
+                    this.playTone('correct'); // Play demo sound
+                } else {
+                    this.showToast('Đã tắt âm thanh', 'info');
+                }
+            }
+
+            playTone(type) {
+                if (!this.soundEnabled) return;
+                try {
+                    const AudioContext = window.AudioContext || window.webkitAudioContext;
+                    if (!this.audioCtx) this.audioCtx = new AudioContext();
+                    if (this.audioCtx.state === 'suspended') this.audioCtx.resume();
+                    
+                    const osc = this.audioCtx.createOscillator();
+                    const gain = this.audioCtx.createGain();
+                    osc.connect(gain);
+                    gain.connect(this.audioCtx.destination);
+                    
+                    if (type === 'correct') {
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(523.25, this.audioCtx.currentTime); // C5
+                        osc.frequency.exponentialRampToValueAtTime(880, this.audioCtx.currentTime + 0.1); // A5
+                        gain.gain.setValueAtTime(0.3, this.audioCtx.currentTime);
+                        gain.gain.exponentialRampToValueAtTime(0.01, this.audioCtx.currentTime + 0.3);
+                        osc.start();
+                        osc.stop(this.audioCtx.currentTime + 0.3);
+                    } else if (type === 'wrong') {
+                        osc.type = 'sawtooth';
+                        osc.frequency.setValueAtTime(311.13, this.audioCtx.currentTime); // Eb4
+                        osc.frequency.exponentialRampToValueAtTime(200, this.audioCtx.currentTime + 0.2); 
+                        gain.gain.setValueAtTime(0.1, this.audioCtx.currentTime);
+                        gain.gain.exponentialRampToValueAtTime(0.01, this.audioCtx.currentTime + 0.3);
+                        osc.start();
+                        osc.stop(this.audioCtx.currentTime + 0.3);
+                    }
+                } catch(e) { console.log("Web Audio API not supported", e); }
             }
 
             saveProgress() {
@@ -614,7 +680,7 @@
                     let infoText = '';
                     if (vocabCount > 0) infoText += `<i class="fa-solid fa-book mr-1"></i> ${vocabCount} từ vựng &bull; `;
                     if (grammarCount > 0) infoText += `<i class="fa-solid fa-graduation-cap mx-1"></i> ${grammarCount} lý thuyết &bull; `;
-                    if (exerciseCount > 0) infoText += `<i class="fa-solid fa-pen-nib mx-1"></i> ${exerciseCount} câu trắc nghiệm &bull; `;
+                    if (exerciseCount > 0) infoText += `<i class="fa-solid fa-pen-nib mx-1"></i> ${exerciseCount} bài tập &bull; `;
 
                     return `
                         <div class="bg-white dark:bg-slate-800 rounded-2xl p-4 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition flex items-center justify-between">
@@ -718,6 +784,7 @@
                 const hasVocab = this.currentDialogue.vocabularies && this.currentDialogue.vocabularies.length > 0;
                 if (hasVocab && stepNumber === 6) {
                     document.getElementById('completion-modal').classList.remove('hidden');
+                    this.playTone('correct'); // Chúc mừng hoàn thành
                 } else {
                     this.updateStepUI();
                 }
@@ -739,7 +806,7 @@
                 }
             }
 
-            // ================== CÁC HÀM TIẾNG TRUNG (KHÔI PHỤC HOÀN TOÀN) ================== //
+            // ================== CÁC HÀM TIẾNG TRUNG ================== //
             getFilteredCards() {
                 const dp = this.getDialogueProgress(this.currentDialogue.id);
                 if (this.cardFilter === 'learned') {
@@ -884,10 +951,12 @@
                 const fb = document.getElementById('quiz-feedback');
                 fb.classList.remove('hidden');
                 if (selected === correct) {
+                    this.playTone('correct'); // Chơi âm thanh báo đúng
                     fb.className = "mt-4 p-3 rounded-2xl text-xs font-medium bg-emerald-50 text-emerald-600 border border-emerald-200 flex items-center gap-2";
                     fb.innerHTML = `<i class="fa-solid fa-circle-check text-base"></i> <span>Chính xác! Bạn chọn đúng rồi.</span>`;
                     document.getElementById('quiz-next-btn').classList.remove('hidden');
                 } else {
+                    this.playTone('wrong'); // Chơi âm thanh báo sai
                     fb.className = "mt-4 p-3 rounded-2xl text-xs font-medium bg-rose-50 text-rose-600 border border-rose-200 flex items-center gap-2";
                     fb.innerHTML = `<i class="fa-solid fa-circle-xmark text-base"></i> <span>Chưa đúng! Hãy chọn lại nhé.</span>`;
                 }
@@ -973,7 +1042,7 @@
             draw(e) {
                 if (!this.isDrawing) return;
                 const pos = this.getCanvasPos(e);
-                this.ctx.lineWidth = 14; 
+                this.ctx.lineWidth = 8; // Đã giảm từ 14 xuống 8 cho thanh mảnh
                 this.ctx.lineCap = 'round';
                 this.ctx.lineJoin = 'round';
                 this.ctx.strokeStyle = '#4f46e5';
@@ -1023,14 +1092,16 @@
                 const coverageScore = (userCoveredTarget / targetPixels) * 100;
                 const penaltyRatio = userOutPixels / (targetPixels || 1);
 
-                const minCoverage = 20; 
-                const maxPenalty = 3.5;
+                const minCoverage = 25; 
+                const maxPenalty = 6.0; // Nới lỏng tối đa trên Mobile để không phạt ngón tay to
 
                 if (coverageScore >= minCoverage && penaltyRatio <= maxPenalty) {
+                    this.playTone('correct'); // Chơi âm thanh báo đúng
                     fb.className = "mt-2 p-2.5 rounded-xl text-xs font-medium bg-emerald-50 text-emerald-600 border border-emerald-200";
                     fb.innerHTML = `<i class="fa-solid fa-circle-check mr-1"></i> Đạt yêu cầu! Viết nét rất chuẩn.`;
                     this.markStepComplete(3);
                 } else {
+                    this.playTone('wrong'); // Chơi âm thanh báo sai
                     fb.className = "mt-2 p-2.5 rounded-xl text-xs font-medium bg-rose-50 text-rose-600 border border-rose-200";
                     fb.innerHTML = `<i class="fa-solid fa-circle-xmark mr-1"></i> Chưa đạt. Hãy viết đầy đủ các nét hơn nhé!`;
                 }
@@ -1058,7 +1129,7 @@
                 this.markStepComplete(4);
             }
 
-            // ================== CÁC HÀM TRẮC NGHIỆM TỔNG HỢP VÀ GHÉP CÂU ================== //
+            // ================== CÁC HÀM BÀI TẬP NP / TRẮC NGHIỆM TỔNG HỢP ================== //
             jumpToGrammarPractice(idx) {
                 this.currentGPIndex = idx;
                 this.renderGrammarPractice();
@@ -1198,6 +1269,13 @@
                 const ex = this.currentDialogue.grammar.exercises[this.currentGPIndex];
                 const isCorrect = selected === ex.answer;
                 this.userAnswers[this.currentGPIndex] = { selected, isCorrect };
+
+                // Chơi âm thanh nếu ở mode Ôn Tập
+                if (this.testMode === 'practice') {
+                    if (isCorrect) this.playTone('correct');
+                    else this.playTone('wrong');
+                }
+
                 this.renderGrammarPractice();
             }
 
@@ -1241,6 +1319,8 @@
                 document.getElementById('completion-score').classList.remove('hidden');
                 document.getElementById('btn-review-test').classList.remove('hidden'); 
                 document.getElementById('completion-modal').classList.remove('hidden');
+                
+                this.playTone('correct'); // Chơi âm thanh chiến thắng
                 this.markStepComplete(5);
             }
 
@@ -1253,6 +1333,7 @@
                 this.renderGrammarPractice();
             }
 
+            // ================== HÀM GHÉP CÂU ================== //
             initSentenceBuild() {
                 const sList = this.currentDialogue.sentences;
                 if (!sList || sList.length === 0) return;
@@ -1329,6 +1410,7 @@
                 fb.classList.remove('hidden');
 
                 if (cleanUserStr === cleanTargetStr) {
+                    this.playTone('correct'); // Báo đúng
                     fb.className = "mt-3 p-3 rounded-2xl text-xs font-medium bg-emerald-50 text-emerald-600 border border-emerald-200 flex flex-col items-center gap-2";
                     const isLastSentence = this.currentSBIndex >= sList.length - 1;
                     const fullText = s.blocks.map(b => b.hanzi).join('');
@@ -1351,6 +1433,7 @@
                         </div>
                     `;
                 } else {
+                    this.playTone('wrong'); // Báo sai
                     fb.className = "mt-3 p-3 rounded-2xl text-xs font-medium bg-rose-50 text-rose-600 border border-rose-200 flex items-center gap-1.5";
                     fb.innerHTML = `<i class="fa-solid fa-circle-xmark text-base"></i> <span>Chưa đúng thứ tự câu. Thử lại hoặc bấm "Đáp án"!</span>`;
                 }
@@ -1380,6 +1463,7 @@
                 const icon = document.getElementById('timer-alert-icon');
                 icon.className = `fa-solid ${iconClass}`;
                 document.getElementById('timer-alert-modal').classList.remove('hidden');
+                this.playTone('wrong'); // Chơi âm thanh báo hết giờ
             }
 
             closeTimerAlertModal() { 
