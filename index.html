@@ -39,52 +39,6 @@
         .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background-color: #cbd5e1; border-radius: 20px; }
         .dark .custom-scrollbar::-webkit-scrollbar-thumb { background-color: #475569; }
-
-        /* ================= MEME GENERATOR CSS ================= */
-        .meme-container {
-            position: relative;
-            display: inline-block;
-            max-width: 100%;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            background-color: #000; /* Nền đen lót dưới gif */
-        }
-        .meme-img {
-            display: block;
-            width: 100%;
-            max-height: 250px; /* Khống chế chiều cao tối đa không làm hỏng layout */
-            object-fit: contain;
-        }
-        .meme-text {
-            position: absolute;
-            bottom: 10px; /* Căn dưới đáy */
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            text-align: center;
-            
-            /* Cấu hình Font Meme Chuẩn (Times New Roman, Trắng viền Đen) */
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 22px;
-            font-weight: bold;
-            color: white;
-            text-transform: uppercase;
-            line-height: 1.1;
-            
-            /* Text Stroke - Viền chữ siêu sắc nét */
-            text-shadow: 
-                -2px -2px 0 #000,  
-                 2px -2px 0 #000,
-                -2px  2px 0 #000,
-                 2px  2px 0 #000,
-                 0px  2px 0 #000,
-                 2px  0px 0 #000,
-                 0px -2px 0 #000,
-                -2px  0px 0 #000;
-            
-            pointer-events: none; /* Không cho click vào text */
-        }
     </style>
 </head>
 <body class="h-full bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 font-sans transition-colors duration-300 flex flex-col relative overflow-hidden">
@@ -131,7 +85,6 @@
     <!-- Main Container -->
     <main class="flex-1 max-w-5xl w-full mx-auto p-3 sm:p-6 flex flex-col min-h-0 overflow-y-auto custom-scrollbar">
         
-        <!-- LOBBY, LESSONS LIST, DIALOGUES LIST VIEWS OMITTED FOR BREVITY BUT FULLY FUNCTIONAL -->
         <div id="view-lobby" class="flex flex-col">
             <div class="mb-6"><h2 class="text-xl sm:text-2xl font-bold mb-1">Danh Mục Môn Học</h2><p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">Chọn môn học để bắt đầu hành trình của bạn.</p></div>
             <div id="subjects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6"></div>
@@ -297,7 +250,7 @@
                 </div>
             </div>
 
-            <!-- STEP 5: MINI QUIZ (BÀI TẬP NGỮ PHÁP TIẾNG TRUNG - CHUẨN CŨ) -->
+            <!-- STEP 5: MINI QUIZ (BÀI TẬP NGỮ PHÁP TIẾNG TRUNG) -->
             <div id="step-content-5" class="lesson-step hidden flex-1 flex flex-col justify-between overflow-y-auto">
                 <div class="flex-1 max-w-2xl mx-auto w-full flex flex-col justify-center min-h-[300px]">
                     <div class="bg-white dark:bg-slate-800 rounded-3xl p-4 sm:p-6 border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col">
@@ -360,7 +313,6 @@
                 <!-- Vùng Trái: Hiển thị câu hỏi và đáp án -->
                 <div class="flex-1 bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col min-h-0 overflow-hidden relative">
                     
-                    <!-- Phần header câu hỏi cố định -->
                     <div class="shrink-0 p-5 sm:p-8 pb-0">
                         <h4 id="test-question-title" class="font-bold text-lg sm:text-xl text-slate-800 dark:text-slate-100 mb-2">Câu 1</h4>
                         <p id="test-question" class="text-base sm:text-lg text-slate-700 dark:text-slate-200 font-medium">Nội dung câu hỏi...</p>
@@ -372,7 +324,7 @@
                         </div>
                     </div>
 
-                    <!-- Options list cuộn được, không làm đẩy nút -->
+                    <!-- Options list cuộn được -->
                     <div id="test-options" class="flex-1 overflow-y-auto custom-scrollbar px-5 sm:px-8 pb-2 flex flex-col gap-3"></div>
                     
                     <!-- Feedback box cố định phía dưới -->
@@ -391,7 +343,7 @@
                     </div>
                 </div>
 
-                <!-- Vùng Phải: Thanh điều hướng (Navigation Grid) -->
+                <!-- Vùng Phải: Thanh điều hướng -->
                 <div class="w-full md:w-[320px] shrink-0 bg-white dark:bg-slate-800 rounded-3xl p-5 border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col h-fit md:max-h-full">
                     <div class="flex justify-between items-center mb-4 pb-3 border-b border-slate-100 dark:border-slate-700 shrink-0">
                         <h3 class="font-bold text-base text-slate-800 dark:text-slate-100">Danh sách câu hỏi</h3>
@@ -437,21 +389,13 @@
             </div>
         </div>
 
-        <!-- ================= SUCCESS/MEME MODAL (ĐÃ TÍCH HỢP MEME GENERATOR) ================= -->
-        <div id="completion-modal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <!-- ================= SUCCESS MODAL (CLEAN - NO MEME) ================= -->
+        <div id="completion-modal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
             <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 max-w-md w-full text-center shadow-2xl border border-slate-200 dark:border-slate-700 transform transition-all">
-                
-                <h3 class="text-2xl font-extrabold mb-1">Hoàn Thành!</h3>
+                <div class="w-16 h-16 bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 rounded-full flex items-center justify-center mx-auto text-3xl mb-4 shadow-inner"><i class="fa-solid fa-trophy"></i></div>
+                <h3 class="text-2xl font-extrabold mb-1">Chúc mừng bạn!</h3>
                 <p id="completion-msg" class="text-slate-500 dark:text-slate-400 text-sm mb-4">Bạn đã hoàn thành nội dung này.</p>
-                <div id="completion-score" class="text-3xl font-black text-indigo-600 dark:text-indigo-400 mb-4 hidden bg-indigo-50 dark:bg-indigo-900/30 py-3 rounded-xl border border-indigo-100 dark:border-indigo-800"></div>
-                
-                <!-- Khu vực hiển thị Meme -->
-                <div id="meme-showcase" class="mb-6 hidden">
-                    <div class="meme-container">
-                        <img id="meme-gif" src="" alt="Meme" class="meme-img">
-                        <span id="meme-caption" class="meme-text"></span>
-                    </div>
-                </div>
+                <div id="completion-score" class="text-2xl font-black text-indigo-600 dark:text-indigo-400 mb-6 hidden bg-indigo-50 dark:bg-indigo-900/30 py-3 rounded-xl border border-indigo-100 dark:border-indigo-800"></div>
                 
                 <div class="flex flex-col gap-2">
                     <button id="btn-review-test" onclick="app.startReviewMode()" class="w-full py-3 rounded-xl bg-amber-100 hover:bg-amber-200 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400 font-bold text-sm transition shadow-sm hidden"><i class="fa-solid fa-magnifying-glass mr-1"></i> Xem lại bài làm</button>
@@ -496,17 +440,14 @@
             </div>
         </div>
 
-        <!-- ================= TIMER ALERT MEME MODAL ================= -->
-        <div id="timer-alert-modal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div id="timer-alert-modal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
             <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 max-w-sm w-full text-center shadow-2xl border border-slate-200 dark:border-slate-700 transform transition-all">
-                <h3 id="timer-alert-title" class="text-2xl font-extrabold mb-4 text-slate-800 dark:text-slate-100">Thông báo</h3>
-                
-                <div class="meme-container mb-6">
-                    <img id="alert-meme-gif" src="" alt="Meme" class="meme-img">
-                    <span id="alert-meme-caption" class="meme-text"></span>
+                <div id="timer-alert-icon-container" class="w-20 h-20 bg-rose-100 dark:bg-rose-900/40 text-rose-600 rounded-full flex items-center justify-center mx-auto text-3xl mb-4 shadow-inner">
+                    <i id="timer-alert-icon" class="fa-solid fa-stopwatch"></i>
                 </div>
-                
-                <button onclick="app.closeTimerAlertModal()" class="w-full py-3 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm transition shadow-md">OKAY</button>
+                <h3 id="timer-alert-title" class="text-xl font-extrabold mb-2 text-slate-800 dark:text-slate-100">HẾT GIỜ ĐẾM NGƯỢC</h3>
+                <p id="timer-alert-desc" class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mb-6">Yo, đã hết giờ đếm ngược rồi :333</p>
+                <button onclick="app.closeTimerAlertModal()" class="w-full py-3 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm transition shadow-md">Okay</button>
             </div>
         </div>
 
@@ -569,15 +510,6 @@
                 this.pomoSeconds = 25 * 60;
                 this.pomoIsRunning = false;
                 this.pomoIsBreak = false;
-
-                // ===== KHO MEME XỊN XÒ (Trích xuất Raw Link từ Tenor) =====
-                this.memeLibrary = {
-                    excellent: { url: 'https://media.tenor.com/tHqg-R0pYtcAAAAC/shake-my-hand-shake-hand.gif', text: 'PEAK =)))' },      // >= 80%
-                    good: { url: 'https://media.tenor.com/t33tE9v5-P4AAAAC/kumalala-kumalala-kumala-savesta.gif', text: 'Cố gắng hơn nhé' }, // 50 - 79%
-                    bad: { url: 'https://media.tenor.com/yvL8_o4q-u4AAAAC/robot-look.gif', text: '...' },                       // < 50%
-                    timesUp: { url: 'https://media.tenor.com/Z42h-d73tQAAAAAC/rabbit-clock.gif', text: "Time's up" },            // Hết giờ học
-                    sleep: { url: 'https://media.tenor.com/s65L55_2bUIAAAAC/sleeping.gif', text: 'Time to sleep :33' }           // Tới giờ nghỉ Pomodoro
-                };
 
                 this.initSoundIcon();
                 this.initDarkMode();
@@ -737,10 +669,15 @@
                 const dp = this.getDialogueProgress(this.currentDialogue.id);
                 if (!dp.completedSteps.includes(stepNumber)) { dp.completedSteps.push(stepNumber); this.saveProgress(); }
                 const hasVocab = this.currentDialogue.vocabularies && this.currentDialogue.vocabularies.length > 0;
+                
                 if (hasVocab && stepNumber === 6) {
                     this.playTone('correct');
-                    this.showCompletionMeme("excellent", "Bạn đã chinh phục bài học này xuất sắc!");
-                } else { this.switchStep(this.currentStep); }
+                    document.getElementById('completion-score').classList.add('hidden');
+                    document.getElementById('completion-msg').innerText = "Bạn đã hoàn thành nội dung này.";
+                    document.getElementById('completion-modal').classList.remove('hidden');
+                } else { 
+                    this.switchStep(this.currentStep); 
+                }
             }
 
             // ================== CÁC HÀM TIẾNG TRUNG ================== //
@@ -930,36 +867,6 @@
             nextSentenceBuild() { this.currentSBIndex++; this.initSentenceBuild(); }
             finishSentenceBuild() { this.markStepComplete(6); }
 
-            // ================== HÀM XUẤT MEME CHUNG ================== //
-            showCompletionMeme(memeKey, message, showScore = false, scoreText = "") {
-                const memeData = this.memeLibrary[memeKey];
-                
-                document.getElementById('completion-msg').innerText = message;
-                
-                const scoreDiv = document.getElementById('completion-score');
-                if (showScore) {
-                    scoreDiv.innerText = scoreText;
-                    scoreDiv.classList.remove('hidden');
-                } else {
-                    scoreDiv.classList.add('hidden');
-                }
-
-                const showcase = document.getElementById('meme-showcase');
-                const gifEl = document.getElementById('meme-gif');
-                const captionEl = document.getElementById('meme-caption');
-                
-                gifEl.src = memeData.url;
-                if (memeData.text) {
-                    captionEl.innerText = memeData.text;
-                    captionEl.classList.remove('hidden');
-                } else {
-                    captionEl.classList.add('hidden');
-                }
-                showcase.classList.remove('hidden');
-                
-                document.getElementById('completion-modal').classList.remove('hidden');
-            }
-
             // ================== GIAO DIỆN TEST ĐỘC LẬP (VĂN HÓA MỸ) ================== //
             initTestModeFlow() {
                 this.hideAllViews(); document.getElementById('view-test-mode').classList.remove('hidden'); document.getElementById('lobby-btn').classList.remove('hidden');
@@ -1042,30 +949,21 @@
             submitTest() {
                 const total = this.currentDialogue.grammar.exercises.length; const answered = Object.keys(this.testUserAnswers).length;
                 if (answered < total) { if(!confirm(`Bạn mới làm được ${answered}/${total} câu. Chắc chắn muốn nộp bài?`)) return; }
-                let score = 0; for (let i = 0; i < total; i++) { if (this.testUserAnswers[i] && this.testUserAnswers[i].isCorrect) score++; }
-
-                // Tính phần trăm điểm để chèn Meme
-                const percent = (score / total) * 100;
-                let memeKey = "";
-                let msg = "";
                 
-                if (percent >= 80) {
-                    memeKey = "excellent";
-                    msg = "Thành tích quá khủng! Đỉnh của chóp!";
-                    this.playTone('correct');
-                } else if (percent >= 50) {
-                    memeKey = "good";
-                    msg = "Kết quả tạm ổn, nhưng bạn có thể làm tốt hơn!";
-                } else {
-                    memeKey = "bad";
-                    msg = "Có vẻ bạn chưa ôn bài kỹ... Thử lại nhé!";
-                    this.playTone('wrong');
+                let score = 0; 
+                for (let i = 0; i < total; i++) { 
+                    if (this.testUserAnswers[i] && this.testUserAnswers[i].isCorrect) score++; 
                 }
 
-                // Kích hoạt Meme Sinh Học
-                this.showCompletionMeme(memeKey, msg, true, `Điểm số: ${score} / ${total}`);
+                const percent = (score / total) * 100;
+                if (percent >= 50) this.playTone('correct'); else this.playTone('wrong');
+
+                document.getElementById('completion-score').innerText = `Điểm số: ${score} / ${total}`;
+                document.getElementById('completion-score').classList.remove('hidden');
+                document.getElementById('completion-msg').innerText = percent >= 80 ? "Thành tích xuất sắc!" : (percent >= 50 ? "Kết quả khá tốt!" : "Cần cố gắng hơn nhé!");
                 
-                document.getElementById('btn-review-test').classList.remove('hidden');
+                document.getElementById('btn-review-test').classList.remove('hidden'); 
+                document.getElementById('completion-modal').classList.remove('hidden');
                 
                 const dp = this.getDialogueProgress(this.currentDialogue.id);
                 if (!dp.completedSteps.includes(5)) { dp.completedSteps.push(5); this.saveProgress(); }
@@ -1082,17 +980,17 @@
                 this.startDialogue(this.currentDialogue.id);
             }
 
-            // ================== CÁC HÀM TIỆN ÍCH CHUNG (TIMER) & MEME ================== //
-            showTimerAlert(title, desc, memeKey) {
+            // ================== CÁC HÀM TIỆN ÍCH CHUNG (TIMER) ================== //
+            showTimerAlert(title, desc, iconClass = "fa-stopwatch", iconBgClass = "bg-rose-100 dark:bg-rose-900/40 text-rose-600") {
                 document.getElementById('timer-alert-title').innerText = title;
+                document.getElementById('timer-alert-desc').innerText = desc;
                 
-                const memeData = this.memeLibrary[memeKey];
-                document.getElementById('alert-meme-gif').src = memeData.url;
+                const iconContainer = document.getElementById('timer-alert-icon-container');
+                iconContainer.className = `w-20 h-20 rounded-full flex items-center justify-center mx-auto text-3xl mb-4 shadow-inner ${iconBgClass}`;
                 
-                const cap = document.getElementById('alert-meme-caption');
-                if (memeData.text) { cap.innerText = memeData.text; cap.classList.remove('hidden'); } 
-                else { cap.classList.add('hidden'); }
-
+                const icon = document.getElementById('timer-alert-icon');
+                icon.className = `fa-solid ${iconClass}`;
+                
                 document.getElementById('timer-alert-modal').classList.remove('hidden');
                 this.playTone('wrong'); // Chơi âm thanh báo hết giờ
             }
@@ -1109,7 +1007,7 @@
                     if (this.countdownRemaining <= 0) {
                         clearInterval(this.countdownInterval); this.countdownInterval = null;
                         document.getElementById('countdown-btn-label').innerText = "Timer";
-                        this.showTimerAlert("HẾT GIỜ RỒI NHA!", "Đã hết thời gian bạn cài đặt.", "timesUp");
+                        this.showTimerAlert("HẾT GIỜ ĐẾM NGƯỢC", "Yo, đã hết giờ đếm ngược rồi :333");
                     }
                 }, 1000);
             }
@@ -1132,11 +1030,11 @@
                         clearInterval(this.pomoInterval); this.pomoIsRunning = false;
                         if (!this.pomoIsBreak) {
                             this.pomoIsBreak = true; this.pomoSeconds = 5 * 60; document.getElementById('pomo-status-text').innerText = "Thời gian nghỉ ngơi (Break)";
-                            this.showTimerAlert("ĐẾN GIỜ NGHỈ NGƠI", "Làm tốt lắm! Xõa 5 phút nào bro.", "sleep");
+                            this.showTimerAlert("ĐẾN GIỜ NGHỈ NGƠI", "Làm tốt lắm! Xõa 5 phút nào bro.", "fa-mug-hot", "bg-amber-100 dark:bg-amber-900/40 text-amber-500");
                             this.startPomodoro();
                         } else {
                             this.pomoIsBreak = false; this.pomoSeconds = 25 * 60; document.getElementById('pomo-status-text').innerText = "Sẵn sàng tập trung học tập";
-                            this.showTimerAlert("HẾT GIỜ NGHỈ", "Quay lại bàn học ngay, hết giờ mộng mơ rồi!", "timesUp");
+                            this.showTimerAlert("HẾT GIỜ NGHỈ", "Quay lại bàn học ngay, hết giờ mộng mơ rồi!", "fa-bell", "bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600");
                             document.getElementById('pomo-toggle-btn').innerText = "Bắt đầu"; document.getElementById('pomo-toggle-btn').className = "flex-1 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs transition shadow-md";
                         }
                     }
