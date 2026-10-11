@@ -136,131 +136,7 @@ window.chineseSubject = {
                         }
                     ]
                 },
-                {
-                    id: 'd2',
-                    title: 'Bài khóa 2: 课文二 (Gặp gỡ trong thang máy)',
-                    vocabularies: [
-                        { hanzi: '学生', pinyin: 'xuésheng', meaning: 'học sinh, sinh viên', example: { hanzi: '我不是学生。', pinyin: 'Wǒ bú shì xuésheng.', meaning: 'Tôi không phải là sinh viên.' } },
-                        { hanzi: '吗', pinyin: 'ma', meaning: 'trợ từ nghi vấn (dùng ở cuối câu hỏi)', example: { hanzi: '你是学生吗？', pinyin: 'Nǐ shì xuésheng ma?', meaning: 'Bạn là sinh viên phải không?' } },
-                        { hanzi: '不', pinyin: 'bù', meaning: 'không (phó từ phủ định)', example: { hanzi: '我不是老师。', pinyin: 'Wǒ bú shì lǎoshī.', meaning: 'Tôi không phải là giáo viên.' } },
-                        { hanzi: '对不起', pinyin: 'duìbuqǐ', meaning: 'xin lỗi', example: { hanzi: '对不起！', pinyin: 'Duìbuqǐ!', meaning: 'Xin lỗi!' } },
-                        { hanzi: '没关系', pinyin: 'méi guānxi', meaning: 'không sao, không có gì', example: { hanzi: '没关系。', pinyin: 'Méi guānxi.', meaning: 'Không sao đâu.' } },
-                        { hanzi: '问', pinyin: 'wèn', meaning: 'hỏi', example: { hanzi: '请问', pinyin: 'qǐngwèn', meaning: 'xin hỏi' } },
-                        { hanzi: '贵姓', pinyin: 'guìxìng', meaning: 'họ (mang tính trang trọng)', example: { hanzi: '请问，您贵姓？', pinyin: 'Qǐngwèn, nín guìxìng?', meaning: 'Xin hỏi, ngài họ gì?' } },
-                        { hanzi: '姓', pinyin: 'xìng', meaning: 'họ, mang họ', example: { hanzi: '我姓王。', pinyin: 'Wǒ xìng Wáng.', meaning: 'Tôi họ Vương.' } },
-                        { hanzi: '呢', pinyin: 'ne', meaning: 'trợ từ nghi vấn (...thì sao?)', example: { hanzi: '你呢？', pinyin: 'Nǐ ne?', meaning: 'Còn bạn thì sao?' } },
-                        { hanzi: '再见', pinyin: 'zàijiàn', meaning: 'tạm biệt, hẹn gặp lại', example: { hanzi: '王老师，再见！', pinyin: 'Wáng lǎoshī, zàijiàn!', meaning: 'Chào tạm biệt cô Vương!' } },
-                        { hanzi: '王', pinyin: 'Wáng', meaning: 'Vương (họ)', example: { hanzi: '我姓王。', pinyin: 'Wǒ xìng Wáng.', meaning: 'Tôi họ Vương.' } },
-                        { hanzi: '王语', pinyin: 'Wáng Yǔ', meaning: 'Vương Ngữ (tên người)', example: { hanzi: '我叫王语。', pinyin: 'Wǒ jiào Wáng Yǔ.', meaning: 'Tôi tên là Vương Ngữ.' } },
-                        { hanzi: '美国', pinyin: 'Měiguó', meaning: 'Nước Mỹ', example: { hanzi: '你是美国人吗？', pinyin: 'Nǐ shì Měiguó rén ma?', meaning: 'Bạn là người Mỹ phải không?' } }
-                    ],
-                    grammar: {
-                        title: 'Điểm Ngữ Pháp Bài Khóa 2',
-                        points: [
-                            { 
-                                rule: '1. Phó từ phủ định "不" (không)', 
-                                desc: 'Phó từ "不" dùng để biểu thị sự phủ định, đứng trước động từ hoặc tính từ.',
-                                example: '我不是老师。 / 我不姓李。',
-                                pinyin: 'Wǒ bú shì lǎoshī. / Wǒ bù xìng Lǐ.',
-                                meaning: 'Tôi không phải là giáo viên. / Tôi không phải họ Lý.',
-                                breakdown: [
-                                    { word: '不 (bù)', role: 'Phó từ phủ định' },
-                                    { word: '是 / 姓', role: 'Động từ' }
-                                ]
-                            },
-                            { 
-                                rule: '2. Trợ từ "吗" và câu hỏi đúng sai', 
-                                desc: 'Đặt trợ từ "吗" ở cuối câu trần thuật để tạo thành câu hỏi nghi vấn (đúng/sai). Trả lời khẳng định thì bỏ "吗", phủ định thì thêm "不" trước động từ.',
-                                example: '你是法国人吗？ ➔ 我是法国人。 / 我不是法国人。',
-                                pinyin: 'Nǐ shì Fǎguó rén ma? ➔ Wǒ shì Fǎguó rén. / Wǒ bú shì Fǎguó rén.',
-                                meaning: 'Bạn là người Pháp phải không? ➔ Tôi là người Pháp. / Tôi không phải người Pháp.',
-                                breakdown: [
-                                    { word: '... 吗？', role: 'Trợ từ hỏi đúng/sai' }
-                                ]
-                            },
-                            { 
-                                rule: '3. Trợ từ "呢" (1)', 
-                                desc: 'Dùng sau danh từ hoặc đại từ trong ngữ cảnh đã rõ ràng để nối tiếp câu hỏi ở phía trên.',
-                                example: '我姓李。你呢？ ➔ 我姓王。',
-                                pinyin: 'Wǒ xìng Lǐ. Nǐ ne? ➔ Wǒ xìng Wáng.',
-                                meaning: 'Tôi họ Lý. Còn bạn? ➔ Tôi họ Vương.',
-                                breakdown: [
-                                    { word: '... 呢？', role: 'Còn ... thì sao?' }
-                                ]
-                            }
-                        ],
-                        exercises: [
-                            { 
-                                q: 'Sửa câu trần thuật thành câu hỏi với "吗": 我是学生。', 
-                                pinyin: 'Wǒ shì xuésheng.',
-                                options: [
-                                    { hanzi: '你是学生吗？', pinyin: 'Nǐ shì xuésheng ma?' },
-                                    { hanzi: '我是学生呢？', pinyin: 'Wǒ shì xuésheng ne?' },
-                                    { hanzi: '我不学生。', pinyin: 'Wǒ bù xuésheng.' }
-                                ], 
-                                answer: '你是学生吗？', 
-                                exp: 'Thêm trợ từ nghi vấn "吗" vào cuối câu trần thuật và đổi "我" thành "你" để tạo câu hỏi.' 
-                            },
-                            { 
-                                q: 'Trả lời phủ định cho câu hỏi: 你是美国人吗？', 
-                                pinyin: 'Nǐ shì Měiguó rén ma?',
-                                options: [
-                                    { hanzi: '不是，我是法国人。', pinyin: 'Bú shì, wǒ shì Fǎguó rén.' },
-                                    { hanzi: '我是美国人。', pinyin: 'Wǒ shì Měiguó rén.' },
-                                    { hanzi: '我姓王。', pinyin: 'Wǒ xìng Wáng.' }
-                                ], 
-                                answer: '不是，我是法国人。', 
-                                exp: 'Trả lời phủ định dùng "不是" (Không phải).' 
-                            },
-                            { 
-                                q: 'Điền từ thích hợp: 请问，您 ______ ？', 
-                                pinyin: 'Qǐngwèn, nín ______ ?',
-                                options: [
-                                    { hanzi: '贵姓', pinyin: 'guǐxìng' },
-                                    { hanzi: '什么', pinyin: 'shénme' },
-                                    { hanzi: '叫', pinyin: 'jiào' }
-                                ], 
-                                answer: '贵姓', 
-                                exp: 'Mẫu câu hỏi họ lịch sự: "请问，您贵姓？"' 
-                            }
-                        ]
-                    },
-                    sentences: [
-                        { 
-                            target: '你 是 学生 吗', 
-                            blocks: [
-                                { hanzi: '你', pinyin: 'nǐ' },
-                                { hanzi: '是', pinyin: 'shì' },
-                                { hanzi: '学生', pinyin: 'xuésheng' },
-                                { hanzi: '吗', pinyin: 'ma' }
-                            ], 
-                            hint: 'Sắp xếp câu hỏi: Bạn là sinh viên phải không?' 
-                        },
-                        { 
-                            target: '我 不是 学生 我 是 老师', 
-                            blocks: [
-                                { hanzi: '我', pinyin: 'wǒ' },
-                                { hanzi: '不是', pinyin: 'bú shì' },
-                                { hanzi: '学生', pinyin: 'xuésheng' },
-                                { hanzi: '是', pinyin: 'shì' },
-                                { hanzi: '老师', pinyin: 'lǎoshī' }
-                            ], 
-                            hint: 'Sắp xếp câu: Tôi không phải là sinh viên, tôi là giáo viên.' 
-                        },
-                        { 
-                            target: '请问 您 贵姓', 
-                            blocks: [
-                                { hanzi: '请问', pinyin: 'qǐngwèn' },
-                                { hanzi: '您', pinyin: 'nín' },
-                                { hanzi: '贵姓', pinyin: 'guìxìng' }
-                            ], 
-                            hint: 'Sắp xếp câu hỏi lịch sự: Xin hỏi, ngài họ gì?' 
-                        }
-                    ]
-                }
-            ]
-        },
-        {
+     {
             id: 'cn-lesson-2',
             title: 'Bài 2: 这是你的手机吗 (Đây là điện thoại của bạn à?)',
             description: 'Học cách diễn đạt sự sở hữu (的), hỏi thông tin về ai đó (谁) và cách dùng phó từ "cũng" (也).',
@@ -289,9 +165,9 @@ window.chineseSubject = {
                         title: 'Điểm Ngữ Pháp Bài 2 - Bài Khóa 1',
                         points: [
                             {
-                                rule: '1. Trợ từ kết cấu "的" (Của)[cite: 16]',
-                                desc: 'Dùng giữa định ngữ và trung tâm ngữ để biểu thị quan hệ sở hữu hoặc bổ nghĩa (Định ngữ + 的 + Trung tâm ngữ)[cite: 16]. Nếu định ngữ là đại từ nhân xưng và trung tâm ngữ chỉ người thân/quan hệ xã giao, có thể lược bỏ "的"[cite: 16].',
-                                example: '我的手机 / 我同学[cite: 16]',
+                                rule: '1. Trợ từ kết cấu "的" (Của)',
+                                desc: 'Dùng giữa định ngữ và trung tâm ngữ để biểu thị quan hệ sở hữu hoặc bổ nghĩa (Định ngữ + 的 + Trung tâm ngữ). Nếu định ngữ là đại từ nhân xưng và trung tâm ngữ chỉ người thân/quan hệ xã giao, có thể lược bỏ "的".',
+                                example: '我的手机 / 我同学',
                                 pinyin: 'wǒ de shǒujī / wǒ tóngxué',
                                 meaning: 'Điện thoại của tôi / Bạn học của tôi',
                                 breakdown: [
@@ -301,9 +177,9 @@ window.chineseSubject = {
                                 ]
                             },
                             {
-                                rule: '2. Đại từ nghi vấn "谁" (Ai)[cite: 17]',
-                                desc: 'Dùng để hỏi thông tin về người, có thể làm chủ ngữ, tân ngữ và định ngữ[cite: 17]. Khi làm định ngữ, phía sau phải thêm "的" biểu thị sở hữu[cite: 17].',
-                                example: '谁是你老师？ / 那是谁的手机？[cite: 17]',
+                                rule: '2. Đại từ nghi vấn "谁" (Ai)',
+                                desc: 'Dùng để hỏi thông tin về người, có thể làm chủ ngữ, tân ngữ và định ngữ. Khi làm định ngữ, phía sau phải thêm "的" biểu thị sở hữu.',
+                                example: '谁是你老师？ / 那是谁的手机？',
                                 pinyin: 'Shuí shì nǐ lǎoshī? / Nà shì shuí de shǒujī?',
                                 meaning: 'Ai là giáo viên của bạn? / Đó là điện thoại của ai?',
                                 breakdown: [
@@ -311,9 +187,9 @@ window.chineseSubject = {
                                 ]
                             },
                             {
-                                rule: '3. Phó từ "也" (Cũng)[cite: 18]',
-                                desc: 'Biểu thị sự tương đồng, đứng sau chủ ngữ, trước động từ/tính từ để làm trạng ngữ[cite: 18]. Trong câu phủ định, "也" phải đặt trước "不"[cite: 18].',
-                                example: '我也喜欢。 / 我也不知道。[cite: 18]',
+                                rule: '3. Phó từ "也" (Cũng)',
+                                desc: 'Biểu thị sự tương đồng, đứng sau chủ ngữ, trước động từ/tính từ để làm trạng ngữ. Trong câu phủ định, "也" phải đặt trước "不".',
+                                example: '我也喜欢。 / 我也不知道。',
                                 pinyin: 'Wǒ yě xǐhuan. / Wǒ yě bù zhīdào.',
                                 meaning: 'Tôi cũng thích. / Tôi cũng không biết.',
                                 breakdown: [
@@ -325,7 +201,7 @@ window.chineseSubject = {
                         ],
                         exercises: [
                             {
-                                q: 'Điền từ thích hợp: 这 是 我 _____ 手机。[cite: 16]',
+                                q: 'Điền từ thích hợp: 这 是 我 _____ 手机。',
                                 pinyin: 'Zhè shì wǒ _____ shǒujī.',
                                 options: [
                                     { hanzi: '的', pinyin: 'de' },
@@ -333,10 +209,10 @@ window.chineseSubject = {
                                     { hanzi: '吗', pinyin: 'ma' }
                                 ],
                                 answer: '的',
-                                exp: 'Dùng trợ từ kết cấu "的" để nối đại từ "我" và danh từ "手机", biểu thị quan hệ sở hữu "điện thoại của tôi"[cite: 16].'
+                                exp: 'Dùng trợ từ kết cấu "的" để nối đại từ "我" và danh từ "手机", biểu thị quan hệ sở hữu "điện thoại của tôi".'
                             },
                             {
-                                q: 'Dịch câu "Đó là điện thoại của ai?": 那 是 _____ 的 手机？[cite: 17]',
+                                q: 'Dịch câu "Đó là điện thoại của ai?": 那 是 _____ 的 手机？',
                                 pinyin: 'Nà shì _____ de shǒujī?',
                                 options: [
                                     { hanzi: '谁', pinyin: 'shuí' },
@@ -344,10 +220,10 @@ window.chineseSubject = {
                                     { hanzi: '哪', pinyin: 'nǎ' }
                                 ],
                                 answer: '谁',
-                                exp: 'Dùng đại từ nghi vấn "谁" (Ai) đứng trước "的" để hỏi người sở hữu[cite: 17].'
+                                exp: 'Dùng đại từ nghi vấn "谁" (Ai) đứng trước "的" để hỏi người sở hữu.'
                             },
                             {
-                                q: 'Hoàn thành câu phủ định: 他不是老师，我 _____ 不是老师。[cite: 18]',
+                                q: 'Hoàn thành câu phủ định: 他不是老师，我 _____ 不是老师。',
                                 pinyin: 'Tā bú shì lǎoshī, wǒ _____ bú shì lǎoshī.',
                                 options: [
                                     { hanzi: '也', pinyin: 'yě' },
@@ -355,7 +231,7 @@ window.chineseSubject = {
                                     { hanzi: '不', pinyin: 'bù' }
                                 ],
                                 answer: '也',
-                                exp: 'Dùng phó từ "也" (cũng) đặt trước "不" để biểu thị sự tương đồng "tôi cũng không phải là giáo viên"[cite: 18].'
+                                exp: 'Dùng phó từ "也" (cũng) đặt trước "不" để biểu thị sự tương đồng "tôi cũng không phải là giáo viên".'
                             }
                         ]
                     },
