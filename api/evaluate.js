@@ -1,77 +1,105 @@
-module.exports = async function handler(req, res) {
-    // Cho phép CORS
-    res.setHeader('Access-Control-Allow-Credentials', true);
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
-    res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
+export const config = {
+    api: {
+        bodyParser: {
+            sizeLimit: '4mb', // Giới hạn kích thước ảnh gửi lên (tránh lỗi Payload Too Large)
+        },
+    },
+};
 
-    if (req.method === 'OPTIONS') {
-        return res.status(200).end();
-    }
-
+export default async function handler(req, res) {
+    // 1. Chỉ cho phép phương thức POST
     if (req.method !== 'POST') {
-        return res.status(405).json({ error: 'Chỉ chấp nhận POST request' });
+        return res.status(405).json({ error: 'Method Not Allowed. Chỉ chấp nhận POST request.' });
     }
 
     try {
         const { imageBase64, targetText } = req.body;
-        
-        // Kiểm tra xem có gửi dữ liệu lên không
+
+        // 2. Kiểm tra xem người dùng đã gửi đủ dữ liệu chưa
         if (!imageBase64 || !targetText) {
-            return res.status(400).json({ error: "Thiếu dữ liệu ảnh hoặc chữ mục tiêu gửi lên từ giao diện." });
+            return res.status(400).json({ error: 'Thiếu dữ liệu: imageBase64 hoặc targetText.' });
         }
 
+        // 3. Lấy API Key từ biến môi trường
         const apiKey = process.env.GEMINI_API_KEY;
         if (!apiKey) {
-            return res.status(500).json({ error: "Chưa cấu hình GEMINI_API_KEY trong Environment Variables trên Vercel!" });
+            return res.status(500).json({ error: 'Máy chủ chưa được cấu hình GEMINI_API_KEY.' });
         }
 
-        const prompt = `Ngươi là một giám khảo chấm thi tiếng Trung cực kỳ tinh mắt.
-        Học sinh được yêu cầu viết tay câu sau: "${targetText}".
-        Hãy nhìn vào bức ảnh nét chữ viết tay của học sinh và đánh giá.
-        
-        TRẢ VỀ BẮT BUỘC THEO ĐÚNG ĐỊNH DẠNG JSON SAU (không giải thích thêm, không kèm markdown code block):
-        {
-            "score": <Điểm số từ 0 đến 100>,
-            "feedback": "<Nhận xét chi tiết bằng tiếng Việt>"
-        }`;
+        // Tách bỏ phần "data:image/jpeg;base64," nếu có
+        const base64Data = imageBase64.replace(/^data:image\/\w+;base64,/, "");
 
-        const base64Data = imageBase64.includes(',') ? imageBase64.split(',')[1] : imageBase64;
+        // 4. Prompt rút gọn, đóng vai "Con mèo"
+        const prompt = `Ngươi là "Con mèo nhà tôi" - một giám thị chấm thi tiếng Trung cực kỳ khó tính, kiêu ngạo nhưng rất giỏi.
+Nhiệm vụ: Chấm điểm bức ảnh viết tay Hán tự.
+Yêu cầu đề bài viết: "${targetText}"
 
-        // Gọi Google Gemini API (dùng mô hình gemini-1.5-flash ổn định nhất)
-        const geminiRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent?key=${apiKey}`, {
+Phân tích:
+- Nét chữ có đúng chuẩn, đủ nét, đúng thứ tự không?
+- Có bị sai chính tả hay thiếu/thừa nét không?
+- Bố cục chữ có cân đối không?
+
+Trả về CHỈ một chuỗi JSON hợp lệ với định dạng sau (không có markdown \`\`\`json):
+{
+  "score": <điểm từ 0 đến 100>,
+  "feedback": "<nhận xét ngắn gọn, xưng hô là 'mèo' và 'con sen/bạn', giọng điệu mặn mòi, khó tính>"
+}`;
+
+        // 5. Gọi Google Gemini API (Dùng bản 1.5 Flash vì bản 2.5/3.8 có thể bị hạn chế tài khoản mới)
+        const geminiRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+                'Content-Type': 'application/json',
+            },
             body: JSON.stringify({
                 contents: [{
                     parts: [
                         { text: prompt },
-                        { inline_data: { mime_type: "image/jpeg", data: base64Data } }
+                        {
+                            inline_data: {
+                                mime_type: "image/jpeg",
+                                data: base64Data
+                            }
+                        }
                     ]
-                }]
+                }],
+                generationConfig: {
+                    temperature: 0.2, // Giảm độ sáng tạo để AI tập trung chấm điểm chính xác
+                    response_mime_type: "application/json" // Ép AI trả về JSON
+                }
             })
         });
 
-        const geminiData = await geminiRes.json();
-
+        // 6. Xử lý lỗi từ Google API (bao gồm lỗi 429 Too Many Requests)
         if (!geminiRes.ok) {
-            return res.status(500).json({ error: "Lỗi từ Google API", details: geminiData });
+            const errorData = await geminiRes.json();
+            console.error("Lỗi từ Google API:", errorData);
+            
+            if (geminiRes.status === 429) {
+                 return res.status(429).json({ error: 'Bạn đang nhờ "Con mèo" chấm điểm quá nhanh. Xin đợi 15 giây rồi thử lại!' });
+            }
+            
+            return res.status(geminiRes.status).json({ 
+                error: 'Lỗi từ Google API', 
+                details: errorData 
+            });
         }
 
-        if (!geminiData.candidates || !geminiData.candidates[0].content) {
-            return res.status(500).json({ error: "AI không trả về kết quả hợp lệ", raw: geminiData });
-        }
-
-        let rawText = geminiData.candidates[0].content.parts[0].text;
+        // 7. Xử lý kết quả trả về
+        const data = await geminiRes.json();
+        const textResult = data.candidates[0].content.parts[0].text;
         
-        // Dọn dẹp nếu AI lỡ bọc trong markdown ```json ... ```
-        rawText = rawText.replace(/```json/g, '').replace(/```/g, '').trim();
+        // Parse JSON từ AI
+        const parsedResult = JSON.parse(textResult);
 
-        const resultJSON = JSON.parse(rawText);
-        return res.status(200).json(resultJSON);
+        // 8. Trả kết quả về frontend
+        return res.status(200).json({
+            score: parsedResult.score,
+            feedback: parsedResult.feedback
+        });
 
     } catch (error) {
-        console.error("Lỗi Serverless Function:", error);
-        return res.status(500).json({ error: "Lỗi nội bộ Server", message: error.message });
+        console.error("Lỗi Serverless:", error);
+        return res.status(500).json({ error: 'Đã xảy ra lỗi trên máy chủ.', details: error.message });
     }
-};
+}
