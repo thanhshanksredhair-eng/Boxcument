@@ -135,6 +135,12 @@ window.chineseSubject = {
                             ], 
                             hint: 'Sắp xếp lại câu hỏi: Bạn là người nước nào?' 
                         }
+                    ],
+                    writingTasks: [
+                        { taskType: "copy", targetText: "你叫什么名字？", targetPinyin: "nǐ jiào shénme míngzi?" },
+                        { taskType: "copy", targetText: "我是法国人。", targetPinyin: "wǒ shì fǎ guó rén." },
+                        { taskType: "translate", targetText: "Chào thầy ạ!", targetPinyin: "" },
+                        { taskType: "translate", targetText: "Bạn là người nước nào?", targetPinyin: "" }
                     ]
                 },
                 {
@@ -257,6 +263,12 @@ window.chineseSubject = {
                             ], 
                             hint: 'Sắp xếp câu hỏi lịch sự: Xin hỏi, ngài họ gì?' 
                         }
+                    ],
+                    writingTasks: [
+                        { taskType: "copy", targetText: "请问，您贵姓？", targetPinyin: "qǐngwèn, nín guìxìng?" },
+                        { taskType: "copy", targetText: "你是美国人吗？", targetPinyin: "nǐ shì měiguó rén ma?" },
+                        { taskType: "translate", targetText: "Tôi không phải là học sinh, tôi là giáo viên.", targetPinyin: "" },
+                        { taskType: "translate", targetText: "Tôi họ Vương, gọi là Vương Ngữ. Còn bạn?", targetPinyin: "" }
                     ]
                 }
             ]
@@ -394,6 +406,12 @@ window.chineseSubject = {
                             ],
                             hint: 'Tôi cũng không biết.'
                         }
+                    ],
+                    writingTasks: [
+                        { taskType: "copy", targetText: "这是你的手机吗？", targetPinyin: "zhè shì nǐ de shǒu jī ma?" },
+                        { taskType: "copy", targetText: "那是谁的手机？", targetPinyin: "nà shì shuí de shǒujī?" },
+                        { taskType: "translate", targetText: "Đây là điện thoại của tôi.", targetPinyin: "" },
+                        { taskType: "translate", targetText: "Tôi cũng không biết.", targetPinyin: "" }
                     ]
                 },
                 {
@@ -422,11 +440,11 @@ window.chineseSubject = {
                         title: 'Điểm Ngữ Pháp Bài Khóa 2',
                         points: [
                             {
-                                rule: '1. Phó từ "都" (đều, tất cả)[cite: 15]',
-                                desc: 'Phó từ "都" đứng trước động từ hoặc tính từ để biểu thị sự bao quát toàn bộ các đối tượng đã được nhắc đến ở phía trước. Trong câu phủ định, "都" có thể đặt trước "不" (tất cả đều không) hoặc sau "不" (không phải tất cả đều)[cite: 15].',
-                                example: '我们都是学生。 / 都不难。[cite: 15]',
-                                pinyin: 'Wǒmen dōu shì xuésheng. / Dōu bù nán.[cite: 15]',
-                                meaning: 'Chúng tôi đều là học sinh. / Đều không khó.[cite: 15]',
+                                rule: '1. Phó từ "都" (đều, tất cả)',
+                                desc: 'Phó từ "都" đứng trước động từ hoặc tính từ để biểu thị sự bao quát toàn bộ các đối tượng đã được nhắc đến ở phía trước. Trong câu phủ định, "都" có thể đặt trước "不" (tất cả đều không) hoặc sau "不" (không phải tất cả đều).',
+                                example: '我们都是学生。 / 都不难。',
+                                pinyin: 'Wǒmen dōu shì xuésheng. / Dōu bù nán.',
+                                meaning: 'Chúng tôi đều là học sinh. / Đều không khó.',
                                 breakdown: [
                                     { word: '他们', role: 'Chủ ngữ (số nhiều)' },
                                     { word: '都 (dōu)', role: 'Phó từ (đều)' },
@@ -434,11 +452,11 @@ window.chineseSubject = {
                                 ]
                             },
                             {
-                                rule: '2. Câu vị ngữ tính từ[cite: 16]',
-                                desc: 'Sử dụng tính từ làm vị ngữ để miêu tả tính chất, trạng thái của người/sự vật. Cấu trúc cơ bản: Chủ ngữ + (Phó từ chỉ mức độ) + Tính từ. CHÚ Ý: Tuyệt đối không dùng động từ "是" (shì) trước tính từ[cite: 16].',
-                                example: '我很好。 / 汉语不难。[cite: 16]',
-                                pinyin: 'Wǒ hěn hǎo. / Hànyǔ bù nán.[cite: 16]',
-                                meaning: 'Tôi rất khỏe. / Tiếng Hán không khó.[cite: 16]',
+                                rule: '2. Câu vị ngữ tính từ',
+                                desc: 'Sử dụng tính từ làm vị ngữ để miêu tả tính chất, trạng thái của người/sự vật. Cấu trúc cơ bản: Chủ ngữ + (Phó từ chỉ mức độ) + Tính từ. CHÚ Ý: Tuyệt đối không dùng động từ "是" (shì) trước tính từ.',
+                                example: '我很好。 / 汉语不难。',
+                                pinyin: 'Wǒ hěn hǎo. / Hànyǔ bù nán.',
+                                meaning: 'Tôi rất khỏe. / Tiếng Hán không khó.',
                                 breakdown: [
                                     { word: '汉语 / 手机', role: 'Chủ ngữ' },
                                     { word: '很 / 不', role: 'Phó từ mức độ/phủ định' },
@@ -448,37 +466,37 @@ window.chineseSubject = {
                         ],
                         exercises: [
                             {
-                                q: 'Sắp xếp câu: 我们 / 学生 / 都 / 是[cite: 15]',
-                                pinyin: 'Wǒmen / xuésheng / dōu / shì[cite: 15]',
+                                q: 'Sắp xếp câu: 我们 / 学生 / 都 / 是',
+                                pinyin: 'Wǒmen / xuésheng / dōu / shì',
                                 options: [
-                                    { hanzi: '我们都是学生。[cite: 15]', pinyin: 'Wǒmen dōu shì xuésheng.' },
-                                    { hanzi: '都是我们学生。[cite: 15]', pinyin: 'Dōu shì wǒmen xuésheng.' },
-                                    { hanzi: '我们是都学生。[cite: 15]', pinyin: 'Wǒmen shì dōu xuésheng.' }
+                                    { hanzi: '我们都是学生。', pinyin: 'Wǒmen dōu shì xuésheng.' },
+                                    { hanzi: '都是我们学生。', pinyin: 'Dōu shì wǒmen xuésheng.' },
+                                    { hanzi: '我们是都学生。', pinyin: 'Wǒmen shì dōu xuésheng.' }
                                 ],
                                 answer: '我们都是学生。',
-                                exp: 'Phó từ "都" (đều) phải đứng trước động từ "是" (là)[cite: 15].'
+                                exp: 'Phó từ "都" (đều) phải đứng trước động từ "是" (là).'
                             },
                             {
-                                q: 'Chọn câu ĐÚNG khi nói "Tiếng Hán rất khó":[cite: 16]',
-                                pinyin: 'Chọ câu ĐÚNG khi nói "Tiếng Hán rất khó":[cite: 16]',
+                                q: 'Chọn câu ĐÚNG khi nói "Tiếng Hán rất khó":',
+                                pinyin: 'Chọ câu ĐÚNG khi nói "Tiếng Hán rất khó":',
                                 options: [
-                                    { hanzi: '汉语是很难。[cite: 16]', pinyin: 'Hànyǔ shì hěn nán.' },
-                                    { hanzi: '汉语很难。[cite: 16]', pinyin: 'Hànyǔ hěn nán.' },
-                                    { hanzi: '很汉语难。[cite: 16]', pinyin: 'Hěn Hànyǔ nán.' }
+                                    { hanzi: '汉语是很难。', pinyin: 'Hànyǔ shì hěn nán.' },
+                                    { hanzi: '汉语很难。', pinyin: 'Hànyǔ hěn nán.' },
+                                    { hanzi: '很汉语难。', pinyin: 'Hěn Hànyǔ nán.' }
                                 ],
                                 answer: '汉语很难。',
-                                exp: 'Trong câu vị ngữ tính từ, trước tính từ không được dùng "是" (là)[cite: 16].'
+                                exp: 'Trong câu vị ngữ tính từ, trước tính từ không được dùng "是" (là).'
                             },
                             {
-                                q: 'Điền từ: ______ 都是我的书。 (Những cái đó đều là sách của tôi)[cite: 14]',
-                                pinyin: '______ dōu shì wǒ de shū.[cite: 14]',
+                                q: 'Điền từ: ______ 都是我的书。 (Những cái đó đều là sách của tôi)',
+                                pinyin: '______ dōu shì wǒ de shū.',
                                 options: [
                                     { hanzi: '那', pinyin: 'nà' },
                                     { hanzi: '这些', pinyin: 'zhèxiē' },
                                     { hanzi: '那些', pinyin: 'nàxiē' }
                                 ],
                                 answer: '那些',
-                                exp: 'Đại từ chỉ định số nhiều: "这些" (những cái này), "那些" (những cái đó/kia)[cite: 14].'
+                                exp: 'Đại từ chỉ định số nhiều: "这些" (những cái này), "那些" (những cái đó/kia).'
                             }
                         ]
                     },
@@ -516,6 +534,12 @@ window.chineseSubject = {
                             ],
                             hint: 'Tiếng Hán của bạn rất tốt (không tệ).'
                         }
+                    ],
+                    writingTasks: [
+                        { taskType: "copy", targetText: "这些都是我的书。", targetPinyin: "zhè xiē dōu shì wǒ de shū." },
+                        { taskType: "copy", targetText: "你的汉语很不错。", targetPinyin: "nǐ de hàn yǔ hěn bú cuò." },
+                        { taskType: "translate", targetText: "Giáo trình tiếng Hán của các bạn có khó không?", targetPinyin: "" },
+                        { taskType: "translate", targetText: "Kia không phải sách của tôi.", targetPinyin: "" }
                     ]
                 }
             ]
