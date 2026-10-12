@@ -35,7 +35,7 @@
         }
         #step-content-3 { overflow: hidden; }
         /* Custom scrollbar */
-        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background-color: #cbd5e1; border-radius: 20px; }
         .dark .custom-scrollbar::-webkit-scrollbar-thumb { background-color: #475569; }
@@ -316,11 +316,23 @@
                                 <i class="fa-solid fa-camera-retro text-2xl"></i>
                             </div>
                             <h3 class="text-2xl font-black mb-2 text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-orange-600">Sát Hạch Giấy Mực</h3>
-                            <p class="text-sm text-slate-500 dark:text-slate-400 mb-6 px-4">Đã đến lúc cất bàn phím đi! Hãy tự tay viết câu dưới đây ra giấy, sau đó dùng camera chụp lại để giám thị AI chấm điểm nét chữ thực tế của bạn nhé!</p>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 mb-6 px-4">Đã đến lúc cất bàn phím đi! Hãy tự tay viết câu dưới đây ra giấy, sau đó dùng camera chụp lại để con mèo nhà tôi chấm điểm nét chữ thực tế của bạn nhé!</p>
                             
-                            <div class="bg-slate-50 dark:bg-slate-900 p-5 rounded-2xl border-2 border-dashed border-amber-200 dark:border-slate-600 mb-6">
-                                <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">ĐỀ BÀI YÊU CẦU VIẾT:</p>
-                                <p id="scan-target-text" class="font-chinese text-3xl font-bold text-slate-800 dark:text-slate-100 leading-relaxed"></p>
+                            <!-- BẢNG ĐỀ BÀI ĐƯỢC NÂNG CẤP UI -->
+                            <div class="bg-slate-50 dark:bg-slate-900 p-5 rounded-2xl border-2 border-dashed border-amber-200 dark:border-slate-600 mb-6 text-left">
+                                <div class="flex items-center justify-between mb-3">
+                                    <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">ĐỀ BÀI YÊU CẦU VIẾT:</p>
+                                    <span id="scan-tag" class="px-2.5 py-1 rounded-lg text-[10px] font-bold bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-400">
+                                        <i class="fa-solid fa-copy mr-1"></i> Chép lại
+                                    </span>
+                                </div>
+                                <p id="scan-target-text" class="font-chinese text-3xl font-bold text-slate-800 dark:text-slate-100 leading-relaxed text-center mb-1"></p>
+                                <p id="scan-target-pinyin" class="text-sm text-indigo-600 dark:text-indigo-400 font-medium text-center mb-4"></p>
+                                
+                                <div id="scan-translation-box" class="mt-4 pt-4 border-t border-slate-200 dark:border-slate-700">
+                                    <p class="text-xs font-semibold text-slate-600 dark:text-slate-300 mb-2">Sau khi viết tay xong, hãy dịch câu trên sang tiếng Việt:</p>
+                                    <textarea id="scan-translation-input" rows="2" class="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-sm outline-none focus:border-indigo-500 transition custom-scrollbar" placeholder="Nhập bản dịch của bạn vào đây..."></textarea>
+                                </div>
                             </div>
 
                             <input type="file" accept="image/*" capture="environment" id="camera-input" class="hidden" onchange="app.handleImageUpload(event)">
@@ -341,7 +353,7 @@
                                 </button>
                                 
                                 <button id="btn-submit-ai" onclick="app.submitToAI()" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-bold text-sm hover:scale-105 transition shadow-lg flex items-center justify-center gap-2 hidden">
-                                    <i class="fa-solid fa-wand-magic-sparkles"></i> <span>Nhờ AI Chấm Điểm</span>
+                                    <i class="fa-solid fa-cat"></i> <span>Nhờ con mèo nhà tôi chấm điểm</span>
                                 </button>
                             </div>
                         </div>
@@ -545,6 +557,15 @@
                 this.initSoundIcon();
                 this.initDarkMode();
                 this.goLobby();
+
+                // Lắng nghe sự kiện lăn chuột để cuộn ngang thanh Học Phần
+                const stepBar = document.getElementById('step-progress-bar');
+                if (stepBar) {
+                    stepBar.addEventListener('wheel', (evt) => {
+                        evt.preventDefault();
+                        stepBar.scrollLeft += evt.deltaY;
+                    });
+                }
             }
 
             initSoundIcon() {
@@ -653,23 +674,42 @@
                     const vocabCount = d.vocabularies ? d.vocabularies.length : 0; const grammarCount = d.grammar && d.grammar.points ? d.grammar.points.length : 0; const exerciseCount = d.grammar && d.grammar.exercises ? d.grammar.exercises.length : 0;
                     let infoText = ''; if (vocabCount > 0) infoText += `<i class="fa-solid fa-book mr-1"></i> ${vocabCount} từ vựng &bull; `; if (grammarCount > 0) infoText += `<i class="fa-solid fa-graduation-cap mx-1"></i> ${grammarCount} lý thuyết &bull; `; if (exerciseCount > 0) infoText += `<i class="fa-solid fa-pen-nib mx-1"></i> ${exerciseCount} câu &bull; `;
                     return `
-                        <div class="bg-white dark:bg-slate-800 rounded-2xl p-4 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition flex items-center justify-between">
-                            <div class="flex items-center space-x-3.5"><div class="w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 font-bold flex items-center justify-center text-sm">${idx + 1}</div><div><h4 class="font-bold text-sm sm:text-base">${d.title}</h4><p class="text-xs text-slate-400">${infoText}Tiến độ: ${percent}%</p></div></div>
-                            <button onclick="app.startDialogue('${d.id}')" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold transition shadow-md">Làm ngay <i class="fa-solid fa-play ml-1"></i></button>
+                        <div class="bg-white dark:bg-slate-800 rounded-2xl p-4 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                            <div class="flex items-center space-x-3.5"><div class="w-10 h-10 shrink-0 rounded-xl bg-indigo-50 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 font-bold flex items-center justify-center text-sm">${idx + 1}</div><div><h4 class="font-bold text-sm sm:text-base">${d.title}</h4><p class="text-xs text-slate-400 mt-1">${infoText}Tiến độ: ${percent}%</p></div></div>
+                            <div class="flex items-center gap-2 shrink-0">
+                                <button onclick="app.startDialogue('${d.id}', 7)" class="px-3 py-2 rounded-xl bg-amber-100 hover:bg-amber-200 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400 text-xs font-semibold transition shadow-sm" title="Đi thẳng tới Sát hạch giấy mực">
+                                    <i class="fa-solid fa-pen-nib"></i> Viết tay
+                                </button>
+                                <button onclick="app.startDialogue('${d.id}', 1)" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold transition shadow-md whitespace-nowrap">
+                                    Làm ngay <i class="fa-solid fa-play ml-1"></i>
+                                </button>
+                            </div>
                         </div>
                     `;
                 }).join('');
             }
 
-            startDialogue(dialogueId) {
+            // Đã bổ sung tham số startStep cho phép nhảy thẳng đến phần Viết tay
+            startDialogue(dialogueId, startStep = 1) {
                 this.currentDialogue = this.currentLesson.dialogues.find(d => d.id === dialogueId);
                 if (!this.currentDialogue) return;
                 const hasVocab = this.currentDialogue.vocabularies && this.currentDialogue.vocabularies.length > 0;
                 const hasGrammarEx = this.currentDialogue.grammar && this.currentDialogue.grammar.exercises && this.currentDialogue.grammar.exercises.length > 0;
 
                 if (!hasVocab && !hasGrammarEx) { this.showToast('Nội dung này đang được cập nhật!', 'warning'); return; }
-                if (!hasVocab && hasGrammarEx) { this.pendingDialogueId = dialogueId; document.getElementById('mode-selection-modal').classList.remove('hidden'); } 
-                else { this.testMode = 'practice'; this.isReviewMode = false; this.initLessonFlow(); }
+                if (!hasVocab && hasGrammarEx) { 
+                    this.pendingDialogueId = dialogueId; 
+                    document.getElementById('mode-selection-modal').classList.remove('hidden'); 
+                } else { 
+                    this.testMode = 'practice'; 
+                    this.isReviewMode = false; 
+                    this.initLessonFlow(); 
+                    
+                    // Xử lý nhảy bước nếu người dùng bấm nút "Viết tay"
+                    if(startStep !== 1) {
+                        this.switchStep(startStep);
+                    }
+                }
             }
 
             confirmModeAndStart(mode) {
@@ -964,14 +1004,24 @@
             initScanStep() {
                 const sentences = this.currentDialogue.sentences;
                 if (sentences && sentences.length > 0) {
+                    // Cập nhật lấy thông tin đề bài Hán Tự và Pinyin
                     const targetSentence = sentences[sentences.length - 1].blocks.map(b => b.hanzi).join('');
+                    const targetPinyin = sentences[sentences.length - 1].blocks.map(b => b.pinyin).join(' ');
+                    
                     document.getElementById('scan-target-text').innerText = targetSentence;
+                    document.getElementById('scan-target-pinyin').innerText = targetPinyin;
                 }
+                
+                // Xóa trống ô dịch tiếng Việt
+                const translationInput = document.getElementById('scan-translation-input');
+                if (translationInput) translationInput.value = '';
                 
                 document.getElementById('preview-container').classList.add('hidden');
                 document.getElementById('btn-open-camera').classList.remove('hidden');
                 document.getElementById('btn-submit-ai').classList.add('hidden');
-                document.getElementById('btn-submit-ai').innerHTML = '<i class="fa-solid fa-wand-magic-sparkles"></i> <span>Nhờ AI Chấm Điểm</span>';
+                
+                // Đổi nút AI thành "Nhờ con mèo nhà tôi chấm điểm"
+                document.getElementById('btn-submit-ai').innerHTML = '<i class="fa-solid fa-cat"></i> <span>Nhờ con mèo nhà tôi chấm điểm</span>';
                 document.getElementById('btn-submit-ai').className = "w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-bold text-sm hover:scale-105 transition shadow-lg flex items-center justify-center gap-2 hidden";
             }
 
@@ -992,13 +1042,16 @@
             async submitToAI() {
                 const btn = document.getElementById('btn-submit-ai');
                 
-                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> AI đang soi nét chữ...';
+                // Cập nhật câu hiển thị lúc Loading
+                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Con mèo đang soi nét chữ...';
                 btn.classList.remove('from-indigo-600', 'to-purple-600', 'hover:from-indigo-700', 'hover:to-purple-700');
                 btn.classList.add('bg-slate-500', 'cursor-not-allowed');
                 
                 try {
                     const imageBase64 = document.getElementById('preview-img').src;
                     const targetText = document.getElementById('scan-target-text').innerText;
+                    const userTranslation = document.getElementById('scan-translation-input').value; 
+                    // (userTranslation có thể được gửi lên backend trong tương lai để AI chấm cả kỹ năng dịch)
 
                     const response = await fetch('/api/evaluate', {
                         method: 'POST',
@@ -1016,10 +1069,11 @@
                     const bgTheme = result.score >= 80 ? "bg-gradient-to-r from-emerald-500 to-teal-500 text-white" : 
                                    (result.score >= 50 ? "bg-gradient-to-r from-amber-500 to-orange-500 text-white" : "bg-gradient-to-r from-rose-500 to-red-600 text-white");
 
+                    // Hiện kết quả dưới danh xưng "Con mèo"
                     this.showTimerAlert(
-                        "KẾT QUẢ TỪ GIÁM THỊ AI", 
+                        "KẾT QUẢ TỪ CON MÈO NHÀ TÔI", 
                         `🎯 Điểm: ${result.score}/100\n\n💬 Lời phê:\n${result.feedback}`, 
-                        "fa-robot", 
+                        "fa-cat", 
                         bgTheme
                     );
                     
@@ -1030,8 +1084,8 @@
 
                 } catch (error) {
                     console.error("Lỗi AI:", error);
-                    alert("Giám thị AI đang bận hoặc đứt cáp mạng. Vui lòng thử lại!");
-                    btn.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles"></i> <span>Nhờ AI Chấm Điểm</span>';
+                    alert("Con mèo nhà bạn đang bận đi bắt chuột hoặc đứt mạng. Vui lòng thử lại!");
+                    btn.innerHTML = '<i class="fa-solid fa-cat"></i> <span>Nhờ con mèo nhà tôi chấm điểm</span>';
                     btn.classList.remove('bg-slate-500', 'cursor-not-allowed');
                     btn.classList.add('from-indigo-600', 'to-purple-600', 'hover:from-indigo-700', 'hover:to-purple-700');
                 }
