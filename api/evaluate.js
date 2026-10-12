@@ -45,8 +45,8 @@ Trả về CHỈ một chuỗi JSON hợp lệ với định dạng sau (không 
   "feedback": "<nhận xét ngắn gọn, xưng hô là 'mèo' và 'con sen/bạn', giọng điệu mặn mòi, khó tính>"
 }`;
 
-        // 5. Gọi Google Gemini API - SỬ DỤNG gemini-1.5-flash-latest ĐỂ TRÁNH 404
-        const geminiRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash-latest:generateContent?key=${apiKey}`, {
+        // 5. Gọi Google Gemini API - SỬ DỤNG gemini-3.8-flash
+        const geminiRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent?key=${apiKey}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -75,13 +75,11 @@ Trả về CHỈ một chuỗi JSON hợp lệ với định dạng sau (không 
             const errorData = await geminiRes.json();
             console.error("Lỗi từ Google API:", errorData);
             
-            if (geminiRes.status === 429) {
-                 return res.status(429).json({ error: 'Bạn đang nhờ "Con mèo" chấm điểm quá nhanh. Xin đợi 15 giây rồi thử lại!' });
-            }
             if (geminiRes.status === 404) {
-                 return res.status(404).json({ error: 'Mô hình AI hiện không khả dụng. Vui lòng kiểm tra lại tên mô hình trong code.' });
+                 return res.status(404).json({ error: 'Mô hình gemini-3.8-flash hiện không khả dụng. Vui lòng kiểm tra lại quyền truy cập của API Key.' });
             }
             
+            // Các lỗi khác (bao gồm 429) sẽ trả về lỗi gốc của Google
             return res.status(geminiRes.status).json({ 
                 error: 'Lỗi từ Google API', 
                 details: errorData 
