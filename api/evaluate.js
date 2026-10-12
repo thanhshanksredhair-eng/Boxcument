@@ -46,7 +46,7 @@ Trả về CHỈ một chuỗi JSON hợp lệ với định dạng sau (không 
 }`;
 
         // 5. Gọi Google Gemini API - SỬ DỤNG gemini-1.5-flash-latest ĐỂ TRÁNH 404
-        const geminiRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`, {
+        const geminiRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash-latest:generateContent?key=${apiKey}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
