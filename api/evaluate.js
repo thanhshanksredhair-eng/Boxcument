@@ -45,8 +45,8 @@ Trả về CHỈ một chuỗi JSON hợp lệ với định dạng sau (không 
   "feedback": "<nhận xét ngắn gọn, xưng hô là 'mèo' và 'con sen/bạn', giọng điệu mặn mòi, khó tính>"
 }`;
 
-        // 5. Gọi Google Gemini API - SỬ DỤNG gemini-3.8-flash
-        const geminiRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent?key=${apiKey}`, {
+        // 5. Gọi Google Gemini API - SỬ DỤNG gemini-1.5-flash (Chuẩn nhất, 1500 lượt/ngày)
+        const geminiRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -64,8 +64,8 @@ Trả về CHỈ một chuỗi JSON hợp lệ với định dạng sau (không 
                     ]
                 }],
                 generationConfig: {
-                    temperature: 0.2, // Giảm độ sáng tạo để AI tập trung chấm điểm chính xác
-                    response_mime_type: "application/json" // Ép AI trả về JSON
+                    temperature: 0.2, 
+                    response_mime_type: "application/json" 
                 }
             })
         });
@@ -75,11 +75,13 @@ Trả về CHỈ một chuỗi JSON hợp lệ với định dạng sau (không 
             const errorData = await geminiRes.json();
             console.error("Lỗi từ Google API:", errorData);
             
+            if (geminiRes.status === 429) {
+                 return res.status(429).json({ error: 'Quá tải giới hạn lượt quét của Google. Xin đợi 15 giây rồi thử lại!' });
+            }
             if (geminiRes.status === 404) {
-                 return res.status(404).json({ error: 'Mô hình gemini-3.8-flash hiện không khả dụng. Vui lòng kiểm tra lại quyền truy cập của API Key.' });
+                 return res.status(404).json({ error: 'Lỗi 404: Mô hình gemini-1.5-flash không khả dụng.' });
             }
             
-            // Các lỗi khác (bao gồm 429) sẽ trả về lỗi gốc của Google
             return res.status(geminiRes.status).json({ 
                 error: 'Lỗi từ Google API', 
                 details: errorData 
