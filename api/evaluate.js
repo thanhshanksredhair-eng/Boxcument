@@ -35,11 +35,11 @@ export default async function handler(req, res) {
             process.env.GEMINI_KEY_13,
             process.env.GEMINI_KEY_14,
             process.env.GEMINI_KEY_15
-        ].filter(Boolean); // Lọc bỏ những key bị rỗng (nếu bạn chưa add đủ lên Vercel)
+        ].filter(Boolean); // Lọc bỏ những key bị rỗng
 
         // Kiểm tra xem có key nào hoạt động không
         if (apiKeys.length === 0) {
-            return res.status(500).json({ error: 'Máy chủ chưa được cấu hình bất kỳ API KEY nào.' });
+            return res.status(500).json({ error: 'Máy chủ chưa được cấu hình API KEY nào (từ GEMINI_KEY_1 đến 15).' });
         }
 
         // Chọn ngẫu nhiên 1 chìa khóa trong danh sách
@@ -88,8 +88,7 @@ Trả về CHỈ một chuỗi JSON hợp lệ với định dạng sau (không 
 
         if (!geminiRes.ok) {
             const errorData = await geminiRes.json();
-            console.error("Lỗi từ Google API (Key đang dùng có thể hết lượt):", errorData);
-            // Trả thẳng lỗi thực tế (bao gồm 429) về frontend
+            console.error("Lỗi từ Google API:", errorData);
             return res.status(geminiRes.status).json(errorData);
         }
 
