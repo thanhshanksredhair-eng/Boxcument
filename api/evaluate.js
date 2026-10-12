@@ -46,7 +46,7 @@ Trả về CHỈ một chuỗi JSON hợp lệ với định dạng sau (không 
 }`;
 
         // 5. Gọi Google Gemini API (Dùng bản 1.5 Flash vì bản 2.5/3.8 có thể bị hạn chế tài khoản mới)
-        const geminiRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+        const geminiRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent?key=${apiKey}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
