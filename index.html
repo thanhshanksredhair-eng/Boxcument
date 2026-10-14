@@ -98,7 +98,7 @@
     <!-- Toast Notification Container -->
     <div id="toast-container" class="fixed top-5 right-5 z-50 flex flex-col space-y-3 max-w-sm w-full pointer-events-none"></div>
 
-    <!-- Header (Đã tối ưu chống tràn trên điện thoại & bỏ dòng mô tả thừa) -->
+    <!-- Header -->
     <header class="w-full bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 px-3 sm:px-6 py-2.5 sm:py-3 flex items-center justify-between gap-2 shadow-sm shrink-0">
         <div class="flex items-center space-x-2 cursor-pointer shrink-0" onclick="app.goLobby()">
             <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-bold text-base sm:text-lg shadow-md">
@@ -257,13 +257,13 @@
                 </div>
                 
                 <!-- STICKY BUTTONS BƯỚC 2 -->
-                <div class="sticky bottom-0 bg-slate-50 dark:bg-slate-900 z-20 py-3 border-t border-slate-200 dark:border-slate-700 flex justify-between items-center shrink-0 w-full">
+                <div class="sticky bottom-0 bg-slate-50/95 dark:bg-slate-900/95 backdrop-blur-sm z-20 py-3 border-t border-slate-200 dark:border-slate-700 flex justify-between items-center shrink-0 w-full">
                     <button onclick="app.switchStep(1)" class="px-4 py-2.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-medium text-xs transition"><i class="fa-solid fa-arrow-left mr-1"></i> Flashcard</button>
                     <button id="quiz-next-btn" onclick="app.nextQuizQuestion()" class="hidden px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs transition shadow-md">Tiếp tục <i class="fa-solid fa-arrow-right ml-1"></i></button>
                 </div>
             </div>
 
-            <!-- STEP 3: HANDWRITING (Đã fix lỗi khóa cuộn và che nút "Từ tiếp") -->
+            <!-- STEP 3: HANDWRITING -->
             <div id="step-content-3" class="lesson-step hidden flex-1 flex flex-col justify-between overflow-y-auto custom-scrollbar relative">
                 <div class="w-full max-w-xl mx-auto flex flex-col my-auto py-3 sm:py-4 shrink-0 pb-6">
                     <div class="bg-white dark:bg-slate-800 rounded-3xl p-4 sm:p-7 border border-slate-200 dark:border-slate-700 shadow-sm w-full text-center">
@@ -289,7 +289,7 @@
                     </div>
                 </div>
                 
-                <!-- STICKY BUTTONS BƯỚC 3 (Không chặn vùng cảm ứng và nằm tách biệt bên dưới) -->
+                <!-- STICKY BUTTONS BƯỚC 3 -->
                 <div class="sticky bottom-0 bg-slate-50/95 dark:bg-slate-900/95 backdrop-blur-sm z-20 py-2.5 border-t border-slate-200 dark:border-slate-700 flex justify-between items-center shrink-0 w-full pointer-events-none">
                     <button onclick="app.switchStep(2)" class="pointer-events-auto px-4 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-medium transition shadow-sm"><i class="fa-solid fa-arrow-left mr-1"></i> Quiz</button>
                     <button onclick="app.switchStep(4)" class="pointer-events-auto px-5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs transition shadow-md">Sang Ngữ Pháp <i class="fa-solid fa-arrow-right ml-1"></i></button>
@@ -332,7 +332,7 @@
                 </div>
                 
                 <!-- STICKY BUTTONS BƯỚC 5 -->
-                <div class="sticky bottom-0 bg-slate-50 dark:bg-slate-900 z-20 py-3 border-t border-slate-200 dark:border-slate-700 flex justify-between items-center shrink-0 w-full">
+                <div class="sticky bottom-0 bg-slate-50/95 dark:bg-slate-900/95 backdrop-blur-sm z-20 py-3 border-t border-slate-200 dark:border-slate-700 flex justify-between items-center shrink-0 w-full">
                     <button onclick="app.switchStep(4)" class="px-4 py-2.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 text-xs font-medium transition shadow-sm"><i class="fa-solid fa-arrow-left mr-1"></i> Lý thuyết</button>
                     <button id="gp-next-btn" onclick="app.nextGrammarPractice()" class="hidden px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs transition shadow-md">Tiếp tục <i class="fa-solid fa-arrow-right ml-1"></i></button>
                 </div>
@@ -360,7 +360,7 @@
 
             <!-- BƯỚC 7: SÁT HẠCH GIẤY MỰC (CAMERA SCAN) -->
             <div id="step-content-7" class="lesson-step hidden flex-1 flex flex-col justify-between overflow-y-auto custom-scrollbar relative">
-                <div class="w-full max-w-2xl mx-auto flex flex-col my-auto pt-4 pb-20 shrink-0">
+                <div class="w-full max-w-2xl mx-auto flex flex-col my-auto pt-4 pb-12 shrink-0">
                     <div class="bg-white dark:bg-slate-800 rounded-3xl p-5 sm:p-8 border border-slate-200 dark:border-slate-700 shadow-sm text-center relative overflow-hidden">
                         
                         <div class="absolute -top-10 -right-10 text-amber-100 dark:text-slate-700/30 opacity-50 rotate-12 pointer-events-none">
@@ -413,8 +413,8 @@
                     </div>
                 </div>
 
-                <!-- STICKY BUTTONS BƯỚC 7 -->
-                <div class="sticky bottom-0 bg-slate-50 dark:bg-slate-900 z-20 py-3 border-t border-slate-200 dark:border-slate-700 w-full flex flex-col sm:flex-row items-center justify-center gap-3">
+                <!-- STICKY BUTTONS BƯỚC 7 (Ghim đáy & có nút Viết lại) -->
+                <div class="sticky bottom-0 bg-slate-50/95 dark:bg-slate-900/95 backdrop-blur-sm z-20 py-3 border-t border-slate-200 dark:border-slate-700 w-full flex flex-col sm:flex-row items-center justify-center gap-2.5">
                     <button id="btn-open-camera" onclick="document.getElementById('camera-input').click()" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-slate-800 dark:bg-slate-700 text-white font-bold text-sm hover:scale-105 transition shadow-lg flex items-center justify-center gap-2">
                         <i class="fa-solid fa-camera"></i> <span>Mở Camera Quét Chữ</span>
                     </button>
@@ -424,7 +424,7 @@
                     </button>
 
                     <!-- Nút Viết Lại Phục Thù -->
-                    <button id="btn-retry-scan" onclick="document.getElementById('camera-input').click()" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold text-sm hover:scale-105 transition shadow-lg flex items-center justify-center gap-2 hidden">
+                    <button id="btn-retry-scan" onclick="app.retryCurrentScanTask()" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-amber-100 hover:bg-amber-200 text-amber-800 dark:bg-slate-700 dark:text-amber-400 font-bold text-sm hover:scale-105 transition shadow-md flex items-center justify-center gap-2 hidden">
                         <i class="fa-solid fa-rotate-left"></i> <span>Viết lại (Phục thù)</span>
                     </button>
 
@@ -436,49 +436,61 @@
 
         </div>
 
-        <!-- ================= 5. VIEW TEST MODE ================= -->
+        <!-- ================= 5. VIEW TEST MODE (ĐÃ TỐI ƯU CHỐNG ĐÈ NÚT TRÊN MOBILE) ================= -->
         <div id="view-test-mode" class="hidden flex-1 flex flex-col min-h-0 h-full">
-            <div class="flex items-center justify-between mb-4 shrink-0">
+            <div class="flex items-center justify-between mb-3 shrink-0">
                 <div class="flex items-center space-x-2">
                     <button onclick="app.goDialoguesList()" class="text-xs text-indigo-600 dark:text-indigo-400 font-semibold hover:underline"><i class="fa-solid fa-arrow-left"></i> Quay lại</button>
                     <span class="text-slate-300 dark:text-slate-600">|</span>
                     <span id="test-mode-title" class="text-xs font-bold text-slate-500">Chế độ Thi Thử</span>
                 </div>
-                <h3 id="test-lesson-title" class="text-base sm:text-lg font-bold mt-0.5">Đang tải...</h3>
+                <h3 id="test-lesson-title" class="text-sm sm:text-lg font-bold mt-0.5 truncate max-w-[200px] sm:max-w-none">Đang tải...</h3>
             </div>
             
-            <div class="flex-1 flex flex-col md:flex-row gap-5 min-h-0">
+            <div class="flex-1 flex flex-col md:flex-row gap-3 sm:gap-5 min-h-0 overflow-hidden">
+                <!-- Khung Câu Hỏi Chính: Cuộn mượt bên trong & Ghim chặt thanh nút Câu trước/Câu tiếp ở đáy -->
                 <div class="flex-1 bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col min-h-0 overflow-hidden relative">
-                    <div class="shrink-0 p-5 sm:p-8 pb-0">
-                        <h4 id="test-question-title" class="font-bold text-lg sm:text-xl text-slate-800 dark:text-slate-100 mb-2">Câu 1</h4>
-                        <p id="test-question" class="text-base sm:text-lg text-slate-700 dark:text-slate-200 font-medium">Nội dung câu hỏi...</p>
-                        <div class="relative flex py-4 items-center">
-                            <div class="flex-grow border-t border-slate-200 dark:border-slate-700"></div>
-                            <span class="flex-shrink-0 mx-4 text-slate-400 text-[11px] font-bold uppercase tracking-widest">Chọn một đáp án đúng</span>
-                            <div class="flex-grow border-t border-slate-200 dark:border-slate-700"></div>
+                    
+                    <!-- Vùng cuộn tổng hợp: Câu hỏi + Đáp án + Thông báo Đúng/Sai + Giải thích -->
+                    <div id="test-scroll-area" class="flex-1 overflow-y-auto custom-scrollbar p-4 sm:p-8 flex flex-col">
+                        <div class="shrink-0">
+                            <h4 id="test-question-title" class="font-bold text-base sm:text-xl text-slate-800 dark:text-slate-100 mb-1.5">Câu 1</h4>
+                            <p id="test-question" class="text-sm sm:text-lg text-slate-700 dark:text-slate-200 font-medium leading-relaxed">Nội dung câu hỏi...</p>
+                            <div class="relative flex py-3 sm:py-4 items-center">
+                                <div class="flex-grow border-t border-slate-200 dark:border-slate-700"></div>
+                                <span class="flex-shrink-0 mx-3 text-slate-400 text-[10px] sm:text-[11px] font-bold uppercase tracking-widest">Chọn một đáp án đúng</span>
+                                <div class="flex-grow border-t border-slate-200 dark:border-slate-700"></div>
+                            </div>
+                        </div>
+
+                        <!-- Danh sách đáp án -->
+                        <div id="test-options" class="flex flex-col gap-2.5 sm:gap-3 mb-3"></div>
+
+                        <!-- Khung Thông báo Đúng/Sai & Giải thích (Nằm trong luồng cuộn để không bao giờ đẩy tụt nút bấm) -->
+                        <div class="shrink-0">
+                            <div id="test-feedback" class="hidden p-3.5 rounded-2xl text-xs sm:text-sm font-medium mb-2"></div>
+                            <div class="flex justify-end mb-2">
+                                <button id="btn-show-test-explanation" onclick="app.showTestExplanation()" class="hidden text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline"><i class="fa-solid fa-lightbulb mr-1"></i> Xem giải thích chi tiết</button>
+                            </div>
+                            <div id="test-explanation" class="hidden p-3.5 rounded-xl bg-amber-50 dark:bg-amber-900/30 border border-amber-200 text-xs sm:text-sm text-amber-800 dark:text-amber-300 mb-2"></div>
                         </div>
                     </div>
-                    <div id="test-options" class="flex-1 overflow-y-auto custom-scrollbar px-5 sm:px-8 pb-2 flex flex-col gap-3"></div>
-                    <div class="shrink-0 px-5 sm:px-8 bg-white dark:bg-slate-800">
-                        <div id="test-feedback" class="hidden p-4 rounded-2xl text-sm font-medium mb-2"></div>
-                        <div class="flex justify-end mb-2">
-                            <button id="btn-show-test-explanation" onclick="app.showTestExplanation()" class="hidden text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline"><i class="fa-solid fa-lightbulb mr-1"></i> Xem giải thích chi tiết</button>
-                        </div>
-                        <div id="test-explanation" class="hidden p-4 rounded-xl bg-amber-50 dark:bg-amber-900/30 border border-amber-200 text-sm text-amber-800 dark:text-amber-300 mb-2"></div>
-                    </div>
-                    <div class="shrink-0 flex justify-between items-center px-5 sm:px-8 py-4 border-t border-slate-100 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 rounded-b-3xl">
-                        <button onclick="app.prevTestQuestion()" class="px-5 py-2.5 rounded-xl bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-300 font-bold text-xs sm:text-sm transition hover:bg-slate-100 dark:hover:bg-slate-600 shadow-sm"><i class="fa-solid fa-arrow-left mr-1"></i> Câu trước</button>
-                        <button onclick="app.nextTestQuestion()" class="px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs sm:text-sm transition shadow-md">Câu tiếp <i class="fa-solid fa-arrow-right ml-1"></i></button>
+
+                    <!-- Thanh nút điều hướng cố định ở đáy khung (Luôn hiển thị 100% trên màn hình điện thoại) -->
+                    <div class="shrink-0 flex justify-between items-center px-4 sm:px-8 py-3 sm:py-4 border-t border-slate-200 dark:border-slate-700 bg-slate-50/95 dark:bg-slate-800/95 backdrop-blur-sm rounded-b-3xl z-10 shadow-[0_-4px_12px_rgba(0,0,0,0.03)]">
+                        <button onclick="app.prevTestQuestion()" class="px-4 sm:px-5 py-2.5 rounded-xl bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-300 font-bold text-xs sm:text-sm transition hover:bg-slate-100 dark:hover:bg-slate-600 shadow-sm"><i class="fa-solid fa-arrow-left mr-1"></i> Câu trước</button>
+                        <button onclick="app.nextTestQuestion()" class="px-5 sm:px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs sm:text-sm transition shadow-md">Câu tiếp <i class="fa-solid fa-arrow-right ml-1"></i></button>
                     </div>
                 </div>
 
-                <div class="w-full md:w-[320px] shrink-0 bg-white dark:bg-slate-800 rounded-3xl p-5 border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col h-fit md:max-h-full">
-                    <div class="flex justify-between items-center mb-4 pb-3 border-b border-slate-100 dark:border-slate-700 shrink-0">
-                        <h3 class="font-bold text-base text-slate-800 dark:text-slate-100">Danh sách câu hỏi</h3>
-                        <span id="test-counter-badge" class="px-3 py-1.5 rounded-lg bg-indigo-50 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 text-xs font-bold border border-indigo-100 dark:border-indigo-800">1/60</span>
+                <!-- Bảng danh sách 60 câu hỏi (Đã thu gọn trên Mobile để nhường chỗ cho câu hỏi chính) -->
+                <div class="w-full md:w-[320px] shrink-0 bg-white dark:bg-slate-800 rounded-3xl p-3.5 sm:p-5 border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col max-h-[180px] sm:max-h-[220px] md:max-h-full">
+                    <div class="flex justify-between items-center mb-2.5 pb-2 border-b border-slate-100 dark:border-slate-700 shrink-0">
+                        <h3 class="font-bold text-xs sm:text-base text-slate-800 dark:text-slate-100">Danh sách câu hỏi</h3>
+                        <span id="test-counter-badge" class="px-2.5 py-1 rounded-lg bg-indigo-50 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 text-[11px] sm:text-xs font-bold border border-indigo-100 dark:border-indigo-800">1/60</span>
                     </div>
-                    <div id="test-question-grid" class="grid grid-cols-5 sm:grid-cols-8 md:grid-cols-5 gap-2.5 overflow-y-auto custom-scrollbar pr-1 mb-5 flex-1 min-h-[150px]"></div>
-                    <button id="btn-submit-test" onclick="app.submitTest()" class="w-full shrink-0 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm transition shadow-md flex items-center justify-center gap-2">
+                    <div id="test-question-grid" class="grid grid-cols-8 sm:grid-cols-10 md:grid-cols-5 gap-1.5 sm:gap-2.5 overflow-y-auto custom-scrollbar pr-1 mb-2.5 flex-1 min-h-[55px]"></div>
+                    <button id="btn-submit-test" onclick="app.submitTest()" class="w-full shrink-0 py-2.5 sm:py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm transition shadow-md flex items-center justify-center gap-2">
                         <i class="fa-solid fa-paper-plane"></i> Nộp bài kiểm tra
                     </button>
                 </div>
@@ -486,7 +498,7 @@
         </div>
 
         <!-- ================= MODALS ================= -->
-        <!-- MODAL MÈO ĐI VẮNG (ĐÃ THAY HỘP MỨT BẰNG HỘP PATE MÈO SVG) -->
+        <!-- MODAL MÈO ĐI VẮNG (CÂU THOẠI MẶN MÒI + HỘP PATE MÈO SVG) -->
         <div id="cat-error-modal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
             <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 max-w-sm w-full text-center shadow-2xl border border-slate-200 dark:border-slate-700 transform transition-all">
                 <div class="flex items-center justify-center gap-2 mb-4">
@@ -514,10 +526,10 @@
                 </div>
                 <h3 class="text-xl font-extrabold mb-2 text-rose-600 dark:text-rose-400">Ối! Mèo vắng nhà...</h3>
                 <p class="text-sm text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
-                    Con mèo nhà bạn đã đi bắt chuột hoặc theo trai rồi. Cầm lấy hộp pate cá ngừ này rồi kêu nó chấm điểm lại nhé!
+                    Ối, con mèo nhà bạn đã đi bắt chuột hoặc theo trai rồi, cầm lấy hộp pate này rồi kêu nó chấm điểm lại nhé!
                 </p>
                 <button onclick="document.getElementById('cat-error-modal').classList.add('hidden'); app.submitToAI();" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-bold text-sm transition shadow-lg flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-fish"></i> Đưa Pate & Thử Lại
+                    <i class="fa-solid fa-fish"></i> Đưa Pate & Kêu Mèo Chấm Lại
                 </button>
                 <button onclick="document.getElementById('cat-error-modal').classList.add('hidden')" class="w-full mt-3 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 font-semibold text-xs hover:bg-slate-200 transition">
                     Để lúc khác
@@ -732,7 +744,6 @@
                 setTimeout(() => { toast.classList.add('opacity-0'); setTimeout(() => toast.remove(), 300); }, 3500);
             }
 
-            // Xoay vòng 3 giao diện: Sáng (light) -> Tối (dark) -> Xanh lá (green)
             applyTheme(theme) {
                 this.currentTheme = theme;
                 localStorage.setItem('theme', theme);
@@ -967,8 +978,17 @@
             }
             checkQuizAnswer(selected, correct) {
                 const fb = document.getElementById('quiz-feedback'); fb.classList.remove('hidden');
-                if (selected === correct) { this.playTone('correct'); fb.className = "mt-4 p-3 rounded-2xl text-xs font-medium bg-emerald-50 text-emerald-600 border border-emerald-200 flex items-center gap-2"; fb.innerHTML = `<i class="fa-solid fa-circle-check text-base"></i> <span>Chính xác! Bạn chọn đúng rồi.</span>`; document.getElementById('quiz-next-btn').classList.remove('hidden'); } 
-                else { this.playTone('wrong'); fb.className = "mt-4 p-3 rounded-2xl text-xs font-medium bg-rose-50 text-rose-600 border border-rose-200 flex items-center gap-2"; fb.innerHTML = `<i class="fa-solid fa-circle-xmark text-base"></i> <span>Chưa đúng! Hãy chọn lại nhé.</span>`; }
+                if (selected === correct) { 
+                    this.playTone('correct'); 
+                    fb.className = "mt-4 p-3 rounded-2xl text-xs font-medium bg-emerald-50 text-emerald-600 border border-emerald-200 flex items-center gap-2"; 
+                    fb.innerHTML = `<i class="fa-solid fa-circle-check text-base"></i> <span>Chính xác! Bạn chọn đúng rồi.</span>`; 
+                    document.getElementById('quiz-next-btn').classList.remove('hidden'); 
+                } else { 
+                    this.playTone('wrong'); 
+                    fb.className = "mt-4 p-3 rounded-2xl text-xs font-medium bg-rose-50 text-rose-600 border border-rose-200 flex items-center gap-2"; 
+                    fb.innerHTML = `<i class="fa-solid fa-circle-xmark text-base"></i> <span>Chưa đúng! Hãy chọn lại nhé.</span>`; 
+                }
+                setTimeout(() => fb.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
             }
             nextQuizQuestion() {
                 if (this.currentQuizIndex < this.currentDialogue.vocabularies.length - 1) { this.currentQuizIndex++; this.renderQuizQuestion(); } 
@@ -1048,6 +1068,7 @@
                         <button onclick="app.clearCanvas()" class="px-4 py-2 rounded-lg bg-rose-600 text-white font-bold hover:bg-rose-700 transition shadow-sm"><i class="fa-solid fa-rotate-left mr-1"></i> Viết lại (Phục thù)</button>
                     `;
                 }
+                setTimeout(() => fb.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
             }
 
             renderGrammar() {
@@ -1072,6 +1093,7 @@
                 const ex = this.currentDialogue.grammar.exercises[this.currentGPIndex];
                 const expBox = document.getElementById('gp-explanation'); expBox.classList.remove('hidden');
                 expBox.innerHTML = `<i class="fa-solid fa-lightbulb text-amber-500 mr-2"></i> <strong>Giải thích:</strong> ${ex.exp}`;
+                setTimeout(() => expBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
             }
 
             checkGrammarAnswer(selected) {
@@ -1082,6 +1104,7 @@
                 } else {
                     this.playTone('wrong'); fb.className = "mt-3 p-3 rounded-xl text-xs font-medium bg-rose-50 text-rose-700 border border-rose-200 flex items-center gap-2"; fb.innerHTML = `<i class="fa-solid fa-circle-xmark text-lg"></i> <span>Sai rồi. Đáp án đúng là: <strong>${ex.answer}</strong></span>`;
                 }
+                setTimeout(() => fb.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
             }
 
             nextGrammarPractice() {
@@ -1185,6 +1208,9 @@
                     translationBox.classList.add('hidden'); 
                 }
                 
+                const camInput = document.getElementById('camera-input');
+                if (camInput) camInput.value = '';
+
                 document.getElementById('preview-container').classList.add('hidden');
                 document.getElementById('btn-open-camera').classList.remove('hidden');
                 document.getElementById('btn-submit-ai').classList.add('hidden');
@@ -1198,6 +1224,11 @@
                 const btnFinish = document.getElementById('btn-finish-scan');
                 btnFinish.disabled = true;
                 btnFinish.className = "px-6 py-3 rounded-2xl bg-slate-300 dark:bg-slate-700 text-slate-500 dark:text-slate-400 font-bold text-sm transition flex items-center gap-2 cursor-not-allowed";
+            }
+
+            retryCurrentScanTask() {
+                this.initScanStep();
+                document.getElementById('camera-input').click();
             }
 
             handleImageUpload(event) {
@@ -1299,12 +1330,12 @@
                 document.getElementById('test-mode-title').innerText = this.testMode === 'exam' ? "Chế độ Thi Thử" : "Chế độ Ôn Tập"; document.getElementById('test-lesson-title').innerText = this.currentDialogue.title;
                 this.testCurrentIndex = 0; this.testUserAnswers = {}; this.isReviewMode = false;
                 document.getElementById('btn-review-test').classList.add('hidden'); document.getElementById('btn-submit-test').classList.remove('hidden');
-                this.renderTestQuestion();
+                this.renderTestQuestion(true);
             }
 
-            jumpToTestQuestion(idx) { this.testCurrentIndex = idx; this.renderTestQuestion(); }
+            jumpToTestQuestion(idx) { this.testCurrentIndex = idx; this.renderTestQuestion(true); }
 
-            renderTestQuestion() {
+            renderTestQuestion(scrollToTop = false) {
                 const exercises = this.currentDialogue.grammar.exercises; if (!exercises || exercises.length === 0) return;
                 const ex = exercises[this.testCurrentIndex];
                 document.getElementById('test-question-title').innerText = `Câu ${this.testCurrentIndex + 1}`; document.getElementById('test-counter-badge').innerText = `${this.testCurrentIndex + 1}/${exercises.length}`; document.getElementById('test-question').innerText = ex.q;
@@ -1326,20 +1357,29 @@
                         }
                     }
                     if (this.isReviewMode) disableClick = true;
-                    return `<button onclick="app.checkTestAnswer('${opt.hanzi.replace(/'/g, "\\'")}')" class="flex items-center gap-3.5 w-full group text-left transition-all duration-200 ${disableClick ? 'pointer-events-none' : ''}"><div class="w-10 h-10 flex-shrink-0 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-200 ${letterBg} ${!disableClick ? 'group-hover:bg-amber-500 group-hover:text-white group-hover:border-amber-500 shadow-sm group-hover:shadow-md' : ''}">${letter}</div><div class="flex-1 rounded-2xl px-5 py-3.5 text-[15px] transition-all duration-200 border shadow-sm ${boxStyle} ${!disableClick ? 'group-hover:border-amber-500 group-hover:shadow-md group-hover:-translate-y-0.5' : ''}">${textContent}</div></button>`;
+                    return `<button onclick="app.checkTestAnswer('${opt.hanzi.replace(/'/g, "\\'")}')" class="flex items-center gap-3 w-full group text-left transition-all duration-200 ${disableClick ? 'pointer-events-none' : ''}"><div class="w-9 h-9 sm:w-10 sm:h-10 flex-shrink-0 rounded-full flex items-center justify-center font-bold text-xs sm:text-sm transition-all duration-200 ${letterBg} ${!disableClick ? 'group-hover:bg-amber-500 group-hover:text-white group-hover:border-amber-500 shadow-sm group-hover:shadow-md' : ''}">${letter}</div><div class="flex-1 rounded-2xl px-4 py-3 sm:px-5 sm:py-3.5 text-sm sm:text-[15px] transition-all duration-200 border shadow-sm ${boxStyle} ${!disableClick ? 'group-hover:border-amber-500 group-hover:shadow-md group-hover:-translate-y-0.5' : ''}">${textContent}</div></button>`;
                 }).join('');
                 
                 const fb = document.getElementById('test-feedback'); const expBtn = document.getElementById('btn-show-test-explanation');
                 if (this.testMode === 'exam' && !this.isReviewMode) { fb.classList.add('hidden'); expBtn.classList.add('hidden'); } 
                 else {
-                    expBtn.classList.remove('hidden');
                     if (userAns) {
+                        expBtn.classList.remove('hidden');
                         fb.classList.remove('hidden');
-                        if (userAns.isCorrect) { fb.className = "p-4 rounded-2xl text-sm font-semibold bg-emerald-50 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 flex items-center gap-2"; fb.innerHTML = `<i class="fa-solid fa-circle-check text-lg"></i> <span>Chính xác! Bạn làm tốt lắm.</span>`; } 
-                        else { fb.className = "p-4 rounded-2xl text-sm font-semibold bg-rose-50 text-rose-700 dark:bg-rose-900/40 dark:text-rose-300 border border-rose-200 dark:border-rose-800 flex items-center gap-2"; fb.innerHTML = `<i class="fa-solid fa-circle-xmark text-lg"></i> <span>Rất tiếc! Đáp án đúng là phần được bôi xanh.</span>`; }
-                    } else { fb.classList.add('hidden'); }
+                        if (userAns.isCorrect) { fb.className = "p-3.5 rounded-2xl text-xs sm:text-sm font-semibold bg-emerald-50 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 flex items-center gap-2 mb-2"; fb.innerHTML = `<i class="fa-solid fa-circle-check text-base sm:text-lg"></i> <span>Chính xác! Bạn làm tốt lắm.</span>`; } 
+                        else { fb.className = "p-3.5 rounded-2xl text-xs sm:text-sm font-semibold bg-rose-50 text-rose-700 dark:bg-rose-900/40 dark:text-rose-300 border border-rose-200 dark:border-rose-800 flex items-center gap-2 mb-2"; fb.innerHTML = `<i class="fa-solid fa-circle-xmark text-base sm:text-lg"></i> <span>Rất tiếc! Đáp án đúng là phần được bôi xanh.</span>`; }
+                    } else { 
+                        fb.classList.add('hidden'); 
+                        expBtn.classList.add('hidden');
+                    }
                 }
-                document.getElementById('test-explanation').classList.add('hidden'); this.renderTestGrid();
+                document.getElementById('test-explanation').classList.add('hidden'); 
+                this.renderTestGrid();
+
+                if (scrollToTop) {
+                    const scrollArea = document.getElementById('test-scroll-area');
+                    if (scrollArea) scrollArea.scrollTo({ top: 0, behavior: 'smooth' });
+                }
             }
 
             renderTestGrid() {
@@ -1351,7 +1391,7 @@
                         if (this.testMode === 'exam' && !this.isReviewMode) { bgClass = "bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-bold border-indigo-300"; } 
                         else { if (userAns.isCorrect) { bgClass = "bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 font-bold border-emerald-300"; } else { bgClass = "bg-rose-100 dark:bg-rose-900/50 text-rose-700 dark:text-rose-300 font-bold border-rose-300"; } }
                     }
-                    return `<button onclick="app.jumpToTestQuestion(${idx})" class="w-full aspect-square rounded-xl flex items-center justify-center text-xs sm:text-sm transition-all duration-200 ${bgClass}">${String(idx + 1).padStart(2, '0')}</button>`;
+                    return `<button onclick="app.jumpToTestQuestion(${idx})" class="w-full aspect-square rounded-xl flex items-center justify-center text-[11px] sm:text-sm transition-all duration-200 ${bgClass}">${String(idx + 1).padStart(2, '0')}</button>`;
                 }).join('');
             }
 
@@ -1359,6 +1399,7 @@
                 const ex = this.currentDialogue.grammar.exercises[this.testCurrentIndex];
                 const expBox = document.getElementById('test-explanation'); expBox.classList.remove('hidden');
                 expBox.innerHTML = `<i class="fa-solid fa-lightbulb text-amber-500 mr-2"></i> <strong>Giải thích:</strong> ${ex.exp}`;
+                setTimeout(() => expBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
             }
 
             checkTestAnswer(selected) {
@@ -1366,11 +1407,20 @@
                 const ex = this.currentDialogue.grammar.exercises[this.testCurrentIndex]; const isCorrect = selected === ex.answer;
                 this.testUserAnswers[this.testCurrentIndex] = { selected, isCorrect };
                 if (this.testMode === 'practice') { if (isCorrect) this.playTone('correct'); else this.playTone('wrong'); }
-                this.renderTestQuestion();
+                this.renderTestQuestion(false);
+
+                if (this.testMode === 'practice') {
+                    setTimeout(() => {
+                        const fb = document.getElementById('test-feedback');
+                        if (fb && !fb.classList.contains('hidden')) {
+                            fb.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        }
+                    }, 50);
+                }
             }
 
-            prevTestQuestion() { if (this.testCurrentIndex > 0) { this.testCurrentIndex--; this.renderTestQuestion(); } }
-            nextTestQuestion() { if (this.testCurrentIndex < this.currentDialogue.grammar.exercises.length - 1) { this.testCurrentIndex++; this.renderTestQuestion(); } }
+            prevTestQuestion() { if (this.testCurrentIndex > 0) { this.testCurrentIndex--; this.renderTestQuestion(true); } }
+            nextTestQuestion() { if (this.testCurrentIndex < this.currentDialogue.grammar.exercises.length - 1) { this.testCurrentIndex++; this.renderTestQuestion(true); } }
 
             submitTest() {
                 const total = this.currentDialogue.grammar.exercises.length; const answered = Object.keys(this.testUserAnswers).length;
@@ -1398,7 +1448,7 @@
             startReviewMode() {
                 this.isReviewMode = true; document.getElementById('completion-modal').classList.add('hidden'); document.getElementById('btn-submit-test').classList.add('hidden'); 
                 this.showToast('Chế độ xem lại. Bạn có thể xem giải thích chi tiết!', 'info');
-                this.testCurrentIndex = 0; this.renderTestQuestion();
+                this.testCurrentIndex = 0; this.renderTestQuestion(true);
             }
 
             restartDialogue() {
