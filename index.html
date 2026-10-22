@@ -603,7 +603,1194 @@
             </div>
         </div>
 
-        <!-- ================= MODALS ================= -->
-        <!-- MODAL MÈO ĐI VẮNG -->
+      <!-- ================= MODALS ================= -->
+        <!-- MODAL MÈO ĐI VẮNG (CÂU THOẠI MẶN MÒI + HỘP PATE MÈO SVG) -->
         <div id="cat-error-modal" class="hidden fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
-            <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p
+            <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 max-w-sm w-full text-center shadow-2xl border border-slate-200 dark:border-slate-700 transform transition-all">
+                <div class="flex items-center justify-center gap-2 mb-4">
+                    <span class="text-5xl animate-bounce">🐈💨</span>
+                    <svg class="w-16 h-16 drop-shadow-md" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Thân lon pate dẹt -->
+                        <path d="M8 26V44C8 50.6274 18.7452 56 32 56C45.2548 56 56 50.6274 56 44V26H8Z" fill="#FB7185" stroke="#334155" stroke-width="3"/>
+                        <!-- Nhãn hộp màu kem -->
+                        <path d="M8 32C8 38.6274 18.7452 44 32 44C45.2548 44 56 38.6274 56 32V40C56 46.6274 45.2548 52 32 52C18.7452 52 8 46.6274 8 40V32Z" fill="#FFF1F2"/>
+                        <!-- Nắp lon kim loại -->
+                        <ellipse cx="32" cy="26" rx="24" ry="11" fill="#E2E8F0" stroke="#334155" stroke-width="3"/>
+                        <ellipse cx="32" cy="26" rx="19" ry="8" fill="#CBD5E1" stroke="#64748B" stroke-width="1.5" stroke-dasharray="3 2"/>
+                        <!-- Khoen giật nắp pate -->
+                        <circle cx="20" cy="25" r="4" stroke="#334155" stroke-width="2.5" fill="none"/>
+                        <circle cx="25" cy="25" r="1.5" fill="#334155"/>
+                        <!-- Hình con cá trên nhãn -->
+                        <path d="M35 46C38 43 42 43 44 46L47 43V49L44 46C42 49 38 49 35 46Z" fill="#F43F5E" stroke="#334155" stroke-width="1.5" stroke-linejoin="round"/>
+                        <circle cx="37.5" cy="45.5" r="1" fill="#334155"/>
+                        <!-- Dấu chân mèo trên nhãn -->
+                        <circle cx="22" cy="46" r="2.2" fill="#F43F5E"/>
+                        <circle cx="19.5" cy="43" r="1.1" fill="#F43F5E"/>
+                        <circle cx="22" cy="42" r="1.1" fill="#F43F5E"/>
+                        <circle cx="24.5" cy="43" r="1.1" fill="#F43F5E"/>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-extrabold mb-2 text-rose-600 dark:text-rose-400">Ối! Mèo vắng nhà...</h3>
+                <p class="text-sm text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
+                    Ối, con mèo nhà bạn đã đi bắt chuột hoặc theo trai rồi, cầm lấy hộp pate này rồi kêu nó chấm điểm lại nhé!
+                </p>
+                <button onclick="document.getElementById('cat-error-modal').classList.add('hidden'); app.submitToAI();" class="btn-tactile w-full py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 border-orange-700 text-white font-extrabold text-sm shadow-lg flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-fish"></i> Đưa Pate & Kêu Mèo Chấm Lại
+                </button>
+                <button onclick="document.getElementById('cat-error-modal').classList.add('hidden')" class="w-full mt-3 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 font-bold text-xs hover:bg-slate-200 transition">
+                    Để lúc khác
+                </button>
+            </div>
+        </div>
+        <!-- KẾT THÚC MODAL MÈO ĐI VẮNG -->
+
+        <!-- MODAL CHỌN CHẾ ĐỘ LÀM BÀI -->
+        <div id="mode-selection-modal" class="hidden fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 max-w-xl w-full text-center shadow-2xl border border-slate-200 dark:border-slate-700 transform transition-all">
+                <span class="px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 text-[11px] font-extrabold uppercase tracking-wider">Thiết lập phòng thi</span>
+                <h3 class="text-2xl font-extrabold mt-2 mb-1 text-slate-800 dark:text-slate-100">Chọn chế độ làm bài</h3>
+                <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mb-6">Hãy chọn phương pháp phù hợp với mục tiêu rèn luyện của bạn.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                    <button onclick="app.confirmModeAndStart('practice')" class="flex flex-col items-center p-5 rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-indigo-500 hover:bg-indigo-50/60 dark:hover:bg-indigo-900/20 transition-all group text-center">
+                        <div class="w-14 h-14 bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 rounded-2xl flex items-center justify-center text-2xl mb-3 group-hover:scale-110 transition-transform shadow-sm"><i class="fa-solid fa-book-open-reader"></i></div>
+                        <h4 class="font-extrabold text-base sm:text-lg text-slate-800 dark:text-slate-100 mb-1">Chế độ Ôn tập</h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Báo đúng/sai ngay lập tức và mở khóa giải thích chi tiết sau từng câu.</p>
+                    </button>
+                    <button onclick="app.confirmModeAndStart('exam')" class="flex flex-col items-center p-5 rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-rose-500 hover:bg-rose-50/60 dark:hover:bg-rose-900/20 transition-all group text-center">
+                        <div class="w-14 h-14 bg-rose-100 dark:bg-rose-900/50 text-rose-600 dark:text-rose-400 rounded-2xl flex items-center justify-center text-2xl mb-3 group-hover:scale-110 transition-transform shadow-sm"><i class="fa-solid fa-file-signature"></i></div>
+                        <h4 class="font-extrabold text-base sm:text-lg text-slate-800 dark:text-slate-100 mb-1">Chế độ Thi thử</h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Ẩn đáp án trong lúc làm. Cho phép đổi phương án tự do, chấm điểm khi nộp bài.</p>
+                    </button>
+                </div>
+                <button onclick="document.getElementById('mode-selection-modal').classList.add('hidden')" class="w-full py-3 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 font-bold text-sm hover:bg-slate-200 transition">Đóng lại</button>
+            </div>
+        </div>
+
+        <!-- MODAL HOÀN THÀNH BÀI HỌC / BÀI THI -->
+        <div id="completion-modal" class="hidden fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 max-w-md w-full text-center shadow-2xl border border-slate-200 dark:border-slate-700 transform transition-all">
+                <div class="w-16 h-16 bg-gradient-to-br from-emerald-400 to-teal-600 text-white rounded-2xl flex items-center justify-center mx-auto text-3xl mb-4 shadow-lg shadow-emerald-500/20"><i class="fa-solid fa-trophy"></i></div>
+                <h3 class="text-2xl font-extrabold mb-1">Chúc mừng bạn!</h3>
+                <p id="completion-msg" class="text-slate-500 dark:text-slate-400 text-sm mb-4">Bạn đã hoàn thành nội dung này.</p>
+                <div id="completion-score" class="text-2xl font-black font-mono text-indigo-600 dark:text-indigo-400 mb-6 hidden bg-indigo-50 dark:bg-indigo-900/30 py-3.5 rounded-2xl border border-indigo-100 dark:border-indigo-800"></div>
+                <div class="flex flex-col gap-2.5">
+                    <button id="btn-review-test" onclick="app.startReviewMode()" class="btn-tactile w-full py-3 rounded-xl bg-amber-100 hover:bg-amber-200 border-amber-300 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300 dark:border-amber-700 font-extrabold text-sm hidden"><i class="fa-solid fa-magnifying-glass mr-1"></i> Xem lại bài làm & Giải thích</button>
+                    <div class="flex space-x-2.5">
+                        <button onclick="app.goDialoguesList()" class="btn-tactile flex-1 py-3 rounded-xl bg-slate-100 dark:bg-slate-700 border-slate-300 dark:border-slate-600 text-slate-800 dark:text-slate-200 font-extrabold text-sm hover:bg-slate-200">Danh mục</button>
+                        <button onclick="app.restartDialogue()" class="btn-tactile flex-1 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 border-indigo-800 text-white font-extrabold text-sm shadow-md">Làm lại ngay</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL ĐẾM NGƯỢC (TIMER) -->
+        <div id="countdown-modal" class="hidden fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 max-w-sm w-full text-center shadow-2xl border border-slate-200 dark:border-slate-700">
+                <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 rounded-2xl flex items-center justify-center mx-auto text-xl mb-3"><i class="fa-solid fa-stopwatch"></i></div>
+                <h3 class="text-lg font-extrabold mb-1">Bấm Giờ Tốc Độ (Timer)</h3>
+                <p class="text-xs text-slate-500 mb-5">Chọn thời gian để bứt phá giới hạn phản xạ!</p>
+                <div class="grid grid-cols-3 gap-2.5 mb-4">
+                    <button onclick="app.startCountdown(1)" class="btn-tactile py-2.5 rounded-xl bg-slate-100 dark:bg-slate-700 border-slate-300 dark:border-slate-600 hover:bg-indigo-600 hover:text-white hover:border-indigo-800 text-xs font-bold transition">1 Phút</button>
+                    <button onclick="app.startCountdown(3)" class="btn-tactile py-2.5 rounded-xl bg-slate-100 dark:bg-slate-700 border-slate-300 dark:border-slate-600 hover:bg-indigo-600 hover:text-white hover:border-indigo-800 text-xs font-bold transition">3 Phút</button>
+                    <button onclick="app.startCountdown(5)" class="btn-tactile py-2.5 rounded-xl bg-slate-100 dark:bg-slate-700 border-slate-300 dark:border-slate-600 hover:bg-indigo-600 hover:text-white hover:border-indigo-800 text-xs font-bold transition">5 Phút</button>
+                </div>
+                <div class="mb-5 flex items-center justify-center gap-2">
+                    <input type="number" id="custom-minutes" placeholder="Số phút" min="1" max="120" class="w-28 px-3 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-xs text-center font-bold font-mono outline-none focus:border-indigo-500">
+                    <button onclick="app.startCustomCountdown()" class="btn-tactile px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 border-indigo-800 text-white text-xs font-extrabold shadow-md">Bắt đầu</button>
+                </div>
+                <button onclick="document.getElementById('countdown-modal').classList.add('hidden')" class="w-full py-2.5 rounded-xl bg-slate-100 dark:bg-slate-700 text-xs font-bold hover:bg-slate-200 transition">Đóng</button>
+            </div>
+        </div>
+
+        <!-- MODAL POMODORO -->
+        <div id="pomodoro-modal" class="hidden fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 max-w-sm w-full text-center shadow-2xl border border-slate-200 dark:border-slate-700">
+                <div class="w-12 h-12 bg-amber-100 dark:bg-amber-900/40 text-amber-500 rounded-2xl flex items-center justify-center mx-auto text-xl mb-3"><i class="fa-solid fa-fire-flame-curved"></i></div>
+                <h3 class="text-lg font-extrabold mb-1">Đồng Hồ Pomodoro</h3>
+                <p id="pomo-status-text" class="text-xs text-indigo-600 dark:text-indigo-400 font-bold mb-4">Sẵn sàng tập trung học tập (25p học / 5p nghỉ)</p>
+                <div id="pomo-timer-display" class="text-4xl sm:text-5xl font-black font-mono text-slate-800 dark:text-slate-100 mb-6 tracking-wider bg-slate-50 dark:bg-slate-900 py-4 rounded-2xl border border-slate-200 dark:border-slate-700">25:00</div>
+                <div class="flex space-x-2.5 mb-3">
+                    <button id="pomo-toggle-btn" onclick="app.togglePomodoro()" class="btn-tactile flex-1 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 border-indigo-800 text-white font-extrabold text-xs shadow-md">Bắt đầu</button>
+                    <button onclick="app.resetPomodoro()" class="btn-tactile flex-1 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-700 border-slate-300 dark:border-slate-600 text-xs font-bold hover:bg-slate-200">Đặt lại</button>
+                </div>
+                <button onclick="document.getElementById('pomodoro-modal').classList.add('hidden')" class="w-full py-2.5 rounded-xl bg-slate-100 dark:bg-slate-700 text-xs font-bold hover:bg-slate-200 transition">Đóng</button>
+            </div>
+        </div>
+
+        <!-- MODAL THÔNG BÁO GIỜ / KẾT QUẢ AI MÈO CHẤM -->
+        <div id="timer-alert-modal" class="hidden fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 max-w-sm w-full text-center shadow-2xl border border-slate-200 dark:border-slate-700 transform transition-all">
+                <div id="timer-alert-icon-container" class="w-20 h-20 bg-rose-100 dark:bg-rose-900/40 text-rose-600 rounded-full flex items-center justify-center mx-auto text-3xl mb-4 shadow-inner">
+                    <i id="timer-alert-icon" class="fa-solid fa-stopwatch"></i>
+                </div>
+                <h3 id="timer-alert-title" class="text-xl font-extrabold mb-2 text-slate-800 dark:text-slate-100">HẾT GIỜ ĐẾM NGƯỢC</h3>
+                <p id="timer-alert-desc" class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mb-6 whitespace-pre-line text-left bg-slate-50 dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 leading-relaxed max-h-64 overflow-y-auto custom-scrollbar">Nội dung</p>
+                <button onclick="app.closeTimerAlertModal()" class="btn-tactile w-full py-3 rounded-2xl bg-indigo-600 hover:bg-indigo-700 border-indigo-800 text-white font-extrabold text-sm shadow-md">Đã hiểu</button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- NẠP CÁC FILE DỮ LIỆU -->
+    <script src="subject-chinese.js"></script>
+    <script src="subject-american-culture.js"></script>
+    
+    <script>
+        const appData = {
+            subjects: [
+                window.chineseSubject,
+                window.americanCultureSubject
+            ].filter(Boolean)
+        };
+    </script>
+
+    <!-- Application JavaScript Logic -->
+    <script>
+        class BoxcumentApp {
+            constructor() {
+                this.currentSubject = null;
+                this.currentLesson = null;
+                this.currentDialogue = null;
+                this.pendingDialogueId = null;
+                
+                this.currentStep = 1;
+                this.cardIndex = 0;
+                this.isFlipped = false;
+                this.cardFilter = 'all';
+                
+                this.progress = JSON.parse(localStorage.getItem('boxcument_app_progress')) || {};
+                
+                this.currentQuizIndex = 0;
+                this.currentHWIndex = 0;
+                this.currentGPIndex = 0;
+                this.currentSBIndex = 0;
+                this.currentScanIndex = 0;
+                
+                this.selectedBlocks = [];
+                this.sourceBlocks = [];
+                
+                this.testCurrentIndex = 0;
+                this.testUserAnswers = {};
+                this.testMode = 'practice';
+                this.isReviewMode = false;
+
+                this.soundEnabled = localStorage.getItem('boxcument_sound') !== 'false';
+                this.audioCtx = null;
+
+                this.isDrawing = false;
+                this.canvas = null;
+                this.ctx = null;
+
+                this.countdownInterval = null;
+                this.countdownRemaining = 0;
+                this.pomoInterval = null;
+                this.pomoSeconds = 25 * 60;
+                this.pomoIsRunning = false;
+                this.pomoIsBreak = false;
+
+                this.themes = ['light', 'dark', 'green'];
+                this.currentTheme = localStorage.getItem('theme') || 'light';
+
+                this.stepMeta = [
+                    { id: 1, icon: 'fa-clone', label: '1. Flashcard' },
+                    { id: 2, icon: 'fa-bolt', label: '2. Quiz' },
+                    { id: 3, icon: 'fa-pen-fancy', label: '3. Tập viết' },
+                    { id: 4, icon: 'fa-book-open', label: '4. Ngữ pháp' },
+                    { id: 5, icon: 'fa-pen-nib', label: '5. Bài tập' },
+                    { id: 6, icon: 'fa-puzzle-piece', label: '6. Ghép câu' },
+                    { id: 7, icon: 'fa-camera', label: '7. Thực chiến' }
+                ];
+
+                this.initSoundIcon();
+                this.applyTheme(this.currentTheme);
+                this.goLobby();
+
+                const stepBar = document.getElementById('step-progress-bar');
+                if (stepBar) {
+                    stepBar.addEventListener('wheel', (evt) => {
+                        evt.preventDefault();
+                        stepBar.scrollLeft += evt.deltaY;
+                    });
+                }
+            }
+
+            initSoundIcon() {
+                const icon = document.getElementById('sound-icon');
+                if (!icon) return;
+                if (this.soundEnabled) icon.className = 'fa-solid fa-volume-high text-indigo-600 dark:text-indigo-400 text-xs sm:text-sm';
+                else icon.className = 'fa-solid fa-volume-xmark text-slate-400 text-xs sm:text-sm';
+            }
+
+            toggleSound() {
+                this.soundEnabled = !this.soundEnabled;
+                localStorage.setItem('boxcument_sound', this.soundEnabled);
+                this.initSoundIcon();
+                if (this.soundEnabled) { this.showToast('Đã bật âm thanh phản hồi', 'info'); this.playTone('correct'); } 
+                else { this.showToast('Đã tắt âm thanh', 'info'); }
+            }
+
+            playTone(type) {
+                if (!this.soundEnabled) return;
+                try {
+                    const AudioContext = window.AudioContext || window.webkitAudioContext;
+                    if (!this.audioCtx) this.audioCtx = new AudioContext();
+                    if (this.audioCtx.state === 'suspended') this.audioCtx.resume();
+                    const osc = this.audioCtx.createOscillator(); const gain = this.audioCtx.createGain();
+                    osc.connect(gain); gain.connect(this.audioCtx.destination);
+                    if (type === 'correct') {
+                        osc.type = 'sine'; osc.frequency.setValueAtTime(523.25, this.audioCtx.currentTime); 
+                        osc.frequency.exponentialRampToValueAtTime(880, this.audioCtx.currentTime + 0.1); 
+                        gain.gain.setValueAtTime(0.3, this.audioCtx.currentTime); gain.gain.exponentialRampToValueAtTime(0.01, this.audioCtx.currentTime + 0.3);
+                        osc.start(); osc.stop(this.audioCtx.currentTime + 0.3);
+                    } else if (type === 'wrong') {
+                        osc.type = 'sawtooth'; osc.frequency.setValueAtTime(311.13, this.audioCtx.currentTime); 
+                        osc.frequency.exponentialRampToValueAtTime(200, this.audioCtx.currentTime + 0.2); 
+                        gain.gain.setValueAtTime(0.1, this.audioCtx.currentTime); gain.gain.exponentialRampToValueAtTime(0.01, this.audioCtx.currentTime + 0.3);
+                        osc.start(); osc.stop(this.audioCtx.currentTime + 0.3);
+                    }
+                } catch(e) {}
+            }
+
+            saveProgress() {
+                localStorage.setItem('boxcument_app_progress', JSON.stringify(this.progress));
+                this.updateLobbyStats();
+            }
+
+            getDialogueProgress(dialogueId) {
+                if (!this.progress[dialogueId]) this.progress[dialogueId] = { learnedCards: [], completedSteps: [] };
+                return this.progress[dialogueId];
+            }
+
+            updateLobbyStats() {
+                let totalWords = 0;
+                let totalSteps = 0;
+                Object.values(this.progress).forEach(dp => {
+                    if (dp.learnedCards) totalWords += dp.learnedCards.length;
+                    if (dp.completedSteps) totalSteps += dp.completedSteps.length;
+                });
+                const wordEl = document.getElementById('stat-learned-words');
+                const stepEl = document.getElementById('stat-completed-steps');
+                if (wordEl) wordEl.innerText = totalWords;
+                if (stepEl) stepEl.innerText = totalSteps;
+            }
+
+            showToast(message, type = 'info') {
+                const container = document.getElementById('toast-container'); const toast = document.createElement('div');
+                const bgColors = { info: 'bg-slate-900 dark:bg-indigo-600 text-white', success: 'bg-emerald-600 text-white', warning: 'bg-amber-500 text-white', error: 'bg-rose-600 text-white' };
+                toast.className = `pointer-events-auto p-3.5 sm:p-4 rounded-2xl shadow-xl font-bold text-xs sm:text-sm flex items-center justify-between transition-all duration-300 transform translate-y-[-10px] opacity-0 border border-white/10 ${bgColors[type] || bgColors.info}`;
+                toast.innerHTML = `<span>${message}</span><button onclick="this.parentElement.remove()" class="ml-3 text-white/80 hover:text-white"><i class="fa-solid fa-xmark"></i></button>`;
+                container.appendChild(toast);
+                setTimeout(() => toast.classList.remove('translate-y-[-10px]', 'opacity-0'), 10);
+                setTimeout(() => { toast.classList.add('opacity-0'); setTimeout(() => toast.remove(), 300); }, 3500);
+            }
+
+            applyTheme(theme) {
+                this.currentTheme = theme;
+                localStorage.setItem('theme', theme);
+                const root = document.documentElement;
+                root.classList.remove('dark', 'theme-green');
+
+                const icon = document.getElementById('theme-icon');
+                const label = document.getElementById('theme-label');
+
+                if (theme === 'dark') {
+                    root.classList.add('dark');
+                    if (icon) icon.className = 'fa-solid fa-moon text-indigo-400';
+                    if (label) label.innerText = 'Tối';
+                } else if (theme === 'green') {
+                    root.classList.add('theme-green');
+                    if (icon) icon.className = 'fa-solid fa-leaf text-emerald-600';
+                    if (label) label.innerText = 'Xanh';
+                } else {
+                    if (icon) icon.className = 'fa-solid fa-sun text-amber-500';
+                    if (label) label.innerText = 'Sáng';
+                }
+            }
+
+            toggleTheme() {
+                const nextIndex = (this.themes.indexOf(this.currentTheme) + 1) % this.themes.length;
+                const nextTheme = this.themes[nextIndex];
+                this.applyTheme(nextTheme);
+                const names = { light: 'Giao diện Sáng ☀️', dark: 'Giao diện Tối 🌙', green: 'Giao diện Xanh lá 🌿' };
+                this.showToast(names[nextTheme], 'info');
+            }
+
+            hideAllViews() {
+                ['view-lobby', 'view-lessons-list', 'view-dialogues-list', 'view-lesson-flow', 'view-test-mode', 'completion-modal', 'countdown-modal', 'pomodoro-modal', 'timer-alert-modal', 'cat-error-modal', 'mode-selection-modal'].forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) el.classList.add('hidden');
+                });
+            }
+
+            goLobby() {
+                this.hideAllViews();
+                document.getElementById('view-lobby').classList.remove('hidden');
+                const lobbyBtn = document.getElementById('lobby-btn');
+                lobbyBtn.classList.add('hidden');
+                lobbyBtn.classList.remove('flex');
+                this.updateLobbyStats();
+
+                document.getElementById('subjects-grid').innerHTML = appData.subjects.map(s => `
+                    <div class="group bg-white dark:bg-slate-800/90 rounded-3xl p-6 border border-slate-200/90 dark:border-slate-700/80 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
+                        <div class="absolute -right-6 -top-6 w-28 h-28 bg-indigo-500/5 rounded-full group-hover:scale-150 transition-transform duration-500 pointer-events-none"></div>
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-13 h-13 p-3.5 rounded-2xl bg-indigo-50 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl font-bold shadow-sm border border-indigo-100 dark:border-indigo-800/60">
+                                    <i class="fa-solid ${s.icon}"></i>
+                                </div>
+                                <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-700/70 text-[11px] font-bold text-slate-500 dark:text-slate-300 font-mono">
+                                    ${s.lessons ? s.lessons.length : 0} học phần
+                                </span>
+                            </div>
+                            <h3 class="text-xl font-extrabold mb-1.5 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">${s.name}</h3>
+                            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mb-6 leading-relaxed">${s.description}</p>
+                        </div>
+                        <button onclick="app.selectSubject('${s.id}')" class="btn-tactile w-full py-3 rounded-2xl bg-indigo-600 hover:bg-indigo-700 border-indigo-800 text-white font-extrabold text-xs shadow-md flex items-center justify-center gap-2">
+                            <span>Khám phá học phần</span> <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                `).join('');
+            }
+
+            selectSubject(subjectId) { this.currentSubject = appData.subjects.find(s => s.id === subjectId); this.goLessonsList(); }
+
+            goLessonsList() {
+                this.hideAllViews();
+                document.getElementById('view-lessons-list').classList.remove('hidden');
+                const lobbyBtn = document.getElementById('lobby-btn');
+                lobbyBtn.classList.remove('hidden');
+                lobbyBtn.classList.add('flex');
+                document.getElementById('subject-title').innerText = this.currentSubject.name;
+                document.getElementById('subject-desc').innerText = this.currentSubject.description;
+                document.getElementById('lessons-grid').innerHTML = this.currentSubject.lessons.map((lesson, idx) => `
+                    <div class="bg-white dark:bg-slate-800/90 rounded-3xl p-6 border border-slate-200/90 dark:border-slate-700/80 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="px-3 py-1 rounded-xl bg-indigo-50 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 text-xs font-extrabold border border-indigo-100 dark:border-indigo-800/60">Phần ${idx + 1}</span>
+                                <span class="text-xs font-bold font-mono text-slate-400"><i class="fa-solid fa-layer-group mr-1"></i> ${lesson.dialogues.length} bài</span>
+                            </div>
+                            <h3 class="text-lg sm:text-xl font-extrabold mb-1.5">${lesson.title}</h3>
+                            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mb-5 leading-relaxed">${lesson.description}</p>
+                        </div>
+                        <button onclick="app.selectLesson('${lesson.id}')" class="btn-tactile w-full py-3 rounded-2xl bg-indigo-600 hover:bg-indigo-700 border-indigo-800 text-white font-extrabold text-xs shadow-md flex items-center justify-center gap-2">
+                            <span>Mở danh sách bài</span> <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                `).join('');
+            }
+
+            selectLesson(lessonId) { this.currentLesson = this.currentSubject.lessons.find(l => l.id === lessonId); this.goDialoguesList(); }
+
+            goDialoguesList() {
+                this.hideAllViews();
+                document.getElementById('view-dialogues-list').classList.remove('hidden');
+                const lobbyBtn = document.getElementById('lobby-btn');
+                lobbyBtn.classList.remove('hidden');
+                lobbyBtn.classList.add('flex');
+                document.getElementById('dialogue-lesson-title').innerText = this.currentLesson.title;
+                document.getElementById('dialogues-grid').innerHTML = this.currentLesson.dialogues.map((d, idx) => {
+                    const dp = this.getDialogueProgress(d.id);
+                    const percent = Math.min(100, Math.round((dp.completedSteps.length / 6) * 100));
+                    const vocabCount = d.vocabularies ? d.vocabularies.length : 0;
+                    const grammarCount = d.grammar && d.grammar.points ? d.grammar.points.length : 0;
+                    const exerciseCount = d.grammar && d.grammar.exercises ? d.grammar.exercises.length : 0;
+                    
+                    let badges = [];
+                    if (vocabCount > 0) badges.push(`<span class="px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-700/70 text-slate-600 dark:text-slate-300 text-[11px] font-semibold"><i class="fa-solid fa-book mr-1 text-indigo-500"></i>${vocabCount} từ</span>`);
+                    if (grammarCount > 0) badges.push(`<span class="px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-700/70 text-slate-600 dark:text-slate-300 text-[11px] font-semibold"><i class="fa-solid fa-graduation-cap mr-1 text-emerald-500"></i>${grammarCount} lý thuyết</span>`);
+                    if (exerciseCount > 0) badges.push(`<span class="px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-700/70 text-slate-600 dark:text-slate-300 text-[11px] font-semibold"><i class="fa-solid fa-pen-nib mr-1 text-amber-500"></i>${exerciseCount} câu</span>`);
+
+                    return `
+                        <div class="bg-white dark:bg-slate-800/90 rounded-2xl p-4 sm:p-5 border border-slate-200/90 dark:border-slate-700/80 shadow-sm hover:shadow-md transition flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                            <div class="flex items-start sm:items-center space-x-3.5 min-w-0">
+                                <div class="w-11 h-11 shrink-0 rounded-2xl bg-indigo-50 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 font-black font-mono flex items-center justify-center text-sm border border-indigo-100 dark:border-indigo-800/60">${String(idx + 1).padStart(2, '0')}</div>
+                                <div class="min-w-0 flex-1">
+                                    <h4 class="font-extrabold text-sm sm:text-base truncate">${d.title}</h4>
+                                    <div class="flex flex-wrap items-center gap-1.5 mt-1.5">
+                                        ${badges.join('')}
+                                        <span class="px-2 py-0.5 rounded-md bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 text-[11px] font-bold font-mono">Tiến độ: ${percent}%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2 shrink-0">
+                                ${vocabCount > 0 ? `
+                                <button onclick="app.startDialogue('${d.id}', 7)" class="btn-tactile px-3.5 py-2.5 rounded-xl bg-amber-100 hover:bg-amber-200 border-amber-300 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300 dark:border-amber-700 text-xs font-extrabold transition" title="Đi thẳng tới Sát hạch giấy mực">
+                                    <i class="fa-solid fa-camera mr-1"></i> Sát hạch
+                                </button>` : ''}
+                                <button onclick="app.startDialogue('${d.id}', 1)" class="btn-tactile px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 border-indigo-800 text-white text-xs font-extrabold transition shadow-md whitespace-nowrap">
+                                    Vào học <i class="fa-solid fa-play ml-1"></i>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            startDialogue(dialogueId, startStep = 1) {
+                this.currentDialogue = this.currentLesson.dialogues.find(d => d.id === dialogueId);
+                if (!this.currentDialogue) return;
+                const hasVocab = this.currentDialogue.vocabularies && this.currentDialogue.vocabularies.length > 0;
+                const hasGrammarEx = this.currentDialogue.grammar && this.currentDialogue.grammar.exercises && this.currentDialogue.grammar.exercises.length > 0;
+
+                if (!hasVocab && !hasGrammarEx) { this.showToast('Nội dung này đang được cập nhật!', 'warning'); return; }
+                if (!hasVocab && hasGrammarEx) { 
+                    this.pendingDialogueId = dialogueId; 
+                    document.getElementById('mode-selection-modal').classList.remove('hidden'); 
+                } else { 
+                    this.testMode = 'practice'; 
+                    this.isReviewMode = false; 
+                    this.initLessonFlow(); 
+                    
+                    if(startStep !== 1) {
+                        this.switchStep(startStep);
+                    }
+                }
+            }
+
+            confirmModeAndStart(mode) {
+                this.testMode = mode; this.isReviewMode = false; document.getElementById('mode-selection-modal').classList.add('hidden');
+                this.initTestModeFlow();
+            }
+
+            initLessonFlow() {
+                this.hideAllViews();
+                document.getElementById('view-lesson-flow').classList.remove('hidden');
+                const lobbyBtn = document.getElementById('lobby-btn');
+                lobbyBtn.classList.remove('hidden');
+                lobbyBtn.classList.add('flex');
+                this.cardIndex = 0; this.isFlipped = false; this.cardFilter = 'all'; this.currentQuizIndex = 0; this.currentHWIndex = 0; this.currentGPIndex = 0; this.currentSBIndex = 0; this.currentScanIndex = 0;
+                document.getElementById('flow-dialogue-title').innerText = "Bài khóa"; document.getElementById('flow-lesson-title').innerText = this.currentDialogue.title;
+                this.switchStep(1); this.renderFlashcard(); this.initQuiz(); this.initCanvas(); this.renderGrammar(); this.renderGrammarPractice(); this.initSentenceBuild();
+            }
+
+            switchStep(step) {
+                this.currentStep = step; 
+                if (step === 3) this.renderHandwritingVocab();
+                if (step === 7) this.initScanStep();
+
+                for (let i = 1; i <= 7; i++) {
+                    const content = document.getElementById(`step-content-${i}`);
+                    if (content) {
+                        if (i === this.currentStep) content.classList.remove('hidden');
+                        else content.classList.add('hidden');
+                    }
+                }
+                this.updateStepUIOnly();
+            }
+
+            markStepComplete(stepNumber) {
+                const dp = this.getDialogueProgress(this.currentDialogue.id);
+                if (!dp.completedSteps.includes(stepNumber)) { dp.completedSteps.push(stepNumber); this.saveProgress(); }
+                this.updateStepUIOnly();
+            }
+
+            updateStepUIOnly() {
+                if (!this.currentDialogue) return;
+                const dp = this.getDialogueProgress(this.currentDialogue.id);
+
+                this.stepMeta.forEach(meta => {
+                    const dot = document.getElementById(`step-dot-${meta.id}`);
+                    if (!dot) return;
+                    const isCurrent = meta.id === this.currentStep;
+                    const isDone = dp.completedSteps.includes(meta.id);
+
+                    if (isCurrent) {
+                        dot.className = `flex items-center space-x-1.5 px-3 py-1.5 rounded-xl ${meta.id === 7 ? 'bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-md' : 'bg-indigo-600 text-white shadow-sm'} text-[11px] font-extrabold cursor-pointer whitespace-nowrap transition-all`;
+                    } else if (isDone) {
+                        dot.className = "flex items-center space-x-1.5 px-2.5 py-1.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/60 text-[11px] font-bold cursor-pointer whitespace-nowrap transition-all";
+                    } else {
+                        dot.className = "flex items-center space-x-1.5 px-2.5 py-1.5 rounded-xl text-slate-500 hover:bg-white/60 dark:hover:bg-slate-800 text-[11px] font-semibold cursor-pointer whitespace-nowrap transition-all";
+                    }
+
+                    dot.innerHTML = `
+                        <i class="fa-solid ${isDone && !isCurrent ? 'fa-circle-check text-emerald-500' : meta.icon}"></i>
+                        <span>${meta.label}</span>
+                    `;
+                });
+            }
+
+            getFilteredCards() {
+                const dp = this.getDialogueProgress(this.currentDialogue.id);
+                if (this.cardFilter === 'learned') return this.currentDialogue.vocabularies.filter((_, idx) => dp.learnedCards.includes(idx));
+                if (this.cardFilter === 'unlearned') return this.currentDialogue.vocabularies.filter((_, idx) => !dp.learnedCards.includes(idx));
+                return this.currentDialogue.vocabularies;
+            }
+            getCurrentCard() { return this.getFilteredCards()[this.cardIndex] || this.currentDialogue.vocabularies[0]; }
+            filterCards(filter) {
+                this.cardFilter = filter; this.cardIndex = 0;
+                ['all', 'learned', 'unlearned'].forEach(f => {
+                    const btn = document.getElementById(`filter-${f}`);
+                    if (btn) btn.className = f === filter ? "px-3 py-1 rounded-xl text-xs font-bold bg-indigo-600 text-white shadow-sm" : "px-3 py-1 rounded-xl text-xs font-bold bg-slate-200/80 dark:bg-slate-700 text-slate-600 dark:text-slate-300";
+                });
+                this.renderFlashcard();
+            }
+            renderFlashcard() {
+                const cards = this.getFilteredCards(); if (!cards || cards.length === 0) return;
+                const card = cards[this.cardIndex]; const originalIndex = this.currentDialogue.vocabularies.findIndex(v => v.hanzi === card.hanzi);
+                const isLearned = this.getDialogueProgress(this.currentDialogue.id).learnedCards.includes(originalIndex);
+
+                document.getElementById('card-hanzi').innerText = card.hanzi; document.getElementById('card-pinyin').innerText = card.pinyin; document.getElementById('card-meaning').innerText = card.meaning; document.getElementById('card-ex-hanzi').innerText = card.example.hanzi; document.getElementById('card-ex-pinyin').innerText = card.example.pinyin; document.getElementById('card-ex-meaning').innerText = card.example.meaning;
+                document.getElementById('fc-current').innerText = this.cardIndex + 1; document.getElementById('fc-total').innerText = cards.length;
+
+                const badge = document.getElementById('card-status-badge');
+                if (isLearned) { badge.className = "absolute top-5 left-5 text-[11px] font-extrabold px-3 py-1 rounded-xl bg-emerald-100 dark:bg-emerald-950/70 text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5"; badge.innerHTML = `<i class="fa-solid fa-check"></i> Đã thuộc`; }
+                else { badge.className = "absolute top-5 left-5 text-[11px] font-extrabold px-3 py-1 rounded-xl bg-rose-100 dark:bg-rose-950/70 text-rose-600 dark:text-rose-400 flex items-center gap-1.5"; badge.innerHTML = `<i class="fa-solid fa-xmark"></i> Chưa thuộc`; }
+                if (this.isFlipped) this.flipCard(true);
+            }
+            flipCard(forceFront = false) { this.isFlipped = forceFront ? false : !this.isFlipped; document.getElementById('flashcard-inner').style.transform = this.isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'; }
+            markCard(status) {
+                const originalIndex = this.currentDialogue.vocabularies.findIndex(v => v.hanzi === this.getCurrentCard().hanzi); const dp = this.getDialogueProgress(this.currentDialogue.id);
+                if (status) { if (!dp.learnedCards.includes(originalIndex)) dp.learnedCards.push(originalIndex); } else { dp.learnedCards = dp.learnedCards.filter(idx => idx !== originalIndex); }
+                this.saveProgress();
+                if (dp.learnedCards.length === this.currentDialogue.vocabularies.length) { 
+                    this.markStepComplete(1); 
+                    this.showToast('Bạn đã thuộc toàn bộ từ vựng! Tự động sang Quiz!', 'success'); 
+                    setTimeout(() => this.switchStep(2), 1000); 
+                    return; 
+                }
+                this.nextCard();
+            }
+            nextCard() { const c = this.getFilteredCards(); if (c.length === 0) return; this.cardIndex = (this.cardIndex < c.length - 1) ? this.cardIndex + 1 : 0; this.renderFlashcard(); }
+            prevCard() { const c = this.getFilteredCards(); if (c.length === 0) return; this.cardIndex = (this.cardIndex > 0) ? this.cardIndex - 1 : c.length - 1; this.renderFlashcard(); }
+            speakText(text) { if ('speechSynthesis' in window) { window.speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text); u.lang='zh-CN'; u.rate=0.8; window.speechSynthesis.speak(u); } }
+
+            initQuiz() { this.currentQuizIndex = 0; this.renderQuizQuestion(); }
+            renderQuizQuestion() {
+                const vocabs = this.currentDialogue.vocabularies; if(!vocabs || vocabs.length === 0) return;
+                const currentVocab = vocabs[this.currentQuizIndex];
+                document.getElementById('quiz-counter').innerText = `Câu ${this.currentQuizIndex + 1}/${vocabs.length}`;
+                document.getElementById('quiz-question').innerText = `Đâu là từ mang nghĩa "${currentVocab.meaning}"?`;
+                let options = [currentVocab];
+                while (options.length < Math.min(3, vocabs.length)) { const randomV = vocabs[Math.floor(Math.random() * vocabs.length)]; if (!options.find(o => o.hanzi === randomV.hanzi)) options.push(randomV); }
+                options.sort(() => Math.random() - 0.5);
+                document.getElementById('quiz-options').innerHTML = options.map(opt => `
+                    <button onclick="app.checkQuizAnswer('${opt.hanzi}', '${currentVocab.hanzi}')" class="btn-tactile py-4 px-3 rounded-2xl bg-slate-50 dark:bg-slate-700/80 hover:bg-indigo-50 dark:hover:bg-indigo-950/50 border border-slate-200 dark:border-slate-600 flex flex-col items-center transition">
+                        <span class="font-chinese text-2xl sm:text-3xl font-black mb-1">${opt.hanzi}</span>
+                        <span class="text-xs text-indigo-600 dark:text-indigo-400 font-bold">${opt.pinyin}</span>
+                    </button>
+                `).join('');
+                document.getElementById('quiz-feedback').classList.add('hidden');
+                document.getElementById('quiz-next-btn').classList.add('hidden');
+            }
+            checkQuizAnswer(selected, correct) {
+                const fb = document.getElementById('quiz-feedback'); fb.classList.remove('hidden');
+                if (selected === correct) { 
+                    this.playTone('correct'); 
+                    fb.className = "mt-5 p-3.5 rounded-2xl text-xs font-bold bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800 flex items-center gap-2"; 
+                    fb.innerHTML = `<i class="fa-solid fa-circle-check text-base"></i> <span>Chính xác! Bạn chọn đúng rồi.</span>`; 
+                    document.getElementById('quiz-next-btn').classList.remove('hidden'); 
+                } else { 
+                    this.playTone('wrong'); 
+                    fb.className = "mt-5 p-3.5 rounded-2xl text-xs font-bold bg-rose-50 dark:bg-rose-950/50 text-rose-600 dark:text-rose-400 border border-rose-200 dark:border-rose-800 flex items-center gap-2"; 
+                    fb.innerHTML = `<i class="fa-solid fa-circle-xmark text-base"></i> <span>Chưa đúng! Hãy chọn lại nhé.</span>`; 
+                }
+                setTimeout(() => fb.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+            }
+            nextQuizQuestion() {
+                if (this.currentQuizIndex < this.currentDialogue.vocabularies.length - 1) { this.currentQuizIndex++; this.renderQuizQuestion(); } 
+                else { this.markStepComplete(2); this.showToast('Chúc mừng! Tự động chuyển sang Tập viết!', 'success'); setTimeout(() => this.switchStep(3), 800); }
+            }
+
+            initCanvas() {
+                this.canvas = document.getElementById('hw-canvas'); if (!this.canvas) return; this.ctx = this.canvas.getContext('2d');
+                this.canvas.onmousedown = (e) => this.startDrawing(e); this.canvas.onmousemove = (e) => this.draw(e); this.canvas.onmouseup = () => this.stopDrawing();
+                this.canvas.ontouchstart = (e) => { e.preventDefault(); this.startDrawing(e.touches[0]); }; this.canvas.ontouchmove = (e) => { e.preventDefault(); this.draw(e.touches[0]); }; this.canvas.ontouchend = (e) => { e.preventDefault(); this.stopDrawing(); };
+                this.renderHandwritingVocab();
+            }
+            renderHandwritingVocab() {
+                if (!this.currentDialogue || !this.currentDialogue.vocabularies || this.currentDialogue.vocabularies.length === 0) return;
+                const v = this.currentDialogue.vocabularies[this.currentHWIndex] || this.currentDialogue.vocabularies[0];
+                document.getElementById('hw-vocab-counter').innerText = `Từ ${this.currentHWIndex + 1}/${this.currentDialogue.vocabularies.length}`;
+                document.getElementById('hw-target-hanzi').innerText = v.hanzi; document.getElementById('hw-target-pinyin').innerText = `Pinyin: ${v.pinyin}`;
+                const wm = document.getElementById('hw-watermark'); wm.innerText = v.hanzi; wm.style.fontSize = v.hanzi.length === 1 ? '120px' : (v.hanzi.length === 2 ? '80px' : (v.hanzi.length === 3 ? '58px' : '42px'));
+                this.clearCanvas();
+            }
+            nextHandwritingVocab() { this.currentHWIndex = (this.currentHWIndex < this.currentDialogue.vocabularies.length - 1) ? this.currentHWIndex + 1 : 0; this.renderHandwritingVocab(); }
+            prevHandwritingVocab() { this.currentHWIndex = (this.currentHWIndex > 0) ? this.currentHWIndex - 1 : this.currentDialogue.vocabularies.length - 1; this.renderHandwritingVocab(); }
+            getCanvasPos(e) {
+                const rect = this.canvas.getBoundingClientRect();
+                const clientX = e.clientX !== undefined ? e.clientX : (e.touches && e.touches[0] ? e.touches[0].clientX : 0);
+                const clientY = e.clientY !== undefined ? e.clientY : (e.touches && e.touches[0] ? e.touches[0].clientY : 0);
+                return { x: (clientX - rect.left) * (this.canvas.width / rect.width), y: (clientY - rect.top) * (this.canvas.height / rect.height) };
+            }
+            startDrawing(e) { this.isDrawing = true; const pos = this.getCanvasPos(e); this.ctx.beginPath(); this.ctx.moveTo(pos.x, pos.y); }
+            draw(e) {
+                if (!this.isDrawing) return; const pos = this.getCanvasPos(e);
+                this.ctx.lineWidth = 6; this.ctx.lineCap = 'round'; this.ctx.lineJoin = 'round';
+                this.ctx.strokeStyle = document.documentElement.classList.contains('theme-green') ? '#16a34a' : '#4f46e5';
+                this.ctx.lineTo(pos.x, pos.y); this.ctx.stroke();
+            }
+            stopDrawing() { this.isDrawing = false; }
+            clearCanvas() { if (this.ctx) { this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); document.getElementById('hw-feedback').classList.add('hidden'); } }
+            
+            checkHandwritingStrict() {
+                const v = this.currentDialogue.vocabularies[this.currentHWIndex];
+                const tempCanvas = document.createElement('canvas'); tempCanvas.width = 288; tempCanvas.height = 288; const tctx = tempCanvas.getContext('2d');
+                tctx.font = `700 ${v.hanzi.length === 1 ? 120 : (v.hanzi.length === 2 ? 80 : 42)}px "Noto Sans SC"`; tctx.textAlign = 'center'; tctx.textBaseline = 'middle'; tctx.fillStyle = '#000000'; tctx.fillText(v.hanzi, 144, 144);
+                const maskData = tctx.getImageData(0, 0, 288, 288).data; const userImgData = this.ctx.getImageData(0, 0, 288, 288).data;
+                let targetPixels = 0, userCoveredTarget = 0, userOutPixels = 0;
+                for (let i = 0; i < maskData.length; i += 4) {
+                    const isMaskPixel = maskData[i + 3] > 40; const isUserPixel = userImgData[i + 3] > 40;
+                    if (isMaskPixel) { targetPixels++; if (isUserPixel) userCoveredTarget++; } else if (isUserPixel) { userOutPixels++; }
+                }
+                const fb = document.getElementById('hw-feedback'); fb.classList.remove('hidden');
+                if (targetPixels === 0) return;
+                const coverageScore = (userCoveredTarget / targetPixels) * 100; const penaltyRatio = userOutPixels / (targetPixels || 1);
+
+                const minCoverage = 35; 
+                const maxPenalty = 5.0; 
+
+                if (coverageScore >= minCoverage && penaltyRatio <= maxPenalty) {
+                    this.playTone('correct'); 
+                    fb.className = "mt-3 p-3 rounded-xl text-xs font-bold bg-emerald-50 text-emerald-600 border border-emerald-200 flex flex-col items-center gap-2"; 
+                    fb.innerHTML = `<div class="flex items-center gap-1"><i class="fa-solid fa-circle-check"></i> Đạt yêu cầu! Đang chuyển qua từ tiếp theo...</div>`; 
+                    this.markStepComplete(3);
+
+                    setTimeout(() => {
+                        const vocabs = this.currentDialogue.vocabularies;
+                        if (this.currentHWIndex < vocabs.length - 1) {
+                            this.currentHWIndex++;
+                            this.renderHandwritingVocab();
+                        } else {
+                            this.showToast('Luyện viết xong! Sang Ngữ pháp thôi.', 'success');
+                            this.switchStep(4);
+                        }
+                    }, 1500);
+                } else {
+                    this.playTone('wrong'); 
+                    fb.className = "mt-3 p-3 rounded-xl text-xs font-bold bg-rose-50 text-rose-600 border border-rose-200 flex flex-col items-center gap-2"; 
+                    fb.innerHTML = `
+                        <div class="flex items-center gap-1.5"><i class="fa-solid fa-circle-xmark"></i> <span>Chưa đạt. Nét vẽ cần khớp với chữ mờ hơn!</span></div>
+                        <button onclick="app.clearCanvas()" class="btn-tactile px-4 py-2 rounded-lg bg-rose-600 border-rose-800 text-white font-extrabold hover:bg-rose-700 transition shadow-sm"><i class="fa-solid fa-rotate-left mr-1"></i> Viết lại (Phục thù)</button>
+                    `;
+                }
+                setTimeout(() => fb.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+            }
+
+            renderGrammar() {
+                const g = this.currentDialogue.grammar; if (!g || !g.points || g.points.length === 0) return;
+                document.getElementById('grammar-title').innerHTML = `<i class="fa-solid fa-book-bookmark mr-2.5"></i> <span>${g.title}</span>`;
+                document.getElementById('grammar-points').innerHTML = g.points.map((p, idx) => `
+                    <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200/80 dark:border-slate-700">
+                        <h4 class="font-extrabold text-sm sm:text-base text-indigo-600 dark:text-indigo-400 mb-1.5">Chủ điểm ${idx + 1}: ${p.rule}</h4>
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mb-3.5 leading-relaxed">${p.desc}</p>
+                        <div class="bg-white dark:bg-slate-800 rounded-xl p-3.5 border border-slate-200 dark:border-slate-700 flex items-center justify-between gap-2">
+                            <div>
+                                <p class="font-chinese text-lg sm:text-xl font-bold">${p.example}</p>
+                                <p class="text-xs text-indigo-600 dark:text-indigo-400 font-bold mt-0.5">${p.pinyin}</p>
+                                <p class="text-xs italic text-slate-500 mt-0.5">"${p.meaning}"</p>
+                            </div>
+                            <button onclick="app.speakText('${p.example.replace(/'/g, "\\'")}')" class="w-9 h-9 shrink-0 rounded-xl bg-indigo-50 dark:bg-slate-700 text-indigo-600 dark:text-indigo-400 flex items-center justify-center hover:bg-indigo-600 hover:text-white transition">
+                                <i class="fa-solid fa-volume-high text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+                this.markStepComplete(4);
+            }
+
+            renderGrammarPractice() {
+                const exercises = this.currentDialogue.grammar.exercises; if (!exercises || exercises.length === 0) return;
+                const ex = exercises[this.currentGPIndex];
+                document.getElementById('gp-counter').innerText = `Câu ${this.currentGPIndex + 1}/${exercises.length}`;
+                document.getElementById('gp-question').innerText = ex.q;
+                if (ex.pinyin) { document.getElementById('gp-question-pinyin').innerText = ex.pinyin; document.getElementById('gp-question-pinyin').classList.remove('hidden'); } else { document.getElementById('gp-question-pinyin').classList.add('hidden'); }
+                
+                document.getElementById('gp-options').innerHTML = ex.options.map((opt) => `
+                    <button onclick="app.checkGrammarAnswer('${opt.hanzi.replace(/'/g, "\\'")}')" class="btn-tactile py-3.5 px-3 rounded-2xl bg-slate-50 dark:bg-slate-700/80 hover:bg-indigo-50 dark:hover:bg-indigo-950/50 font-bold transition border border-slate-200 dark:border-slate-600 flex flex-col items-center shadow-sm">
+                        <span class="font-extrabold text-sm sm:text-base">${opt.hanzi}</span>
+                        ${opt.pinyin ? `<span class="text-[11px] text-indigo-600 dark:text-indigo-400 font-semibold mt-0.5">${opt.pinyin}</span>` : ''}
+                    </button>
+                `).join('');
+                document.getElementById('gp-explanation').classList.add('hidden'); document.getElementById('gp-feedback').classList.add('hidden'); document.getElementById('gp-next-btn').classList.add('hidden');
+            }
+
+            showGrammarExplanation() {
+                const ex = this.currentDialogue.grammar.exercises[this.currentGPIndex];
+                const expBox = document.getElementById('gp-explanation'); expBox.classList.remove('hidden');
+                expBox.innerHTML = `<i class="fa-solid fa-lightbulb text-amber-500 mr-2"></i> <strong>Giải thích:</strong> ${ex.exp}`;
+                setTimeout(() => expBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+            }
+
+            checkGrammarAnswer(selected) {
+                const ex = this.currentDialogue.grammar.exercises[this.currentGPIndex];
+                const fb = document.getElementById('gp-feedback'); fb.classList.remove('hidden');
+                if (selected === ex.answer) {
+                    this.playTone('correct'); fb.className = "mt-3 p-3.5 rounded-2xl text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center gap-2"; fb.innerHTML = `<i class="fa-solid fa-circle-check text-lg"></i> <span>Chính xác!</span>`; document.getElementById('gp-next-btn').classList.remove('hidden');
+                } else {
+                    this.playTone('wrong'); fb.className = "mt-3 p-3.5 rounded-2xl text-xs font-bold bg-rose-50 text-rose-700 border border-rose-200 flex items-center gap-2"; fb.innerHTML = `<i class="fa-solid fa-circle-xmark text-lg"></i> <span>Sai rồi. Đáp án đúng là: <strong>${ex.answer}</strong></span>`;
+                }
+                setTimeout(() => fb.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+            }
+
+            nextGrammarPractice() {
+                if (this.currentGPIndex < this.currentDialogue.grammar.exercises.length - 1) { this.currentGPIndex++; this.renderGrammarPractice(); } 
+                else { this.markStepComplete(5); this.showToast('Hoàn thành bài tập!', 'success'); setTimeout(() => this.switchStep(6), 800); }
+            }
+
+            initSentenceBuild() {
+                const sList = this.currentDialogue.sentences; if (!sList || sList.length === 0) return;
+                document.getElementById('sb-hint').innerText = `${sList[this.currentSBIndex].hint}`;
+                this.selectedBlocks = []; this.sourceBlocks = sList[this.currentSBIndex].blocks.map(b => ({ ...b })).sort(() => Math.random() - 0.5);
+                this.renderSentenceBuildZones();
+            }
+
+            renderSentenceBuildZones() {
+                document.getElementById('sb-target-zone').innerHTML = this.selectedBlocks.length === 0
+                    ? `<span class="text-xs text-slate-400 font-medium">Chạm vào các thẻ từ bên dưới để lắp ghép thành câu hoàn chỉnh...</span>`
+                    : this.selectedBlocks.map((b, idx) => `
+                        <button onclick="app.removeBlock(${idx})" class="btn-tactile px-3.5 py-1.5 rounded-xl bg-indigo-600 border-indigo-800 text-white flex flex-col items-center justify-center shadow-sm hover:bg-rose-600 hover:border-rose-800 transition">
+                            <span class="font-chinese font-bold text-base leading-tight">${b.hanzi}</span>
+                            <span class="text-[10px] text-indigo-100 font-normal leading-none mt-0.5">${b.pinyin}</span>
+                        </button>
+                    `).join('');
+
+                document.getElementById('sb-source-zone').innerHTML = this.sourceBlocks.map((b, idx) => `
+                    <button onclick="app.pickBlock(${idx})" class="btn-tactile px-3.5 py-1.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 flex flex-col items-center justify-center hover:bg-indigo-50 transition shadow-sm">
+                        <span class="font-chinese font-bold text-base leading-tight text-slate-800 dark:text-slate-100">${b.hanzi}</span>
+                        <span class="text-[10px] text-indigo-600 dark:text-indigo-400 font-semibold leading-none mt-0.5">${b.pinyin}</span>
+                    </button>
+                `).join('');
+                document.getElementById('sb-feedback').classList.add('hidden');
+            }
+
+            pickBlock(idx) { this.selectedBlocks.push(this.sourceBlocks.splice(idx, 1)[0]); this.renderSentenceBuildZones(); }
+            removeBlock(idx) { this.sourceBlocks.push(this.selectedBlocks.splice(idx, 1)[0]); this.renderSentenceBuildZones(); }
+            resetSentenceBuild() { this.initSentenceBuild(); }
+            showSentenceAnswer() {
+                const s = this.currentDialogue.sentences[this.currentSBIndex]; this.selectedBlocks = s.blocks.map(b => ({ ...b })); this.sourceBlocks = []; this.renderSentenceBuildZones();
+                const targetStr = s.blocks.map(b => b.hanzi).join(' '); const fb = document.getElementById('sb-feedback'); fb.classList.remove('hidden');
+                fb.className = "mt-4 p-3.5 rounded-2xl text-xs font-bold bg-amber-50 text-amber-700 border border-amber-200 flex flex-col items-center gap-2"; fb.innerHTML = `<div><strong>Đáp án mẫu:</strong> ${targetStr}</div><button onclick="app.speakText('${targetStr}')" class="btn-tactile px-4 py-1.5 rounded-xl bg-amber-600 border-amber-800 text-white text-xs font-extrabold hover:bg-amber-700 transition"><i class="fa-solid fa-volume-high"></i> Đọc mẫu Shadowing</button>`;
+            }
+            checkSentenceBuild() {
+                const sList = this.currentDialogue.sentences; const s = sList[this.currentSBIndex];
+                const cleanUserStr = this.selectedBlocks.map(b => b.hanzi).join('').replace(/[\s。？，！]/g, ''); const cleanTargetStr = s.blocks.map(b => b.hanzi).join('').replace(/[\s。？，！]/g, '');
+                const fb = document.getElementById('sb-feedback'); fb.classList.remove('hidden');
+                if (cleanUserStr === cleanTargetStr) {
+                    this.playTone('correct'); 
+                    fb.className = "mt-4 p-3.5 rounded-2xl text-xs font-bold bg-emerald-50 text-emerald-600 border border-emerald-200 flex flex-col items-center gap-2";
+                    const isLastSentence = this.currentSBIndex >= sList.length - 1; const fullText = s.blocks.map(b => b.hanzi).join('');
+                    
+                    if (isLastSentence) {
+                        fb.innerHTML = `
+                            <div class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-base"></i> <span>Xuất sắc! Luyện Shadowing:</span></div>
+                            <div class="flex flex-wrap items-center justify-center gap-2 mb-2">
+                                <button onclick="app.speakText('${fullText}')" class="btn-tactile px-3.5 py-1.5 rounded-xl bg-emerald-600 border-emerald-800 text-white text-xs font-extrabold flex items-center gap-1"><i class="fa-solid fa-volume-high"></i> Nghe & Đọc theo</button>
+                            </div>
+                            <hr class="w-full border-emerald-200">
+                            <p class="text-amber-600 font-extrabold mt-1 text-[11px] uppercase tracking-widest"><i class="fa-solid fa-unlock-keyhole mr-1"></i> Mở khóa nhiệm vụ ẩn</p>
+                            <button onclick="app.markStepComplete(6); app.switchStep(7)" class="btn-tactile mt-1 w-full px-4 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 border-orange-700 text-white font-extrabold text-xs flex items-center justify-center shadow-lg">
+                                Thực chiến Viết Tay & Camera Scan <i class="fa-solid fa-camera ml-2"></i>
+                            </button>
+                        `;
+                    } else {
+                        fb.innerHTML = `
+                            <div class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-base"></i> <span>Ghép câu chính xác! Luyện Shadowing:</span></div>
+                            <div class="flex flex-wrap items-center justify-center gap-2">
+                                <button onclick="app.speakText('${fullText}')" class="btn-tactile px-3.5 py-1.5 rounded-xl bg-emerald-600 border-emerald-800 text-white text-xs font-extrabold flex items-center gap-1"><i class="fa-solid fa-volume-high"></i> Nghe & Đọc theo</button>
+                                <button onclick="app.nextSentenceBuild()" class="btn-tactile px-4 py-1.5 rounded-xl bg-indigo-600 border-indigo-800 text-white text-xs font-extrabold flex items-center gap-1">Câu tiếp theo <i class="fa-solid fa-arrow-right"></i></button>
+                            </div>
+                        `;
+                    }
+                } else {
+                    this.playTone('wrong'); fb.className = "mt-4 p-3.5 rounded-2xl text-xs font-bold bg-rose-50 text-rose-600 border border-rose-200 flex items-center gap-1.5"; fb.innerHTML = `<i class="fa-solid fa-circle-xmark text-base"></i> <span>Chưa đúng thứ tự câu. Thử lại hoặc bấm "Xem mẫu"!</span>`;
+                }
+            }
+            nextSentenceBuild() { this.currentSBIndex++; this.initSentenceBuild(); }
+
+            // ================== BƯỚC 7: XỬ LÝ ẢNH CAMERA & REAL AI ================== //
+            initScanStep() {
+                const tasks = this.currentDialogue.writingTasks;
+                if (!tasks || tasks.length === 0) {
+                    this.showToast('Chưa có dữ liệu bài tập viết cho bài này!', 'warning');
+                    return;
+                }
+                
+                const task = tasks[this.currentScanIndex];
+                
+                const tagElement = document.getElementById('scan-tag');
+                const targetTextElement = document.getElementById('scan-target-text');
+                const pinyinElement = document.getElementById('scan-target-pinyin');
+                const translationBox = document.getElementById('scan-translation-box');
+                const translationInput = document.getElementById('scan-translation-input');
+                
+                document.getElementById('scan-counter').innerText = `${this.currentScanIndex + 1}/${tasks.length}`;
+                
+                if (translationInput) translationInput.value = '';
+                
+                if (task.taskType === "copy") {
+                    tagElement.innerHTML = `<i class="fa-solid fa-copy mr-1"></i> Chép lại`;
+                    tagElement.className = "px-2.5 py-1 rounded-lg text-[10px] font-extrabold bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-400";
+                    targetTextElement.innerText = task.targetText;
+                    targetTextElement.className = "font-chinese text-3xl sm:text-4xl font-black text-slate-800 dark:text-slate-100 leading-relaxed text-center my-2";
+                    
+                    pinyinElement.innerText = task.targetPinyin;
+                    pinyinElement.classList.remove('hidden');
+                    translationBox.classList.remove('hidden');
+                } else if (task.taskType === "translate") {
+                    tagElement.innerHTML = `<i class="fa-solid fa-language mr-1"></i> Dịch ngược`;
+                    tagElement.className = "px-2.5 py-1 rounded-lg text-[10px] font-extrabold bg-purple-100 text-purple-700 dark:bg-purple-900/40 dark:text-purple-400";
+                    targetTextElement.innerText = task.targetText;
+                    targetTextElement.className = "text-xl sm:text-2xl font-extrabold text-slate-800 dark:text-slate-100 leading-relaxed text-center my-2"; 
+                    
+                    pinyinElement.classList.add('hidden'); 
+                    translationBox.classList.add('hidden'); 
+                }
+                
+                const camInput = document.getElementById('camera-input');
+                if (camInput) camInput.value = '';
+
+                document.getElementById('preview-container').classList.add('hidden');
+                document.getElementById('btn-open-camera').classList.remove('hidden');
+                document.getElementById('btn-submit-ai').classList.add('hidden');
+                document.getElementById('btn-next-scan').classList.add('hidden');
+                document.getElementById('btn-retry-scan').classList.add('hidden');
+                
+                const btnAI = document.getElementById('btn-submit-ai');
+                btnAI.innerHTML = '<i class="fa-solid fa-cat"></i> <span>Nhờ con mèo nhà tôi chấm điểm</span>';
+                btnAI.className = "btn-tactile w-full sm:w-auto px-7 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-600 border-orange-700 text-white font-extrabold text-sm flex items-center justify-center gap-2 shadow-lg hidden";
+
+                const btnFinish = document.getElementById('btn-finish-scan');
+                btnFinish.disabled = true;
+                btnFinish.className = "px-6 py-3 rounded-2xl bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500 font-extrabold text-sm transition flex items-center gap-2 cursor-not-allowed";
+            }
+
+            retryCurrentScanTask() {
+                this.initScanStep();
+                document.getElementById('camera-input').click();
+            }
+
+            handleImageUpload(event) {
+                const file = event.target.files[0];
+                if (!file) return;
+
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    document.getElementById('preview-img').src = e.target.result;
+                    document.getElementById('preview-container').classList.remove('hidden');
+                    document.getElementById('btn-open-camera').classList.add('hidden');
+                    document.getElementById('btn-submit-ai').classList.remove('hidden');
+                    document.getElementById('btn-next-scan').classList.add('hidden');
+                    document.getElementById('btn-retry-scan').classList.add('hidden');
+                };
+                reader.readAsDataURL(file);
+            }
+
+            async submitToAI() {
+                const btn = document.getElementById('btn-submit-ai');
+                
+                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Con mèo đang soi nét chữ...';
+                btn.className = "w-full sm:w-auto px-7 py-3 rounded-xl bg-slate-500 text-white font-extrabold text-sm flex items-center justify-center gap-2 cursor-not-allowed";
+                
+                try {
+                    const imageBase64 = document.getElementById('preview-img').src;
+                    const targetText = document.getElementById('scan-target-text').innerText;
+
+                    const response = await fetch('/api/evaluate', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ imageBase64, targetText })
+                    });
+
+                    if (!response.ok) throw new Error("Lỗi khi kết nối với máy chủ AI");
+
+                    const result = await response.json();
+                    
+                    if (result.score >= 50) this.playTone('correct');
+                    else this.playTone('wrong');
+
+                    const bgTheme = result.score >= 80 ? "bg-gradient-to-r from-emerald-500 to-teal-500 text-white" : 
+                                   (result.score >= 50 ? "bg-gradient-to-r from-amber-500 to-orange-500 text-white" : "bg-gradient-to-r from-rose-500 to-red-600 text-white");
+
+                    this.showTimerAlert(
+                        "KẾT QUẢ TỪ CON MÈO NHÀ TÔI", 
+                        `🎯 Điểm: ${result.score}/100\n\n💬 Lời phê:\n${result.feedback}`, 
+                        "fa-cat", 
+                        bgTheme
+                    );
+                    
+                    btn.classList.add('hidden'); 
+                    document.getElementById('btn-retry-scan').classList.remove('hidden');
+                    
+                    const tasks = this.currentDialogue.writingTasks;
+                    if (this.currentScanIndex < tasks.length - 1) {
+                        document.getElementById('btn-next-scan').classList.remove('hidden');
+                    } else {
+                        this.markStepComplete(7);
+                        const btnFinish = document.getElementById('btn-finish-scan');
+                        btnFinish.disabled = false;
+                        btnFinish.className = "btn-tactile px-6 py-3 rounded-2xl bg-emerald-600 hover:bg-emerald-500 border-emerald-800 text-white font-extrabold text-sm transition shadow-md flex items-center gap-2 cursor-pointer";
+                    }
+
+                } catch (error) {
+                    console.error("Lỗi AI:", error);
+                    document.getElementById('cat-error-modal').classList.remove('hidden');
+                    
+                    btn.innerHTML = '<i class="fa-solid fa-cat"></i> <span>Nhờ con mèo nhà tôi chấm điểm</span>';
+                    btn.className = "btn-tactile w-full sm:w-auto px-7 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-600 border-orange-700 text-white font-extrabold text-sm flex items-center justify-center gap-2 shadow-lg";
+                }
+            }
+
+            nextScanTask() {
+                this.currentScanIndex++;
+                this.initScanStep();
+            }
+
+            finishLessonFlow() {
+                const dp = this.getDialogueProgress(this.currentDialogue.id);
+                if (!dp.completedSteps.includes(7)) {
+                    this.showToast('Vui lòng hoàn thành Sát hạch Giấy mực (Bước 7) trước khi nộp bài!', 'warning');
+                    return;
+                }
+                document.getElementById('completion-score').classList.add('hidden');
+                document.getElementById('completion-msg').innerText = "Bạn đã hoàn thành toàn bộ khóa luyện tập hôm nay.";
+                document.getElementById('completion-modal').classList.remove('hidden');
+                this.playTone('correct');
+            }
+
+            initTestModeFlow() {
+                this.hideAllViews();
+                document.getElementById('view-test-mode').classList.remove('hidden');
+                const lobbyBtn = document.getElementById('lobby-btn');
+                lobbyBtn.classList.remove('hidden');
+                lobbyBtn.classList.add('flex');
+                document.getElementById('test-mode-title').innerText = this.testMode === 'exam' ? "Chế độ Thi Thử" : "Chế độ Ôn Tập";
+                document.getElementById('test-lesson-title').innerText = this.currentDialogue.title;
+                this.testCurrentIndex = 0; this.testUserAnswers = {}; this.isReviewMode = false;
+                document.getElementById('btn-review-test').classList.add('hidden');
+                document.getElementById('btn-submit-test').classList.remove('hidden');
+                this.renderTestQuestion(true);
+            }
+
+            jumpToTestQuestion(idx) { this.testCurrentIndex = idx; this.renderTestQuestion(true); }
+
+            renderTestQuestion(scrollToTop = false) {
+                const exercises = this.currentDialogue.grammar.exercises; if (!exercises || exercises.length === 0) return;
+                const ex = exercises[this.testCurrentIndex];
+                document.getElementById('test-question-title').innerText = `Câu ${this.testCurrentIndex + 1}`;
+                document.getElementById('test-counter-badge').innerText = `${this.testCurrentIndex + 1}/${exercises.length}`;
+                document.getElementById('test-question').innerText = ex.q;
+                
+                const optContainer = document.getElementById('test-options'); const userAns = this.testUserAnswers[this.testCurrentIndex];
+
+                optContainer.innerHTML = ex.options.map((opt, i) => {
+                    let letter = String.fromCharCode(65 + i); let textContent = opt.hanzi;
+                    const match = opt.hanzi.match(/^([A-D])\.\s*(.*)/); if (match) { letter = match[1]; textContent = match[2]; }
+                    let letterBg = "bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400 border border-slate-300 dark:border-slate-600";
+                    let boxStyle = "border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300";
+                    let disableClick = false;
+
+                    if (userAns) {
+                        if (this.testMode === 'exam' && !this.isReviewMode) {
+                            if (opt.hanzi === userAns.selected) {
+                                letterBg = "bg-indigo-600 text-white font-extrabold border-indigo-600 shadow-md";
+                                boxStyle = "border-indigo-500 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300 font-bold ring-1 ring-indigo-500";
+                            }
+                        } else {
+                            disableClick = true;
+                            if (opt.hanzi === ex.answer) {
+                                letterBg = "bg-emerald-500 text-white font-extrabold border-emerald-500 shadow-md";
+                                boxStyle = "border-emerald-500 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-300 font-bold ring-1 ring-emerald-500";
+                            } else if (opt.hanzi === userAns.selected && !userAns.isCorrect) {
+                                letterBg = "bg-rose-500 text-white font-extrabold border-rose-500 shadow-md";
+                                boxStyle = "border-rose-500 bg-rose-50 dark:bg-rose-900/30 text-rose-800 dark:text-rose-300 font-bold ring-1 ring-rose-500";
+                            }
+                        }
+                    }
+                    if (this.isReviewMode) disableClick = true;
+                    return `
+                        <button onclick="app.checkTestAnswer('${opt.hanzi.replace(/'/g, "\\'")}')" class="flex items-center gap-3 w-full group text-left transition-all duration-200 ${disableClick ? 'pointer-events-none' : ''}">
+                            <div class="w-9 h-9 sm:w-10 sm:h-10 flex-shrink-0 rounded-xl flex items-center justify-center font-extrabold font-mono text-xs sm:text-sm transition-all duration-200 ${letterBg} ${!disableClick ? 'group-hover:bg-indigo-600 group-hover:text-white group-hover:border-indigo-600 shadow-sm' : ''}">${letter}</div>
+                            <div class="flex-1 rounded-2xl px-4 py-3 sm:px-5 sm:py-3.5 text-sm sm:text-[15px] transition-all duration-200 border shadow-sm ${boxStyle} ${!disableClick ? 'group-hover:border-indigo-400 group-hover:shadow-md group-hover:-translate-y-0.5' : ''}">${textContent}</div>
+                        </button>
+                    `;
+                }).join('');
+                
+                const fb = document.getElementById('test-feedback'); const expBtn = document.getElementById('btn-show-test-explanation');
+                if (this.testMode === 'exam' && !this.isReviewMode) { fb.classList.add('hidden'); expBtn.classList.add('hidden'); } 
+                else {
+                    if (userAns) {
+                        expBtn.classList.remove('hidden');
+                        fb.classList.remove('hidden');
+                        if (userAns.isCorrect) { fb.className = "p-3.5 rounded-2xl text-xs sm:text-sm font-bold bg-emerald-50 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 flex items-center gap-2 mb-2"; fb.innerHTML = `<i class="fa-solid fa-circle-check text-base sm:text-lg"></i> <span>Chính xác! Bạn làm tốt lắm.</span>`; } 
+                        else { fb.className = "p-3.5 rounded-2xl text-xs sm:text-sm font-bold bg-rose-50 text-rose-700 dark:bg-rose-900/40 dark:text-rose-300 border border-rose-200 dark:border-rose-800 flex items-center gap-2 mb-2"; fb.innerHTML = `<i class="fa-solid fa-circle-xmark text-base sm:text-lg"></i> <span>Rất tiếc! Đáp án đúng là phần được tô xanh.</span>`; }
+                    } else { 
+                        fb.classList.add('hidden'); 
+                        expBtn.classList.add('hidden');
+                    }
+                }
+                document.getElementById('test-explanation').classList.add('hidden'); 
+                this.renderTestGrid();
+
+                if (scrollToTop) {
+                    const scrollArea = document.getElementById('test-scroll-area');
+                    if (scrollArea) scrollArea.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            }
+
+            renderTestGrid() {
+                const exercises = this.currentDialogue.grammar.exercises;
+                document.getElementById('test-question-grid').innerHTML = exercises.map((ex, idx) => {
+                    let bgClass = "bg-slate-100 dark:bg-slate-700/80 text-slate-600 dark:text-slate-300 border border-transparent hover:bg-slate-200";
+                    const userAns = this.testUserAnswers[idx];
+                    if (this.testCurrentIndex === idx) {
+                        bgClass = "bg-indigo-600 text-white border-indigo-700 font-extrabold shadow-sm scale-105";
+                    } else if (userAns) {
+                        if (this.testMode === 'exam' && !this.isReviewMode) {
+                            bgClass = "bg-indigo-50 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-300 font-bold border-indigo-300";
+                        } else {
+                            if (userAns.isCorrect) bgClass = "bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 font-bold border-emerald-300";
+                            else bgClass = "bg-rose-100 dark:bg-rose-900/50 text-rose-700 dark:text-rose-300 font-bold border-rose-300";
+                        }
+                    }
+                    return `<button onclick="app.jumpToTestQuestion(${idx})" class="w-full aspect-square rounded-xl flex items-center justify-center font-mono text-[11px] sm:text-xs transition-all duration-200 ${bgClass}">${String(idx + 1).padStart(2, '0')}</button>`;
+                }).join('');
+            }
+
+            showTestExplanation() {
+                const ex = this.currentDialogue.grammar.exercises[this.testCurrentIndex];
+                const expBox = document.getElementById('test-explanation'); expBox.classList.remove('hidden');
+                expBox.innerHTML = `<i class="fa-solid fa-lightbulb text-amber-500 mr-2"></i> <strong>Giải thích:</strong> ${ex.exp}`;
+                setTimeout(() => expBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+            }
+
+            checkTestAnswer(selected) {
+                if (this.isReviewMode) return; if (this.testMode === 'practice' && this.testUserAnswers[this.testCurrentIndex]) return;
+                const ex = this.currentDialogue.grammar.exercises[this.testCurrentIndex]; const isCorrect = selected === ex.answer;
+                this.testUserAnswers[this.testCurrentIndex] = { selected, isCorrect };
+                if (this.testMode === 'practice') { if (isCorrect) this.playTone('correct'); else this.playTone('wrong'); }
+                this.renderTestQuestion(false);
+
+                if (this.testMode === 'practice') {
+                    setTimeout(() => {
+                        const fb = document.getElementById('test-feedback');
+                        if (fb && !fb.classList.contains('hidden')) {
+                            fb.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        }
+                    }, 50);
+                }
+            }
+
+            prevTestQuestion() { if (this.testCurrentIndex > 0) { this.testCurrentIndex--; this.renderTestQuestion(true); } }
+            nextTestQuestion() { if (this.testCurrentIndex < this.currentDialogue.grammar.exercises.length - 1) { this.testCurrentIndex++; this.renderTestQuestion(true); } }
+
+            submitTest() {
+                const total = this.currentDialogue.grammar.exercises.length; const answered = Object.keys(this.testUserAnswers).length;
+                if (answered < total) { if(!confirm(`Bạn mới làm được ${answered}/${total} câu. Chắc chắn muốn nộp bài?`)) return; }
+                
+                let score = 0; 
+                for (let i = 0; i < total; i++) { 
+                    if (this.testUserAnswers[i] && this.testUserAnswers[i].isCorrect) score++; 
+                }
+
+                const percent = (score / total) * 100;
+                if (percent >= 50) this.playTone('correct'); else this.playTone('wrong');
+
+                document.getElementById('completion-score').innerText = `Điểm số: ${score} / ${total}`;
+                document.getElementById('completion-score').classList.remove('hidden');
+                document.getElementById('completion-msg').innerText = percent >= 80 ? "Thành tích xuất sắc!" : (percent >= 50 ? "Kết quả khá tốt!" : "Cần cố gắng hơn nhé!");
+                
+                document.getElementById('btn-review-test').classList.remove('hidden'); 
+                document.getElementById('completion-modal').classList.remove('hidden');
+                
+                const dp = this.getDialogueProgress(this.currentDialogue.id);
+                if (!dp.completedSteps.includes(5)) { dp.completedSteps.push(5); this.saveProgress(); }
+            }
+
+            startReviewMode() {
+                this.isReviewMode = true; document.getElementById('completion-modal').classList.add('hidden'); document.getElementById('btn-submit-test').classList.add('hidden'); 
+                this.showToast('Chế độ xem lại. Bạn có thể xem giải thích chi tiết!', 'info');
+                this.testCurrentIndex = 0; this.renderTestQuestion(true);
+            }
+
+            restartDialogue() {
+                document.getElementById('completion-modal').classList.add('hidden');
+                this.startDialogue(this.currentDialogue.id);
+            }
+
+            showTimerAlert(title, desc, iconClass = "fa-stopwatch", iconBgClass = "bg-rose-100 dark:bg-rose-900/40 text-rose-600") {
+                document.getElementById('timer-alert-title').innerText = title;
+                document.getElementById('timer-alert-desc').innerText = desc;
+                const iconContainer = document.getElementById('timer-alert-icon-container');
+                iconContainer.className = `w-20 h-20 rounded-full flex items-center justify-center mx-auto text-3xl mb-4 shadow-inner ${iconBgClass}`;
+                document.getElementById('timer-alert-icon').className = `fa-solid ${iconClass}`;
+                document.getElementById('timer-alert-modal').classList.remove('hidden');
+                this.playTone('wrong'); 
+            }
+
+            closeTimerAlertModal() { document.getElementById('timer-alert-modal').classList.add('hidden'); }
+            openCountdownModal() { document.getElementById('countdown-modal').classList.remove('hidden'); }
+            
+            startCountdown(minutes) {
+                document.getElementById('countdown-modal').classList.add('hidden');
+                if (this.countdownInterval) clearInterval(this.countdownInterval);
+                this.countdownRemaining = minutes * 60; this.updateCountdownDisplay(); this.showToast(`Đã bắt đầu bộ đếm giờ: ${minutes} phút!`, 'info');
+                this.countdownInterval = setInterval(() => {
+                    this.countdownRemaining--; this.updateCountdownDisplay();
+                    if (this.countdownRemaining <= 0) {
+                        clearInterval(this.countdownInterval); this.countdownInterval = null;
+                        document.getElementById('countdown-btn-label').innerText = "Timer";
+                        this.showTimerAlert("HẾT GIỜ ĐẾM NGƯỢC", "Yo, đã hết giờ đếm ngược rồi :333");
+                    }
+                }, 1000);
+            }
+            startCustomCountdown() {
+                const val = parseInt(document.getElementById('custom-minutes').value);
+                if (!val || val <= 0) { this.showToast('Vui lòng nhập số phút hợp lệ!', 'error'); return; }
+                this.startCountdown(val);
+            }
+            updateCountdownDisplay() { const m = Math.floor(this.countdownRemaining / 60); const s = this.countdownRemaining % 60; document.getElementById('countdown-btn-label').innerText = `${m}:${s < 10 ? '0' : ''}${s}`; }
+
+            openPomodoroModal() { document.getElementById('pomodoro-modal').classList.remove('hidden'); this.updatePomodoroDisplay(); }
+            togglePomodoro() { if (this.pomoIsRunning) this.pausePomodoro(); else this.startPomodoro(); }
+            
+            startPomodoro() {
+                this.pomoIsRunning = true;
+                const btn = document.getElementById('pomo-toggle-btn');
+                btn.innerText = "Tạm dừng";
+                btn.className = "btn-tactile flex-1 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 border-amber-800 text-white font-extrabold text-xs shadow-md";
+                this.pomoInterval = setInterval(() => {
+                    this.pomoSeconds--; this.updatePomodoroDisplay();
+                    if (this.pomoSeconds <= 0) {
+                        clearInterval(this.pomoInterval); this.pomoIsRunning = false;
+                        if (!this.pomoIsBreak) {
+                            this.pomoIsBreak = true; this.pomoSeconds = 5 * 60; document.getElementById('pomo-status-text').innerText = "Thời gian nghỉ ngơi (Break)";
+                            this.showTimerAlert("ĐẾN GIỜ NGHỈ NGƠI", "Làm tốt lắm! Xõa 5 phút nào bro.", "fa-mug-hot", "bg-amber-100 dark:bg-amber-900/40 text-amber-500");
+                            this.startPomodoro();
+                        } else {
+                            this.pomoIsBreak = false; this.pomoSeconds = 25 * 60; document.getElementById('pomo-status-text').innerText = "Sẵn sàng tập trung học tập";
+                            this.showTimerAlert("HẾT GIỜ NGHỈ", "Quay lại bàn học ngay, hết giờ mộng mơ rồi!", "fa-bell", "bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600");
+                            btn.innerText = "Bắt đầu";
+                            btn.className = "btn-tactile flex-1 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 border-indigo-800 text-white font-extrabold text-xs shadow-md";
+                        }
+                    }
+                }, 1000);
+            }
+            pausePomodoro() {
+                this.pomoIsRunning = false;
+                clearInterval(this.pomoInterval);
+                const btn = document.getElementById('pomo-toggle-btn');
+                btn.innerText = "Tiếp tục";
+                btn.className = "btn-tactile flex-1 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 border-indigo-800 text-white font-extrabold text-xs shadow-md";
+            }
+            resetPomodoro() {
+                this.pausePomodoro();
+                this.pomoIsBreak = false;
+                this.pomoSeconds = 25 * 60;
+                document.getElementById('pomo-status-text').innerText = "Sẵn sàng tập trung học tập (25p học / 5p nghỉ)";
+                document.getElementById('pomo-toggle-btn').innerText = "Bắt đầu";
+                this.updatePomodoroDisplay();
+            }
+            updatePomodoroDisplay() {
+                const m = Math.floor(this.pomoSeconds / 60);
+                const s = this.pomoSeconds % 60;
+                const formatted = `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
+                document.getElementById('pomo-timer-display').innerText = formatted;
+                document.getElementById('pomodoro-btn-label').innerText = formatted;
+            }
+        }
+
+        const app = new BoxcumentApp();
+    </script>
+</body>
+</html>
