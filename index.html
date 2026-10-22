@@ -123,6 +123,82 @@
         html.theme-green .to-violet-600 {
             --tw-gradient-to: #0d9488 !important;
         }
+        /* ================= CHẾ ĐỘ THỦY MẶC (INK WASH / SHUIMO MODE) ================= */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&display=swap');
+
+        html.theme-shuimo body.bg-studio-grid {
+            background-color: #f4efe6 !important;
+            /* Lớp 1 & 2: Sương khói mực tàu | Lớp 3: Núi non Thủy Mặc SVG chìm ở đáy | Lớp 4: Vân giấy Tuyên Thành */
+            background-image: 
+                radial-gradient(at 15% 15%, rgba(28, 25, 23, 0.08) 0px, transparent 55%),
+                radial-gradient(at 85% 20%, rgba(185, 28, 28, 0.05) 0px, transparent 45%),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='%23292524' fill-opacity='0.05' d='M0,224L60,208C120,192,240,160,360,165.3C480,171,600,213,720,202.7C840,192,960,128,1080,117.3C1200,107,1320,149,1380,170.7L1440,192L1440,320L0,320Z'%3E%3C/path%3E%3Cpath fill='%231c1917' fill-opacity='0.08' d='M0,288L80,266.7C160,245,320,203,480,208C640,213,800,267,960,261.3C1120,256,1280,192,1360,160L1440,128L1440,320L0,320Z'%3E%3C/path%3E%3C/svg%3E"),
+                radial-gradient(#d6cfc2 1px, transparent 1px) !important;
+            background-size: 100% 100%, 100% 100%, 100% 260px, 24px 24px !important;
+            background-position: center, center, bottom center, center !important;
+            background-repeat: no-repeat, no-repeat, no-repeat, repeat !important;
+            color: #1c1917 !important;
+        }
+
+        /* Đổi font chữ Hán sang kiểu Khải/Tống cổ điển cực nghệ */
+        html.theme-shuimo .font-chinese {
+            font-family: '"Noto Serif SC"', '"Noto Sans SC"', serif !important;
+        }
+
+        /* Header & Các thẻ bài mang chất liệu Giấy Tuyên Thành (Xuan Paper) */
+        html.theme-shuimo header {
+            background-color: rgba(247, 243, 234, 0.9) !important;
+            border-color: #d6cfc2 !important;
+        }
+        html.theme-shuimo .bg-white,
+        html.theme-shuimo .bg-white\/90,
+        html.theme-shuimo .bg-white\/85,
+        html.theme-shuimo .bg-white\/70 {
+            background-color: rgba(251, 248, 241, 0.94) !important;
+            border-color: #d6cfc2 !important;
+        }
+        html.theme-shuimo .bg-slate-50,
+        html.theme-shuimo .bg-slate-100 {
+            background-color: #ebe4d5 !important;
+            border-color: #d6cfc2 !important;
+        }
+
+        /* Tông Mực Tàu (Sumi Ink) kết hợp Đỏ Chu Sa (Cinnabar Seal) */
+        html.theme-shuimo .bg-indigo-600 {
+            background-color: #292524 !important; /* Mực tàu đậm */
+            border-color: #1c1917 !important;
+        }
+        html.theme-shuimo .hover\:bg-indigo-700:hover {
+            background-color: #991b1b !important; /* Chạm vào ánh lên sắc Đỏ Chu Sa */
+            border-color: #7f1d1d !important;
+        }
+        html.theme-shuimo .text-indigo-600,
+        html.theme-shuimo .text-indigo-700 {
+            color: #991b1b !important; /* Chữ nhấn màu Đỏ Ấn Chương */
+        }
+        html.theme-shuimo .bg-indigo-50,
+        html.theme-shuimo .bg-indigo-50\/80,
+        html.theme-shuimo .bg-indigo-100 {
+            background-color: #f5e6e4 !important;
+            border-color: #e2c5c1 !important;
+        }
+        html.theme-shuimo .border-indigo-100,
+        html.theme-shuimo .border-indigo-200,
+        html.theme-shuimo .border-indigo-300 {
+            border-color: #d6b8b4 !important;
+        }
+
+        /* Mặt sau Flashcard & Banner Sảnh chính: Nền Mực Nghiên Đen Nhung */
+        html.theme-shuimo .via-indigo-950 {
+            --tw-gradient-stops: #1c1917, #292524, #1c1917 !important;
+        }
+
+        /* Ô luyện viết Mễ Tự Cách cổ điển */
+        html.theme-shuimo .mizige-grid {
+            background-color: #faf5e8 !important;
+            border-color: #b91c1c !important;
+            box-shadow: inset 0 0 24px rgba(139, 92, 46, 0.12) !important;
+        }
     </style>
 </head>
 <body class="h-full bg-studio-grid text-slate-800 dark:text-slate-100 font-sans transition-colors duration-300 flex flex-col relative overflow-hidden">
@@ -788,7 +864,7 @@
                 this.pomoIsRunning = false;
                 this.pomoIsBreak = false;
 
-                this.themes = ['light', 'dark', 'green'];
+                this.themes = ['light', 'dark', 'green', 'shuimo'];
                 this.currentTheme = localStorage.getItem('theme') || 'light';
 
                 this.stepMeta = [
@@ -884,11 +960,11 @@
                 setTimeout(() => { toast.classList.add('opacity-0'); setTimeout(() => toast.remove(), 300); }, 3500);
             }
 
-            applyTheme(theme) {
+          applyTheme(theme) {
                 this.currentTheme = theme;
                 localStorage.setItem('theme', theme);
                 const root = document.documentElement;
-                root.classList.remove('dark', 'theme-green');
+                root.classList.remove('dark', 'theme-green', 'theme-shuimo');
 
                 const icon = document.getElementById('theme-icon');
                 const label = document.getElementById('theme-label');
@@ -901,6 +977,10 @@
                     root.classList.add('theme-green');
                     if (icon) icon.className = 'fa-solid fa-leaf text-emerald-600';
                     if (label) label.innerText = 'Xanh';
+                } else if (theme === 'shuimo') {
+                    root.classList.add('theme-shuimo');
+                    if (icon) icon.className = 'fa-solid fa-paintbrush text-rose-700';
+                    if (label) label.innerText = 'Thủy Mặc';
                 } else {
                     if (icon) icon.className = 'fa-solid fa-sun text-amber-500';
                     if (label) label.innerText = 'Sáng';
@@ -911,7 +991,12 @@
                 const nextIndex = (this.themes.indexOf(this.currentTheme) + 1) % this.themes.length;
                 const nextTheme = this.themes[nextIndex];
                 this.applyTheme(nextTheme);
-                const names = { light: 'Giao diện Sáng ☀️', dark: 'Giao diện Tối 🌙', green: 'Giao diện Xanh lá 🌿' };
+                const names = {
+                    light: 'Giao diện Sáng ☀️',
+                    dark: 'Giao diện Tối 🌙',
+                    green: 'Giao diện Xanh lá 🌿',
+                    shuimo: 'Không gian Thủy Mặc 🏔️🖌️'
+                };
                 this.showToast(names[nextTheme], 'info');
             }
 
