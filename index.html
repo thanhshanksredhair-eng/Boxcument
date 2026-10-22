@@ -1037,7 +1037,19 @@
                 `).join('');
             }
 
-            selectSubject(subjectId) { this.currentSubject = appData.subjects.find(s => s.id === subjectId); this.goLessonsList(); }
+       selectSubject(subjectId) {
+                this.currentSubject = appData.subjects.find(s => s.id === subjectId);
+                // Tự động bật theme Thủy Mặc nếu vào môn Tiếng Trung
+                const isChinese = this.currentSubject && (
+                    this.currentSubject.id.toLowerCase().includes('chinese') || 
+                    this.currentSubject.name.toLowerCase().includes('trung')
+                );
+                if (isChinese && this.currentTheme !== 'shuimo') {
+                    this.applyTheme('shuimo');
+                    this.showToast('Đã mở không gian Thủy Mặc Thiền Định 🏔️🖌️', 'info');
+                }
+                this.goLessonsList();
+            }
 
             goLessonsList() {
                 this.hideAllViews();
