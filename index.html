@@ -1313,8 +1313,10 @@
             startDrawing(e) { this.isDrawing = true; const pos = this.getCanvasPos(e); this.ctx.beginPath(); this.ctx.moveTo(pos.x, pos.y); }
             draw(e) {
                 if (!this.isDrawing) return; const pos = this.getCanvasPos(e);
-                this.ctx.lineWidth = 6; this.ctx.lineCap = 'round'; this.ctx.lineJoin = 'round';
-                this.ctx.strokeStyle = document.documentElement.classList.contains('theme-green') ? '#16a34a' : '#4f46e5';
+                this.ctx.lineWidth = document.documentElement.classList.contains('theme-shuimo') ? 7 : 6;
+                this.ctx.lineCap = 'round'; this.ctx.lineJoin = 'round';
+                const root = document.documentElement.classList;
+                this.ctx.strokeStyle = root.contains('theme-shuimo') ? '#1c1917' : (root.contains('theme-green') ? '#16a34a' : '#4f46e5');
                 this.ctx.lineTo(pos.x, pos.y); this.ctx.stroke();
             }
             stopDrawing() { this.isDrawing = false; }
